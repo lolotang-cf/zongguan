@@ -26,6 +26,7 @@ EXPOSE 80
 # 设置环境变量
 ENV PORT=80
 ENV NODE_ENV=production
+ENV BUILD_VERSION=20260717_v6
 
 # 启动服务
 CMD ["node", "server.js"]
