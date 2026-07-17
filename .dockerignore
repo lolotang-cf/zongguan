@@ -1,0 +1,14 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.env
+*.md
+test-token.bat
+test-token2.bat
+test-token3.bat
+test-railway.bat
+nul
