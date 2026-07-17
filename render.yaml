@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: zongguan-platform
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/dashboard
+    autoDeploy: true
