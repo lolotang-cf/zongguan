@@ -6,6 +6,9 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Vercel 适配：不绑定0.0.0.0（Vercel处理）
+const IS_VERCEL = process.env.VERCEL === '1';
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -601,6 +604,12 @@ app.post('/api/ai/query', (req, res) => {
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
-app.listen(PORT, () => {
-  console.log(`综管AI线上管理平台已启动: http://localhost:${PORT}`);
-});
+// Vercel 适配：Serverless模式下不直接listen
+if (!IS_VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`综管AI线上管理平台已启动: http://localhost:${PORT}`);
+  });
+}
+
+// 导出供Vercel使用
+module.exports = app;
