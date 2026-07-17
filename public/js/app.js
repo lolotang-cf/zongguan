@@ -1706,74 +1706,18 @@ async function sendChat() {
 // ========== 启动 ==========
 document.addEventListener('DOMContentLoaded', init);
 
-// ========== 新增模块：人员流失看板 ==========
+// ========== 人员流失看板（iframe嵌入完整独立看板） ==========
 async function loadHrTurnover() {
-  const data = await fetchAPI('/api/hr/turnover');
-  if (!data) return;
   renderPage(`
-    <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">👥</div><div class="kpi-value">${data.overview.totalHeadcount}</div><div class="kpi-label">在岗总人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">📉</div><div class="kpi-value">${data.overview.ytdTurnover}</div><div class="kpi-label">年度累计离职</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">📊</div><div class="kpi-value">${data.overview.ytdRate}%</div><div class="kpi-label">年度累计流失率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon">📆</div><div class="kpi-value">${data.overview.monthRate}%</div><div class="kpi-label">本月流失率</div></div>
-    </div>
-    <div class="row cols-2">
-      <div class="chart-card">
-        <div class="chart-title">📉 月度流失率趋势</div>
-        <div id="turnoverTrend" style="height:320px"></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">🏢 各中心流失率对比</div>
-        <div id="turnoverByCenter" style="height:320px"></div>
-      </div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">📋 各中心离职明细</div>
-      <table class="data-table">
-        <thead><tr><th>中心</th><th>在岗人数</th><th>本月离职</th><th>年度累计</th><th>月流失率</th><th>年流失率</th><th>状态</th></tr></thead>
-        <tbody>
-          ${data.byCenter.map(c => {
-            const st = c.yearRate >= 30 ? ['tag-danger','偏高'] : c.yearRate >= 20 ? ['tag-warning','需关注'] : ['tag-success','正常'];
-            return `<tr><td><strong>${c.center}</strong></td><td>${c.headcount}</td><td>${c.monthTurnover}</td><td>${c.yearTurnover}</td><td>${c.monthRate}%</td><td><strong>${c.yearRate}%</strong></td><td><span class="tag ${st[0]}">${st[1]}</span></td></tr>`;
-          }).join('')}
-        </tbody>
-      </table>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">📝 近期离职人员清单</div>
-      <table class="data-table">
-        <thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>项目</th><th>岗位</th><th>入职日期</th><th>离职日期</th><th>司龄(月)</th><th>离职原因</th></tr></thead>
-        <tbody>
-          ${data.recent.map(r => `<tr><td>${r.id}</td><td><strong>${r.name}</strong></td><td>${r.center}</td><td>${r.project}</td><td>${r.position}</td><td>${r.joinDate}</td><td>${r.leaveDate}</td><td>${r.tenure}</td><td>${r.reason}</td></tr>`).join('')}
-        </tbody>
-      </table>
+    <div style="position:relative;margin:-24px;border-radius:0;overflow:hidden">
+      <iframe id="turnoverFrame"
+        src="turnover-dashboard.html?v=6"
+        style="width:100%;height:calc(100vh - 56px);min-height:700px;border:0;display:block"
+        allowfullscreen
+        onload="this.style.opacity=1"
+      ></iframe>
     </div>
   `);
-  setTimeout(() => {
-    disposeCharts();
-    initChart('turnoverTrend', {
-      tooltip: { trigger: 'axis' },
-      legend: { bottom: 0, data: ['流失率','离职人数'] },
-      grid: { left: 50, right: 50, top: 20, bottom: 50 },
-      xAxis: { type: 'category', data: data.monthly.map(m => m.month) },
-      yAxis: [
-        { type: 'value', name: '流失率%', axisLabel: { formatter: '{value}%' } },
-        { type: 'value', name: '离职人数', position: 'right' }
-      ],
-      series: [
-        { name: '流失率', type: 'line', data: data.monthly.map(m => m.rate), itemStyle: { color: COLORS.red }, smooth: true },
-        { name: '离职人数', type: 'bar', yAxisIndex: 1, data: data.monthly.map(m => m.count), itemStyle: { color: COLORS.orange } }
-      ]
-    });
-    initChart('turnoverByCenter', {
-      tooltip: { trigger: 'axis', formatter: '{b}<br/>{a}: {c}%' },
-      grid: { left: 50, right: 20, top: 20, bottom: 40 },
-      xAxis: { type: 'category', data: data.byCenter.map(c => c.center) },
-      yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
-      series: [{ type: 'bar', data: data.byCenter.map(c => c.yearRate), itemStyle: { color: function(p) { return p.value >= 30 ? COLORS.red : p.value >= 20 ? COLORS.orange : COLORS.green; } }, label: { show: true, position: 'top', formatter: '{c}%' } }]
-    });
-    window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
-  }, 50);
 }
 
 // ========== 新增模块：编制管理 ==========
