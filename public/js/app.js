@@ -21,30 +21,37 @@ const NAV_CONFIG = [
   { group: '总览', items: [
     { id: 'dashboard', icon: '📊', name: '综管驾驶舱', title: '综管驾驶舱' }
   ]},
-  { group: '招聘管理', items: [
-    { id: 'recruit-funnel', icon: '🎯', name: '招聘漏斗看板', title: '招聘漏斗数据看板' },
-    { id: 'recruit-achievement', icon: '📈', name: '需求达成看板', title: '年度需求入职达成看板' },
-    { id: 'recruit-weekly', icon: '📅', name: '周度过程看板', title: '招聘各中心周度过程数据看板' },
-    { id: 'recruit-daily', icon: '📆', name: '日报看板', title: '招聘各中心日报看板' }
+  { group: '人员台账', children: [
+    { subgroup: '招聘管理', items: [
+      { id: 'recruit-funnel', icon: '🎯', name: '招聘漏斗看板', title: '招聘漏斗数据看板' },
+      { id: 'recruit-achievement', icon: '📈', name: '需求达成看板', title: '年度需求入职达成看板' },
+      { id: 'recruit-weekly', icon: '📅', name: '周度过程看板', title: '招聘各中心周度过程数据看板' },
+      { id: 'recruit-daily', icon: '📆', name: '日报看板', title: '招聘各中心日报看板' }
+    ]},
+    { subgroup: '人事管理', items: [
+      { id: 'hr-establishment', icon: '📐', name: '编制管理', title: '编制管理' },
+      { id: 'hr-turnover', icon: '📉', name: '人员流失看板', title: '人员流失看板' },
+      { id: 'hr-contract', icon: '📋', name: '合同到期预警', title: '合同到期预警' }
+    ]},
+    { subgroup: '培训管理', items: [
+      { id: 'train-talent', icon: '👥', name: '人才库看板', title: '人才库数据看板' },
+      { id: 'train-new', icon: '🎓', name: '新培库看板', title: '新培库数据看板' },
+      { id: 'train-knowledge', icon: '📚', name: '培训知识库', title: '培训知识库' },
+      { id: 'train-exam', icon: '📝', name: '题库与考试', title: '岗前培训考试题库与在线考试' }
+    ]}
   ]},
-  { group: '培训管理', items: [
-    { id: 'train-talent', icon: '👥', name: '人才库看板', title: '人才库数据看板' },
-    { id: 'train-new', icon: '🎓', name: '新培库看板', title: '新培库数据看板' },
-    { id: 'train-knowledge', icon: '📚', name: '培训知识库', title: '培训知识库' },
-    { id: 'train-exam', icon: '📝', name: '题库与考试', title: '岗前培训考试题库与在线考试' }
-  ]},
-  { group: '人事管理', items: [
-    { id: 'hr-headcount', icon: '📊', name: '编制使用率看板', title: '人员编制使用率看板' },
-    { id: 'hr-process', icon: '🔄', name: '入转调离流程', title: '入转调离流程线上化' },
-    { id: 'hr-contract', icon: '📋', name: '合同到期预警', title: '合同到期预警' }
-  ]},
-  { group: '行政管理', items: [
-    { id: 'admin-supplies', icon: '📦', name: '办公用品库存', title: '办公用品库存与领用管理' },
+  { group: '物品台账', items: [
+    { id: 'admin-workplace', icon: '🏢', name: '职场管理', title: '职场管理' },
     { id: 'admin-asset', icon: '💻', name: '固定资产管理', title: '固定资产管理' },
-    { id: 'admin-budget', icon: '💰', name: '行政费用看板', title: '行政费用数据看板' }
+    { id: 'admin-supplies', icon: '📦', name: '办公用品管理', title: '办公用品库存与领用管理' },
+    { id: 'admin-gift', icon: '🎁', name: '礼品管理', title: '礼品管理' },
+    { id: 'admin-print', icon: '🖨️', name: '文印管理', title: '文印管理' }
   ]},
-  { group: '公共关系管理', items: [
-    { id: 'pr-opinion', icon: '📢', name: '舆情监控看板', title: '公共关系舆情监控看板' }
+  { group: '事务台账', items: [
+    { id: 'admin-regulation', icon: '📑', name: '管理制度', title: '管理制度' },
+    { id: 'admin-tasklist', icon: '✅', name: '工作清单', title: '工作清单' },
+    { id: 'admin-goal', icon: '🎯', name: '工作目标', title: '工作目标' },
+    { id: 'admin-kpi', icon: '📈', name: 'KPI', title: 'KPI考核看板' }
   ]},
   { group: '智能助手', items: [
     { id: 'ai-chat', icon: '🤖', name: '综管智能小助手', title: '综管智能小助手' }
@@ -60,17 +67,76 @@ function init() {
 
 function renderSidebar() {
   const nav = document.getElementById('sidebarNav');
-  nav.innerHTML = NAV_CONFIG.map(g => `
-    <div class="nav-group">
-      <div class="nav-group-title">${g.group}</div>
-      ${g.items.map(item => `
-        <div class="nav-item" data-page="${item.id}" onclick="navigate('${item.id}')">
-          <span class="nav-icon">${item.icon}</span>
-          <span>${item.name}</span>
+  nav.innerHTML = NAV_CONFIG.map((g, gi) => {
+    // 有children的三级嵌套结构
+    if (g.children) {
+      return `
+      <div class="nav-group">
+        <div class="nav-group-title" onclick="toggleNavGroup(${gi})">
+          <span class="nav-toggle" id="navToggle-${gi}">▾</span>
+          ${g.group}
         </div>
-      `).join('')}
-    </div>
-  `).join('');
+        <div class="nav-children" id="navChildren-${gi}">
+          ${g.children.map((sub, si) => `
+            <div class="nav-subgroup">
+              <div class="nav-subgroup-title" onclick="toggleNavSub(${gi},${si})">
+                <span class="nav-toggle" id="navSubToggle-${gi}-${si}">▸</span>
+                ${sub.subgroup}
+              </div>
+              <div class="nav-sub-items" id="navSubItems-${gi}-${si}" style="display:none">
+                ${sub.items.map(item => `
+                  <div class="nav-item nav-item-l3" data-page="${item.id}" onclick="navigate('${item.id}')">
+                    <span class="nav-icon">${item.icon}</span>
+                    <span>${item.name}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+    }
+    // 扁平二级结构（也支持折叠）
+    return `
+    <div class="nav-group">
+      <div class="nav-group-title" onclick="toggleNavGroup(${gi})">
+        <span class="nav-toggle" id="navToggle-${gi}">▾</span>
+        ${g.group}
+      </div>
+      <div class="nav-children" id="navChildren-${gi}">
+        ${g.items.map(item => `
+          <div class="nav-item" data-page="${item.id}" onclick="navigate('${item.id}')">
+            <span class="nav-icon">${item.icon}</span>
+            <span>${item.name}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleNavGroup(gi) {
+  const el = document.getElementById('navChildren-' + gi);
+  const toggle = document.getElementById('navToggle-' + gi);
+  if (el.style.display === 'none') {
+    el.style.display = '';
+    toggle.textContent = '▾';
+  } else {
+    el.style.display = 'none';
+    toggle.textContent = '▸';
+  }
+}
+
+function toggleNavSub(gi, si) {
+  const el = document.getElementById('navSubItems-' + gi + '-' + si);
+  const toggle = document.getElementById('navSubToggle-' + gi + '-' + si);
+  if (el.style.display === 'none') {
+    el.style.display = '';
+    toggle.textContent = '▾';
+  } else {
+    el.style.display = 'none';
+    toggle.textContent = '▸';
+  }
 }
 
 function navigate(pageId) {
@@ -88,16 +154,22 @@ function navigate(pageId) {
     'recruit-achievement': loadRecruitAchievement,
     'recruit-weekly': loadRecruitWeekly,
     'recruit-daily': loadRecruitDaily,
+    'hr-establishment': loadHrEstablishment,
+    'hr-turnover': loadHrTurnover,
+    'hr-contract': loadHrContract,
     'train-talent': loadTrainTalent,
     'train-new': loadTrainNew,
     'train-knowledge': loadTrainKnowledge,
     'train-exam': loadTrainExam,
-    'hr-headcount': loadHrHeadcount,
-    'hr-process': loadHrProcess,
-    'hr-contract': loadHrContract,
-    'admin-supplies': loadAdminSupplies,
+    'admin-workplace': loadAdminWorkplace,
     'admin-asset': loadAdminAsset,
-    'admin-budget': loadAdminBudget,
+    'admin-supplies': loadAdminSupplies,
+    'admin-gift': loadAdminGift,
+    'admin-print': loadAdminPrint,
+    'admin-regulation': loadAdminRegulation,
+    'admin-tasklist': loadAdminTasklist,
+    'admin-goal': loadAdminGoal,
+    'admin-kpi': loadAdminKpi,
     'pr-opinion': loadPrOpinion,
     'ai-chat': loadAiChat
   };
@@ -1633,3 +1705,455 @@ async function sendChat() {
 
 // ========== 启动 ==========
 document.addEventListener('DOMContentLoaded', init);
+
+// ========== 新增模块：人员流失看板 ==========
+async function loadHrTurnover() {
+  const data = await fetchAPI('/api/hr/turnover');
+  if (!data) return;
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">👥</div><div class="kpi-value">${data.overview.totalHeadcount}</div><div class="kpi-label">在岗总人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">📉</div><div class="kpi-value">${data.overview.ytdTurnover}</div><div class="kpi-label">年度累计离职</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">📊</div><div class="kpi-value">${data.overview.ytdRate}%</div><div class="kpi-label">年度累计流失率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon">📆</div><div class="kpi-value">${data.overview.monthRate}%</div><div class="kpi-label">本月流失率</div></div>
+    </div>
+    <div class="row cols-2">
+      <div class="chart-card">
+        <div class="chart-title">📉 月度流失率趋势</div>
+        <div id="turnoverTrend" style="height:320px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">🏢 各中心流失率对比</div>
+        <div id="turnoverByCenter" style="height:320px"></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 各中心离职明细</div>
+      <table class="data-table">
+        <thead><tr><th>中心</th><th>在岗人数</th><th>本月离职</th><th>年度累计</th><th>月流失率</th><th>年流失率</th><th>状态</th></tr></thead>
+        <tbody>
+          ${data.byCenter.map(c => {
+            const st = c.yearRate >= 30 ? ['tag-danger','偏高'] : c.yearRate >= 20 ? ['tag-warning','需关注'] : ['tag-success','正常'];
+            return `<tr><td><strong>${c.center}</strong></td><td>${c.headcount}</td><td>${c.monthTurnover}</td><td>${c.yearTurnover}</td><td>${c.monthRate}%</td><td><strong>${c.yearRate}%</strong></td><td><span class="tag ${st[0]}">${st[1]}</span></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📝 近期离职人员清单</div>
+      <table class="data-table">
+        <thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>项目</th><th>岗位</th><th>入职日期</th><th>离职日期</th><th>司龄(月)</th><th>离职原因</th></tr></thead>
+        <tbody>
+          ${data.recent.map(r => `<tr><td>${r.id}</td><td><strong>${r.name}</strong></td><td>${r.center}</td><td>${r.project}</td><td>${r.position}</td><td>${r.joinDate}</td><td>${r.leaveDate}</td><td>${r.tenure}</td><td>${r.reason}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+  setTimeout(() => {
+    disposeCharts();
+    initChart('turnoverTrend', {
+      tooltip: { trigger: 'axis' },
+      legend: { bottom: 0, data: ['流失率','离职人数'] },
+      grid: { left: 50, right: 50, top: 20, bottom: 50 },
+      xAxis: { type: 'category', data: data.monthly.map(m => m.month) },
+      yAxis: [
+        { type: 'value', name: '流失率%', axisLabel: { formatter: '{value}%' } },
+        { type: 'value', name: '离职人数', position: 'right' }
+      ],
+      series: [
+        { name: '流失率', type: 'line', data: data.monthly.map(m => m.rate), itemStyle: { color: COLORS.red }, smooth: true },
+        { name: '离职人数', type: 'bar', yAxisIndex: 1, data: data.monthly.map(m => m.count), itemStyle: { color: COLORS.orange } }
+      ]
+    });
+    initChart('turnoverByCenter', {
+      tooltip: { trigger: 'axis', formatter: '{b}<br/>{a}: {c}%' },
+      grid: { left: 50, right: 20, top: 20, bottom: 40 },
+      xAxis: { type: 'category', data: data.byCenter.map(c => c.center) },
+      yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+      series: [{ type: 'bar', data: data.byCenter.map(c => c.yearRate), itemStyle: { color: function(p) { return p.value >= 30 ? COLORS.red : p.value >= 20 ? COLORS.orange : COLORS.green; } }, label: { show: true, position: 'top', formatter: '{c}%' } }]
+    });
+    window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+  }, 50);
+}
+
+// ========== 新增模块：编制管理 ==========
+async function loadHrEstablishment() {
+  const data = await fetchAPI('/api/hr/establishment');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">📐</div><div class="kpi-value">${data.overview.totalEstablishment}</div><div class="kpi-label">编制总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✅</div><div class="kpi-value">${data.overview.filled}</div><div class="kpi-label">已入编</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.overview.vacant}</div><div class="kpi-label">空缺编制</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon">📈</div><div class="kpi-value">${data.overview.utilizationRate}%</div><div class="kpi-label">编制使用率</div></div>
+    </div>
+    <div class="row cols-2">
+      <div class="chart-card">
+        <div class="chart-title">📊 各中心编制分布</div>
+        <div id="estCenterChart" style="height:320px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">🏢 各项目编制对比</div>
+        <div id="estProjectChart" style="height:320px"></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 编制明细</div>
+      <div class="filter-bar">
+        <select><option>全部中心</option><option>太原</option><option>南昌</option><option>晋中</option><option>沈阳</option><option>南宁</option><option>上海</option></select>
+        <select><option>全部项目</option><option>小赢</option><option>字节</option><option>邮储</option><option>交行</option><option>广汽</option></select>
+        <button class="btn btn-primary" onclick="alert('打开新增编制申请窗口')">➕ 新增编制</button>
+        <button class="btn btn-outline" onclick="alert('导出编制明细Excel')">📥 导出</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>编制编号</th><th>中心</th><th>项目</th><th>岗位</th><th>编制数</th><th>在岗数</th><th>空缺</th><th>使用率</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.details.map(d => {
+            const rate = ((d.filled/d.establishment)*100).toFixed(1);
+            const status = rate >= 95 ? ['tag-success','满编'] : rate >= 80 ? ['tag-warning','缺口'] : ['tag-danger','严重缺'];
+            return `<tr><td>${d.id}</td><td><strong>${d.center}</strong></td><td>${d.project}</td><td>${d.position}</td><td>${d.establishment}</td><td>${d.filled}</td><td>${d.establishment-d.filled}</td><td>${rate}%</td><td><span class="tag ${status[0]}">${status[1]}</span></td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看编制: ${d.id}')">详情</button></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+  setTimeout(() => {
+    disposeCharts();
+    initChart('estCenterChart', {
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      legend: { bottom: 0, data: ['编制', '在岗', '空缺'] },
+      grid: { left: 50, right: 20, top: 20, bottom: 50 },
+      xAxis: { type: 'category', data: data.centerSummary.map(c => c.center) },
+      yAxis: { type: 'value' },
+      series: [
+        { name: '编制', type: 'bar', data: data.centerSummary.map(c => c.establishment), itemStyle: { color: COLORS.blue } },
+        { name: '在岗', type: 'bar', data: data.centerSummary.map(c => c.filled), itemStyle: { color: COLORS.green } },
+        { name: '空缺', type: 'bar', data: data.centerSummary.map(c => c.vacant), itemStyle: { color: COLORS.red } }
+      ]
+    });
+    initChart('estProjectChart', {
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      legend: { bottom: 0, data: ['编制', '在岗'] },
+      grid: { left: 50, right: 20, top: 20, bottom: 50 },
+      xAxis: { type: 'category', data: data.projectSummary.map(p => p.project), axisLabel: { rotate: 20 } },
+      yAxis: { type: 'value' },
+      series: [
+        { name: '编制', type: 'bar', data: data.projectSummary.map(p => p.establishment), itemStyle: { color: COLORS.blue } },
+        { name: '在岗', type: 'bar', data: data.projectSummary.map(p => p.filled), itemStyle: { color: COLORS.green } }
+      ]
+    });
+    window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+  }, 50);
+}
+
+// ========== 新增模块：职场管理 ==========
+async function loadAdminWorkplace() {
+  const data = await fetchAPI('/api/admin/workplace');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">🏢</div><div class="kpi-value">${data.overview.totalWorkplaces}</div><div class="kpi-label">职场总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">📏</div><div class="kpi-value">${data.overview.totalArea}㎡</div><div class="kpi-label">总面积</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">💰</div><div class="kpi-value">${data.overview.monthlyRent}万</div><div class="kpi-label">月租金</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon">👥</div><div class="kpi-value">${data.overview.totalSeats}</div><div class="kpi-label">工位总数</div></div>
+    </div>
+    <div class="row cols-2">
+      <div class="chart-card">
+        <div class="chart-title">📊 各职场工位使用率</div>
+        <div id="wpUsageChart" style="height:300px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">💰 各职场租金对比</div>
+        <div id="wpRentChart" style="height:300px"></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 职场明细</div>
+      <div class="filter-bar">
+        <select><option>全部城市</option><option>太原</option><option>南昌</option><option>晋中</option><option>沈阳</option><option>南宁</option><option>上海</option></select>
+        <button class="btn btn-primary" onclick="alert('打开新增职场窗口')">➕ 新增职场</button>
+        <button class="btn btn-outline" onclick="alert('导出职场明细')">📥 导出</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>职场编号</th><th>城市</th><th>地址</th><th>面积(㎡)</th><th>工位数</th><th>使用数</th><th>使用率</th><th>月租金(万)</th><th>租期至</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.details.map(d => {
+            const rate = ((d.usedSeats/d.totalSeats)*100).toFixed(1);
+            return `<tr><td>${d.id}</td><td><strong>${d.city}</strong></td><td>${d.address}</td><td>${d.area}</td><td>${d.totalSeats}</td><td>${d.usedSeats}</td><td>${rate}%</td><td>${d.monthlyRent}</td><td>${d.leaseEnd}</td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看职场: ${d.id}')">详情</button></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+  setTimeout(() => {
+    disposeCharts();
+    initChart('wpUsageChart', {
+      tooltip: { trigger: 'axis', formatter: '{b}<br/>{a}: {c}%' },
+      grid: { left: 50, right: 20, top: 20, bottom: 40 },
+      xAxis: { type: 'category', data: data.details.map(d => d.city) },
+      yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+      series: [{ type: 'bar', data: data.details.map(d => ((d.usedSeats/d.totalSeats)*100).toFixed(1)), itemStyle: { color: COLORS.blue }, label: { show: true, position: 'top', formatter: '{c}%' } }]
+    });
+    initChart('wpRentChart', {
+      tooltip: { trigger: 'axis' },
+      grid: { left: 50, right: 20, top: 20, bottom: 40 },
+      xAxis: { type: 'category', data: data.details.map(d => d.city) },
+      yAxis: { type: 'value', name: '万元' },
+      series: [{ type: 'bar', data: data.details.map(d => d.monthlyRent), itemStyle: { color: COLORS.orange } }]
+    });
+    window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+  }, 50);
+}
+
+// ========== 新增模块：礼品管理 ==========
+async function loadAdminGift() {
+  const data = await fetchAPI('/api/admin/gift');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">🎁</div><div class="kpi-value">${data.items.length}</div><div class="kpi-label">礼品种类</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">📊</div><div class="kpi-value">${data.items.reduce((s,i)=>s+i.stock,0)}</div><div class="kpi-label">库存总量</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.items.filter(i=>i.stock<i.safetyStock).length}</div><div class="kpi-label">库存预警</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">📤</div><div class="kpi-value">${data.overview.monthlyOutbound||0}</div><div class="kpi-label">本月领用</div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 礼品库存明细</div>
+      <div class="filter-bar">
+        <button class="btn btn-primary" onclick="alert('打开入库登记窗口')">➕ 入库</button>
+        <button class="btn btn-outline" onclick="alert('打开领用申请窗口')">📤 领用</button>
+        <button class="btn btn-outline" onclick="alert('导出礼品明细')">📥 导出</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>编号</th><th>礼品名称</th><th>分类</th><th>单价</th><th>库存</th><th>安全库存</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.items.map(i => {
+            const isLow = i.stock < i.safetyStock;
+            return `<tr><td>${i.id}</td><td><strong>${i.name}</strong></td><td>${i.category}</td><td>¥${i.unitPrice}</td><td>${i.stock}</td><td>${i.safetyStock}</td><td><span class="tag ${isLow?'tag-danger':'tag-success'}">${isLow?'预警':'正常'}</span></td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('领用: ${i.name}')">领用</button></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 最近领用记录</div>
+      <table class="data-table">
+        <thead><tr><th>日期</th><th>礼品</th><th>数量</th><th>领用人</th><th>部门</th><th>用途</th><th>审批人</th></tr></thead>
+        <tbody>
+          ${data.records.map(r => `<tr><td>${r.date}</td><td><strong>${r.gift}</strong></td><td>${r.qty}</td><td>${r.applicant}</td><td>${r.department}</td><td>${r.purpose}</td><td>${r.approver}</td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+}
+
+// ========== 新增模块：文印管理 ==========
+async function loadAdminPrint() {
+  const data = await fetchAPI('/api/admin/print');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">🖨️</div><div class="kpi-value">${data.overview.totalDevices}</div><div class="kpi-label">设备总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✅</div><div class="kpi-value">${data.overview.normalDevices}</div><div class="kpi-label">正常运行</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">📄</div><div class="kpi-value">${data.overview.monthlyPages}</div><div class="kpi-label">本月打印页数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.overview.faultDevices}</div><div class="kpi-label">故障设备</div></div>
+    </div>
+    <div class="row cols-2">
+      <div class="chart-card">
+        <div class="chart-title">📈 月度打印趋势</div>
+        <div id="printTrendChart" style="height:300px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">📊 各中心打印量</div>
+        <div id="printCenterChart" style="height:300px"></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 设备明细</div>
+      <table class="data-table">
+        <thead><tr><th>设备编号</th><th>设备名称</th><th>中心</th><th>类型</th><th>本月页数</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.devices.map(d => `<tr><td>${d.id}</td><td><strong>${d.name}</strong></td><td>${d.center}</td><td>${d.type}</td><td>${d.monthlyPages}</td><td><span class="tag ${d.status==='正常'?'tag-success':'tag-danger'}">${d.status}</span></td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看设备: ${d.id}')">详情</button></td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 最近文印申请</div>
+      <table class="data-table">
+        <thead><tr><th>日期</th><th>申请人</th><th>部门</th><th>文件名</th><th>份数</th><th>页数</th><th>彩色</th><th>状态</th></tr></thead>
+        <tbody>
+          ${data.records.map(r => `<tr><td>${r.date}</td><td><strong>${r.applicant}</strong></td><td>${r.department}</td><td>${r.fileName}</td><td>${r.copies}</td><td>${r.pages}</td><td>${r.color?'是':'否'}</td><td><span class="tag tag-success">${r.status}</span></td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+  setTimeout(() => {
+    disposeCharts();
+    initChart('printTrendChart', {
+      tooltip: { trigger: 'axis' },
+      grid: { left: 50, right: 20, top: 20, bottom: 30 },
+      xAxis: { type: 'category', data: data.monthlyTrend.map(t => t.month) },
+      yAxis: { type: 'value' },
+      series: [{ type: 'bar', data: data.monthlyTrend.map(t => t.pages), itemStyle: { color: COLORS.blue } }]
+    });
+    initChart('printCenterChart', {
+      tooltip: { trigger: 'axis' },
+      grid: { left: 50, right: 20, top: 20, bottom: 40 },
+      xAxis: { type: 'category', data: data.centerUsage.map(c => c.center) },
+      yAxis: { type: 'value' },
+      series: [{ type: 'bar', data: data.centerUsage.map(c => c.pages), itemStyle: { color: COLORS.purple } }]
+    });
+    window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+  }, 50);
+}
+
+// ========== 新增模块：管理制度 ==========
+async function loadAdminRegulation() {
+  const data = await fetchAPI('/api/admin/regulation');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  const catColors = { '人事制度':'tag-info','行政制度':'tag-warning','财务制度':'tag-success','安全制度':'tag-danger','其他':'tag-gray' };
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">📑</div><div class="kpi-value">${data.length}</div><div class="kpi-label">制度总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✅</div><div class="kpi-value">${data.filter(d=>d.status==='现行').length}</div><div class="kpi-label">现行有效</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">🔄</div><div class="kpi-value">${data.filter(d=>d.status==='修订中').length}</div><div class="kpi-label">修订中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.filter(d=>d.status==='已废止').length}</div><div class="kpi-label">已废止</div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 管理制度清单</div>
+      <div class="filter-bar">
+        <select><option>全部分类</option><option>人事制度</option><option>行政制度</option><option>财务制度</option><option>安全制度</option></select>
+        <select><option>全部状态</option><option>现行</option><option>修订中</option><option>已废止</option></select>
+        <input type="text" placeholder="搜索制度名称...">
+        <button class="btn btn-primary" onclick="alert('打开新增制度窗口')">➕ 新增制度</button>
+        <button class="btn btn-outline" onclick="alert('导出制度清单')">📥 导出</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>编号</th><th>制度名称</th><th>分类</th><th>发布日期</th><th>修订日期</th><th>版本</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.map(d => `<tr><td>${d.id}</td><td><strong>${d.name}</strong></td><td><span class="tag ${catColors[d.category]||'tag-gray'}">${d.category}</span></td><td>${d.publishDate}</td><td>${d.reviseDate||'-'}</td><td>v${d.version}</td><td><span class="tag ${d.status==='现行'?'tag-success':d.status==='修订中'?'tag-warning':'tag-gray'}">${d.status}</span></td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看制度: ${d.name}')">查看</button> <button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('下载: ${d.name}')">下载</button></td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+}
+
+// ========== 新增模块：工作清单 ==========
+async function loadAdminTasklist() {
+  const data = await fetchAPI('/api/admin/tasklist');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  const statusColors = { '待开始':'tag-gray','进行中':'tag-info','已完成':'tag-success','已逾期':'tag-danger' };
+  const prioColors = { '高':'tag-danger','中':'tag-warning','低':'tag-success' };
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">📋</div><div class="kpi-value">${data.length}</div><div class="kpi-label">任务总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✅</div><div class="kpi-value">${data.filter(t=>t.status==='已完成').length}</div><div class="kpi-label">已完成</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">🔄</div><div class="kpi-value">${data.filter(t=>t.status==='进行中').length}</div><div class="kpi-label">进行中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.filter(t=>t.status==='已逾期').length}</div><div class="kpi-label">已逾期</div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 工作清单</div>
+      <div class="filter-bar">
+        <select><option>全部状态</option><option>待开始</option><option>进行中</option><option>已完成</option><option>已逾期</option></select>
+        <select><option>全部优先级</option><option>高</option><option>中</option><option>低</option></select>
+        <input type="text" placeholder="搜索任务...">
+        <button class="btn btn-primary" onclick="alert('打开新增任务窗口')">➕ 新增任务</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>编号</th><th>任务名称</th><th>负责人</th><th>优先级</th><th>截止日期</th><th>进度</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.map(t => `<tr><td>${t.id}</td><td><strong>${t.name}</strong></td><td>${t.owner}</td><td><span class="tag ${prioColors[t.priority]||'tag-gray'}">${t.priority}</span></td><td>${t.deadline}</td><td><div class="progress" style="width:80px"><div class="progress-bar ${t.progress>=80?'green':t.progress>=40?'orange':'red'}" style="width:${t.progress}%"></div></div> ${t.progress}%</td><td><span class="tag ${statusColors[t.status]||'tag-gray'}">${t.status}</span></td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看任务: ${t.name}')">详情</button></td></tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+}
+
+// ========== 新增模块：工作目标 ==========
+async function loadAdminGoal() {
+  const data = await fetchAPI('/api/admin/goal');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  const statusColors = { '正常':'tag-success','需关注':'tag-warning','严重滞后':'tag-danger' };
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">🎯</div><div class="kpi-value">${data.length}</div><div class="kpi-label">目标总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✅</div><div class="kpi-value">${data.filter(g=>g.status==='正常').length}</div><div class="kpi-label">正常推进</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.filter(g=>g.status==='需关注').length}</div><div class="kpi-label">需关注</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">🚨</div><div class="kpi-value">${data.filter(g=>g.status==='严重滞后').length}</div><div class="kpi-label">严重滞后</div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">🎯 工作目标达成情况</div>
+      <table class="data-table">
+        <thead><tr><th>编号</th><th>目标名称</th><th>负责人</th><th>周期</th><th>目标值</th><th>当前值</th><th>达成率</th><th>进度</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.map(g => {
+            const rate = ((g.current/g.target)*100).toFixed(1);
+            return `<tr><td>${g.id}</td><td><strong>${g.name}</strong></td><td>${g.owner}</td><td>${g.period}</td><td>${g.target}</td><td>${g.current}</td><td>${rate}%</td><td><div class="progress" style="width:80px"><div class="progress-bar ${rate>=80?'green':rate>=50?'orange':'red'}" style="width:${Math.min(rate,100)}%"></div></div></td><td><span class="tag ${statusColors[g.status]||'tag-gray'}">${g.status}</span></td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看目标: ${g.name}')">详情</button></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+}
+
+// ========== 新增模块：KPI ==========
+async function loadAdminKpi() {
+  const data = await fetchAPI('/api/admin/kpi');
+  if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
+  renderPage(`
+    <div class="kpi-grid cols-4">
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">📈</div><div class="kpi-value">${data.overview.totalPeople}</div><div class="kpi-label">考核人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✅</div><div class="kpi-value">${data.overview.excellent}</div><div class="kpi-label">优秀(≥90)</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">📊</div><div class="kpi-value">${data.overview.good}</div><div class="kpi-label">良好(80-89)</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">${data.overview.belowStandard}</div><div class="kpi-label">待改进(<80)</div></div>
+    </div>
+    <div class="row cols-2">
+      <div class="chart-card">
+        <div class="chart-title">📊 KPI分数分布</div>
+        <div id="kpiDistChart" style="height:300px"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">🏢 各中心KPI均值</div>
+        <div id="kpiCenterChart" style="height:300px"></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">📋 KPI考核明细</div>
+      <div class="filter-bar">
+        <select><option>全部中心</option><option>太原</option><option>南昌</option><option>晋中</option><option>沈阳</option><option>南宁</option><option>上海</option></select>
+        <select><option>全部等级</option><option>优秀</option><option>良好</option><option>待改进</option></select>
+        <button class="btn btn-outline" onclick="alert('导出KPI明细')">📥 导出</button>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>项目</th><th>岗位</th><th>KPI得分</th><th>等级</th><th>排名</th><th>操作</th></tr></thead>
+        <tbody>
+          ${data.details.map(d => {
+            const grade = d.score >= 90 ? ['tag-success','优秀'] : d.score >= 80 ? ['tag-warning','良好'] : ['tag-danger','待改进'];
+            return `<tr><td>${d.id}</td><td><strong>${d.name}</strong></td><td>${d.center}</td><td>${d.project}</td><td>${d.position}</td><td><strong style="font-size:15px;color:${d.score>=90?'var(--success)':d.score>=80?'var(--warning)':'var(--danger)'}">${d.score}</strong></td><td><span class="tag ${grade[0]}">${grade[1]}</span></td><td>${d.rank}</td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="alert('查看KPI详情: ${d.name}')">详情</button></td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `);
+  setTimeout(() => {
+    disposeCharts();
+    initChart('kpiDistChart', {
+      tooltip: { trigger: 'item', formatter: '{b}: {c}人 ({d}%)' },
+      legend: { bottom: 0 },
+      series: [{ type: 'pie', radius: ['40%','65%'], center: ['50%','45%'],
+        label: { formatter: '{b}\n{d}%', fontSize: 12 },
+        data: [
+          { value: data.overview.excellent, name: '优秀(≥90)', itemStyle: { color: COLORS.green } },
+          { value: data.overview.good, name: '良好(80-89)', itemStyle: { color: COLORS.orange } },
+          { value: data.overview.belowStandard, name: '待改进(<80)', itemStyle: { color: COLORS.red } }
+        ]
+      }]
+    });
+    initChart('kpiCenterChart', {
+      tooltip: { trigger: 'axis', formatter: '{b}<br/>平均KPI: {c}' },
+      grid: { left: 50, right: 20, top: 20, bottom: 40 },
+      xAxis: { type: 'category', data: data.centerAvg.map(c => c.center) },
+      yAxis: { type: 'value', min: 70, max: 100 },
+      series: [{ type: 'bar', data: data.centerAvg.map(c => c.avgScore), itemStyle: { color: function(p) { return p.value >= 90 ? COLORS.green : p.value >= 80 ? COLORS.orange : COLORS.red; } }, label: { show: true, position: 'top' } }]
+    });
+    window.addEventListener('resize', () => Object.values(charts).forEach(c => c && c.resize && c.resize()));
+  }, 50);
+}

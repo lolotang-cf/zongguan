@@ -38,16 +38,24 @@ body { font-family: 'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif; backg
 .sidebar-nav::-webkit-scrollbar { width: 4px; }
 .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 2px; }
 .nav-group { margin-bottom: 8px; }
-.nav-group-title { font-size: 11px; color: rgba(255,255,255,0.4); padding: 8px 20px; text-transform: uppercase; letter-spacing: 1px; }
+.nav-group-title { font-size: 16px; font-weight: 700; color: #fff; padding: 12px 20px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.nav-group-title:hover { background: rgba(255,255,255,0.06); }
+.nav-toggle { font-size: 12px; width: 14px; display: inline-block; transition: transform 0.2s; }
+.nav-children { overflow: hidden; }
+.nav-subgroup { margin-bottom: 2px; }
+.nav-subgroup-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); padding: 8px 20px 8px 28px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.nav-subgroup-title:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.nav-sub-items { overflow: hidden; }
 .nav-item {
-  display: flex; align-items: center; gap: 10px; padding: 10px 20px;
-  color: rgba(255,255,255,0.7); cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; gap: 10px; padding: 8px 20px;
+  color: rgba(255,255,255,0.65); cursor: pointer; font-size: 13px;
   transition: all 0.2s; border-left: 3px solid transparent;
 }
 .nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
 .nav-item.active { background: rgba(59,130,246,0.15); color: #fff; border-left-color: var(--accent); }
-.nav-item .nav-icon { font-size: 18px; width: 24px; text-align: center; }
+.nav-item .nav-icon { font-size: 16px; width: 24px; text-align: center; }
 .nav-item .nav-badge { margin-left: auto; font-size: 10px; background: var(--danger); color: #fff; padding: 1px 6px; border-radius: 8px; }
+.nav-item-l3 { padding-left: 48px; }
 
 .main-area { flex: 1; margin-left: var(--sidebar-w); display: flex; flex-direction: column; min-height: 100vh; }
 .topbar {

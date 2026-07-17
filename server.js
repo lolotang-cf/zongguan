@@ -602,6 +602,223 @@ app.post('/api/ai/query', (req, res) => {
   }
 });
 
+// ========== 新增模块API ==========
+
+// 人员流失看板
+app.get('/api/hr/turnover', (req, res) => {
+  res.json({
+    overview: { totalHeadcount: 892, ytdTurnover: 156, ytdRate: 14.9, monthRate: 2.1 },
+    monthly: [
+      { month: '1月', rate: 3.2, count: 28 },
+      { month: '2月', rate: 2.8, count: 25 },
+      { month: '3月', rate: 2.5, count: 22 },
+      { month: '4月', rate: 1.8, count: 16 },
+      { month: '5月', rate: 1.5, count: 14 },
+      { month: '6月', rate: 2.1, count: 19 },
+      { month: '7月', rate: 2.1, count: 19 }
+    ],
+    byCenter: [
+      { center: '太原', headcount: 305, monthTurnover: 6, yearTurnover: 42, monthRate: 2.0, yearRate: 12.1 },
+      { center: '南昌', headcount: 168, monthTurnover: 4, yearTurnover: 35, monthRate: 2.4, yearRate: 17.2 },
+      { center: '晋中', headcount: 138, monthTurnover: 3, yearTurnover: 28, monthRate: 2.2, yearRate: 16.9 },
+      { center: '沈阳', headcount: 112, monthTurnover: 2, yearTurnover: 21, monthRate: 1.8, yearRate: 15.8 },
+      { center: '南宁', headcount: 92, monthTurnover: 2, yearTurnover: 18, monthRate: 2.2, yearRate: 16.4 },
+      { center: '上海', headcount: 77, monthTurnover: 2, yearTurnover: 12, monthRate: 2.6, yearRate: 13.5 }
+    ],
+    recent: [
+      { id: 'EMP892', name: '马超', center: '南昌', project: '小赢', position: '催收员', joinDate: '2025-03-15', leaveDate: '2026-07-14', tenure: 16, reason: '个人发展' },
+      { id: 'EMP891', name: '陈晨', center: '太原', project: '字节', position: '催收员', joinDate: '2025-08-01', leaveDate: '2026-07-12', tenure: 11, reason: '薪资原因' },
+      { id: 'EMP890', name: '刘洋', center: '晋中', project: '交行', position: '催收员', joinDate: '2025-11-20', leaveDate: '2026-07-10', tenure: 8, reason: '工作压力' },
+      { id: 'EMP889', name: '赵雪', center: '沈阳', project: '邮储', position: '催收员', joinDate: '2024-06-01', leaveDate: '2026-07-08', tenure: 25, reason: '转行' },
+      { id: 'EMP888', name: '孙浩', center: '南宁', project: '广汽', position: '催收员', joinDate: '2025-05-10', leaveDate: '2026-07-05', tenure: 14, reason: '家庭原因' },
+      { id: 'EMP887', name: '周婷', center: '太原', project: '小赢', position: '催收员', joinDate: '2025-01-15', leaveDate: '2026-07-03', tenure: 18, reason: '个人发展' },
+      { id: 'EMP886', name: '吴磊', center: '上海', project: '江西银行', position: '催收员', joinDate: '2025-09-01', leaveDate: '2026-07-01', tenure: 10, reason: '薪资原因' }
+    ]
+  });
+});
+
+// 编制管理
+app.get('/api/hr/establishment', (req, res) => {
+  res.json({
+    overview: { totalEstablishment: 950, filled: 892, vacant: 58, utilizationRate: 93.9 },
+    centerSummary: [
+      { center: '太原', establishment: 320, filled: 305, vacant: 15 },
+      { center: '南昌', establishment: 180, filled: 168, vacant: 12 },
+      { center: '晋中', establishment: 150, filled: 138, vacant: 12 },
+      { center: '沈阳', establishment: 120, filled: 112, vacant: 8 },
+      { center: '南宁', establishment: 100, filled: 92, vacant: 8 },
+      { center: '上海', establishment: 80, filled: 77, vacant: 3 }
+    ],
+    projectSummary: [
+      { project: '小赢', establishment: 350, filled: 332 },
+      { project: '字节', establishment: 262, filled: 248 },
+      { project: '邮储', establishment: 191, filled: 180 },
+      { project: '交行', establishment: 131, filled: 122 },
+      { project: '其他', establishment: 16, filled: 10 }
+    ],
+    details: [
+      { id: 'EST001', center: '太原', project: '小赢', position: '催收员', establishment: 200, filled: 192 },
+      { id: 'EST002', center: '太原', project: '小赢', position: '组长', establishment: 20, filled: 18 },
+      { id: 'EST003', center: '太原', project: '字节', position: '催收员', establishment: 100, filled: 95 },
+      { id: 'EST004', center: '南昌', project: '小赢', position: '催收员', establishment: 150, filled: 140 },
+      { id: 'EST005', center: '南昌', project: '邮储', position: '催收员', establishment: 30, filled: 28 },
+      { id: 'EST006', center: '晋中', project: '字节', position: '催收员', establishment: 80, filled: 72 },
+      { id: 'EST007', center: '晋中', project: '交行', position: '催收员', establishment: 70, filled: 66 },
+      { id: 'EST008', center: '沈阳', project: '小赢', position: '催收员', establishment: 70, filled: 65 },
+      { id: 'EST009', center: '沈阳', project: '邮储', position: '催收员', establishment: 50, filled: 47 },
+      { id: 'EST010', center: '南宁', project: '小赢', position: '催收员', establishment: 60, filled: 55 },
+      { id: 'EST011', center: '南宁', project: '广汽', position: '催收员', establishment: 40, filled: 37 },
+      { id: 'EST012', center: '上海', project: '江西银行', position: '催收员', establishment: 50, filled: 48 },
+      { id: 'EST013', center: '上海', project: '华夏银行', position: '催收员', establishment: 30, filled: 29 }
+    ]
+  });
+});
+
+// 职场管理
+app.get('/api/admin/workplace', (req, res) => {
+  res.json({
+    overview: { totalWorkplaces: 8, totalArea: 12500, monthlyRent: 38.5, totalSeats: 1050 },
+    details: [
+      { id: 'WP001', city: '太原', address: '小店区综改示范区汇通街', area: 3500, totalSeats: 320, usedSeats: 305, monthlyRent: 12.5, leaseEnd: '2027-06-30' },
+      { id: 'WP002', city: '南昌', address: '青山湖区北京东路', area: 2000, totalSeats: 180, usedSeats: 168, monthlyRent: 6.8, leaseEnd: '2026-12-31' },
+      { id: 'WP003', city: '晋中', address: '榆次区迎宾西街', area: 1800, totalSeats: 150, usedSeats: 138, monthlyRent: 5.2, leaseEnd: '2027-03-31' },
+      { id: 'WP004', city: '沈阳', address: '铁西区建设大路', area: 1500, totalSeats: 120, usedSeats: 112, monthlyRent: 4.8, leaseEnd: '2026-09-30' },
+      { id: 'WP005', city: '南宁', address: '青秀区金湖广场', area: 1200, totalSeats: 100, usedSeats: 92, monthlyRent: 4.2, leaseEnd: '2027-01-31' },
+      { id: 'WP006', city: '上海', address: '浦东新区世纪大道', area: 2500, totalSeats: 180, usedSeats: 77, monthlyRent: 5.0, leaseEnd: '2027-12-31' }
+    ]
+  });
+});
+
+// 礼品管理
+app.get('/api/admin/gift', (req, res) => {
+  res.json({
+    overview: { totalItems: 24, totalStock: 580, lowStock: 3, monthlyOutbound: 45 },
+    items: [
+      { id: 'G001', name: '品牌保温杯', category: '员工福利', unitPrice: 68, stock: 120, safetyStock: 30 },
+      { id: 'G002', name: '定制笔记本套装', category: '办公文具', unitPrice: 35, stock: 85, safetyStock: 20 },
+      { id: 'G003', name: '企业徽章', category: '文化周边', unitPrice: 15, stock: 200, safetyStock: 50 },
+      { id: 'G004', name: '节日礼盒（中秋）', category: '节日礼品', unitPrice: 158, stock: 28, safetyStock: 30 },
+      { id: 'G005', name: '蓝牙耳机', category: '员工福利', unitPrice: 199, stock: 45, safetyStock: 15 },
+      { id: 'G006', name: '定制U盘32G', category: '办公文具', unitPrice: 28, stock: 60, safetyStock: 20 },
+      { id: 'G007', name: '桌面绿植', category: '办公装饰', unitPrice: 22, stock: 15, safetyStock: 20 },
+      { id: 'G008', name: '品牌雨伞', category: '员工福利', unitPrice: 45, stock: 27, safetyStock: 25 }
+    ],
+    records: [
+      { date: '2026-07-16', gift: '品牌保温杯', qty: 10, applicant: '张三', department: '综管部', purpose: '新员工入职礼包', approver: '汤经理' },
+      { date: '2026-07-15', gift: '定制笔记本套装', qty: 5, applicant: '李四', department: '人事部', purpose: '培训奖品', approver: '王经理' },
+      { date: '2026-07-14', gift: '节日礼盒（中秋）', qty: 3, applicant: '赵五', department: '行政部', purpose: '客户拜访', approver: '汤经理' },
+      { date: '2026-07-12', gift: '蓝牙耳机', qty: 2, applicant: '孙六', department: '综管部', purpose: '优秀员工奖励', approver: '汤经理' },
+      { date: '2026-07-10', gift: '定制U盘32G', qty: 8, applicant: '周七', department: '培训部', purpose: '培训资料发放', approver: '王经理' }
+    ]
+  });
+});
+
+// 文印管理
+app.get('/api/admin/print', (req, res) => {
+  res.json({
+    overview: { totalDevices: 12, normalDevices: 11, faultDevices: 1, monthlyPages: 28500 },
+    monthlyTrend: [
+      { month: '1月', pages: 22000 },{ month: '2月', pages: 18500 },{ month: '3月', pages: 25300 },
+      { month: '4月', pages: 21800 },{ month: '5月', pages: 26100 },{ month: '6月', pages: 27900 },{ month: '7月', pages: 28500 }
+    ],
+    centerUsage: [
+      { center: '太原', pages: 12000 },{ center: '南昌', pages: 5200 },{ center: '晋中', pages: 4500 },
+      { center: '沈阳', pages: 3200 },{ center: '南宁', pages: 2600 },{ center: '上海', pages: 1000 }
+    ],
+    devices: [
+      { id: 'P001', name: '太原-施乐C3370', center: '太原', type: '彩色复合机', monthlyPages: 8500, status: '正常' },
+      { id: 'P002', name: '太原-HP LaserJet', center: '太原', type: '黑白打印机', monthlyPages: 3500, status: '正常' },
+      { id: 'P003', name: '南昌-施乐C3370', center: '南昌', type: '彩色复合机', monthlyPages: 5200, status: '正常' },
+      { id: 'P004', name: '晋中-HP LaserJet', center: '晋中', type: '黑白打印机', monthlyPages: 4500, status: '正常' },
+      { id: 'P005', name: '沈阳-佳能iR', center: '沈阳', type: '彩色复合机', monthlyPages: 3200, status: '正常' },
+      { id: 'P006', name: '南宁-HP LaserJet', center: '南宁', type: '黑白打印机', monthlyPages: 2600, status: '正常' },
+      { id: 'P007', name: '上海-施乐C3370', center: '上海', type: '彩色复合机', monthlyPages: 1000, status: '故障' }
+    ],
+    records: [
+      { date: '2026-07-16', applicant: '张三', department: '综管部', fileName: '2026年7月人力周报.pdf', copies: 5, pages: 12, color: true, status: '已完成' },
+      { date: '2026-07-16', applicant: '李四', department: '人事部', fileName: '新员工手册.docx', copies: 10, pages: 8, color: false, status: '已完成' },
+      { date: '2026-07-15', applicant: '王五', department: '培训部', fileName: '催收技巧培训课件.pptx', copies: 3, pages: 25, color: true, status: '已完成' },
+      { date: '2026-07-15', applicant: '赵六', department: '行政部', fileName: '办公用品盘点表.xlsx', copies: 2, pages: 3, color: false, status: '已完成' },
+      { date: '2026-07-14', applicant: '孙七', department: '综管部', fileName: '综管月报.pdf', copies: 8, pages: 15, color: true, status: '已完成' }
+    ]
+  });
+});
+
+// 管理制度
+app.get('/api/admin/regulation', (req, res) => {
+  res.json([
+    { id: 'R001', name: '员工考勤管理制度', category: '人事制度', publishDate: '2024-01-15', reviseDate: '2026-03-01', version: '2.0', status: '现行' },
+    { id: 'R002', name: '招聘管理制度', category: '人事制度', publishDate: '2024-03-01', reviseDate: '2026-05-15', version: '1.5', status: '现行' },
+    { id: 'R003', name: '办公用品管理制度', category: '行政制度', publishDate: '2024-06-01', reviseDate: null, version: '1.0', status: '现行' },
+    { id: 'R004', name: '固定资产管理制度', category: '行政制度', publishDate: '2024-06-01', reviseDate: '2026-01-10', version: '1.2', status: '现行' },
+    { id: 'R005', name: '费用报销管理制度', category: '财务制度', publishDate: '2024-01-01', reviseDate: '2026-06-01', version: '2.1', status: '现行' },
+    { id: 'R006', name: '职场安全管理制度', category: '安全制度', publishDate: '2024-03-15', reviseDate: null, version: '1.0', status: '现行' },
+    { id: 'R007', name: '信息保密管理制度', category: '安全制度', publishDate: '2024-07-01', reviseDate: '2026-02-15', version: '1.3', status: '现行' },
+    { id: 'R008', name: '培训管理制度', category: '人事制度', publishDate: '2024-02-01', reviseDate: null, version: '1.0', status: '修订中' },
+    { id: 'R009', name: '绩效考核管理制度', category: '人事制度', publishDate: '2024-04-01', reviseDate: '2026-04-01', version: '1.8', status: '现行' },
+    { id: 'R010', name: '差旅管理制度', category: '行政制度', publishDate: '2023-06-01', reviseDate: null, version: '1.0', status: '已废止' },
+    { id: 'R011', name: '印章管理制度', category: '行政制度', publishDate: '2024-05-01', reviseDate: null, version: '1.0', status: '现行' },
+    { id: 'R012', name: '合同管理制度', category: '财务制度', publishDate: '2024-01-01', reviseDate: '2026-03-15', version: '1.5', status: '现行' }
+  ]);
+});
+
+// 工作清单
+app.get('/api/admin/tasklist', (req, res) => {
+  res.json([
+    { id: 'T001', name: '2026年人员保有专项方案落地', owner: '汤经理', priority: '高', deadline: '2026-07-31', progress: 65, status: '进行中' },
+    { id: 'T002', name: 'Q3招聘需求汇总与审批', owner: '王经理', priority: '高', deadline: '2026-07-20', progress: 80, status: '进行中' },
+    { id: 'T003', name: '新员工培训体系优化', owner: '赵主管', priority: '中', deadline: '2026-08-15', progress: 40, status: '进行中' },
+    { id: 'T004', name: '办公用品供应商比价', owner: '孙主管', priority: '低', deadline: '2026-07-25', progress: 90, status: '进行中' },
+    { id: 'T005', name: '7月人力周报编制', owner: '周专员', priority: '中', deadline: '2026-07-19', progress: 100, status: '已完成' },
+    { id: 'T006', name: '职场消防年检安排', owner: '孙主管', priority: '高', deadline: '2026-07-10', progress: 30, status: '已逾期' },
+    { id: 'T007', name: 'Q2绩效复盘报告', owner: '汤经理', priority: '中', deadline: '2026-07-22', progress: 55, status: '进行中' },
+    { id: 'T008', name: '固定资产盘点（太原）', owner: '赵主管', priority: '中', deadline: '2026-07-30', progress: 0, status: '待开始' },
+    { id: 'T009', name: '企业微信消息接口对接', owner: '汤经理', priority: '高', deadline: '2026-07-18', progress: 85, status: '进行中' },
+    { id: 'T010', name: '综管平台V2需求收集', owner: '王经理', priority: '低', deadline: '2026-08-01', progress: 20, status: '进行中' }
+  ]);
+});
+
+// 工作目标
+app.get('/api/admin/goal', (req, res) => {
+  res.json([
+    { id: 'G001', name: '年度招聘达成率', owner: '王经理', period: '2026年度', target: 320, current: 218, status: '正常' },
+    { id: 'G002', name: '人员保有率', owner: '汤经理', period: '2026年度', target: 95, current: 87, status: '需关注' },
+    { id: 'G003', name: '新员工培训转化率', owner: '赵主管', period: '2026年度', target: 85, current: 79, status: '需关注' },
+    { id: 'G004', name: '办公用品库存准确率', owner: '孙主管', period: '2026年度', target: 98, current: 96, status: '正常' },
+    { id: 'G005', name: '固定资产利用率', owner: '孙主管', period: '2026年度', target: 95, current: 94, status: '正常' },
+    { id: 'G006', name: '行政费用预算执行率', owner: '汤经理', period: '2026年度', target: 100, current: 60, status: '正常' },
+    { id: 'G007', name: '职场安全零事故', owner: '孙主管', period: '2026年度', target: 0, current: 0, status: '正常' },
+    { id: 'G008', name: '综管平台上线', owner: '汤经理', period: 'Q3', target: 1, current: 0, status: '严重滞后' }
+  ]);
+});
+
+// KPI考核
+app.get('/api/admin/kpi', (req, res) => {
+  res.json({
+    overview: { totalPeople: 892, excellent: 185, good: 528, belowStandard: 179 },
+    centerAvg: [
+      { center: '太原', avgScore: 88.5 },
+      { center: '南昌', avgScore: 85.2 },
+      { center: '晋中', avgScore: 86.8 },
+      { center: '沈阳', avgScore: 84.3 },
+      { center: '南宁', avgScore: 83.7 },
+      { center: '上海', avgScore: 89.1 }
+    ],
+    details: [
+      { id: 'EMP001', name: '张伟', center: '太原', project: '小赢', position: '催收员', score: 95, rank: 1 },
+      { id: 'EMP002', name: '李娜', center: '太原', project: '小赢', position: '催收员', score: 93, rank: 2 },
+      { id: 'EMP003', name: '王强', center: '太原', project: '字节', position: '催收员', score: 91, rank: 3 },
+      { id: 'EMP004', name: '赵敏', center: '南昌', project: '小赢', position: '催收员', score: 89, rank: 4 },
+      { id: 'EMP005', name: '刘洋', center: '南昌', project: '邮储', position: '催收员', score: 87, rank: 5 },
+      { id: 'EMP006', name: '陈静', center: '晋中', project: '字节', position: '催收员', score: 85, rank: 6 },
+      { id: 'EMP007', name: '杨光', center: '晋中', project: '交行', position: '催收员', score: 82, rank: 7 },
+      { id: 'EMP008', name: '黄磊', center: '沈阳', project: '小赢', position: '催收员', score: 78, rank: 8 },
+      { id: 'EMP009', name: '周婷', center: '沈阳', project: '邮储', position: '催收员', score: 75, rank: 9 },
+      { id: 'EMP010', name: '吴昊', center: '南宁', project: '广汽', position: '催收员', score: 72, rank: 10 }
+    ]
+  });
+});
+
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 // Vercel 适配：Serverless模式下不直接listen
