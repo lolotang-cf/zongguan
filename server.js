@@ -1,0 +1,606 @@
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+const PORT = process.env.PORT || 3001;
+
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ============ 模拟数据 ============
+const mockData = {
+  // 驾驶舱概览
+  dashboard: {
+    recruit: {
+      yearDemand: 320, yearOnboard: 218, rate: 68.1,
+      monthDemand: 45, monthOnboard: 31, monthRate: 68.9,
+      funnel: { posted: 120, resume: 1850, screened: 620, interview: 380, offer: 95, onboard: 78 },
+      trend: [
+        { month: '1月', demand: 28, onboard: 22 },
+        { month: '2月', demand: 35, onboard: 18 },
+        { month: '3月', demand: 42, onboard: 28 },
+        { month: '4月', demand: 38, onboard: 25 },
+        { month: '5月', demand: 45, onboard: 31 },
+        { month: '6月', demand: 52, onboard: 38 },
+        { month: '7月', demand: 45, onboard: 31 }
+      ]
+    },
+    train: {
+      talentPool: { total: 850, onDuty: 792, trainee: 45, reserve: 58, rate: 92.7 },
+      newTrain: { enrolled: 120, signed: 108, grouped: 95, rate: 79.2, eliminated: 8, resigned: 5 },
+      knowledge: { courses: 156, documents: 342, totalViews: 4521, avgCompletion: 78.5 }
+    },
+    hr: {
+      headcount: { planned: 950, actual: 892, vacant: 58, recruiting: 45, rate: 93.9 },
+      contractExpiring: 23,
+      onboarding: 12, transfer: 5, resignation: 8,
+      monthlyChange: [
+        { month: '1月', in: 22, out: 8 },
+        { month: '2月', in: 18, out: 12 },
+        { month: '3月', in: 28, out: 10 },
+        { month: '4月', in: 25, out: 15 },
+        { month: '5月', in: 31, out: 9 },
+        { month: '6月', in: 38, out: 11 },
+        { month: '7月', in: 31, out: 8 }
+      ]
+    },
+    admin: {
+      supplies: { categories: 48, totalItems: 1820, lowStock: 7, monthlyUsage: 320 },
+      asset: { total: 1250, inUse: 1180, idle: 42, scrapped: 28 },
+      budget: { annual: 2800000, spent: 1680000, rate: 60.0 }
+    },
+    pr: {
+      sentiment: { positive: 68, neutral: 25, negative: 7 },
+      totalMentions: 342, hotTopics: 5,
+      alerts: 2,
+      weeklyTrend: [
+        { day: '周一', positive: 12, neutral: 5, negative: 1 },
+        { day: '周二', positive: 15, neutral: 4, negative: 2 },
+        { day: '周三', positive: 10, neutral: 8, negative: 3 },
+        { day: '周四', positive: 14, neutral: 3, negative: 1 },
+        { day: '周五', positive: 9, neutral: 5, negative: 0 },
+        { day: '周六', positive: 5, neutral: 3, negative: 0 },
+        { day: '周日', positive: 3, neutral: 2, negative: 0 }
+      ]
+    }
+  },
+
+  // 招聘漏斗看板
+  recruitFunnel: {
+    centers: [
+      { name: '太原', posted: 25, resume: 420, screened: 145, interview: 88, offer: 22, onboard: 18 },
+      { name: '南昌', posted: 20, resume: 380, screened: 120, interview: 72, offer: 18, onboard: 14 },
+      { name: '晋中', posted: 18, resume: 310, screened: 98, interview: 60, offer: 15, onboard: 12 },
+      { name: '沈阳', posted: 22, resume: 350, screened: 110, interview: 68, offer: 17, onboard: 13 },
+      { name: '南宁', posted: 15, resume: 210, screened: 72, interview: 45, offer: 12, onboard: 10 },
+      { name: '上海', posted: 20, resume: 180, screened: 75, interview: 47, offer: 11, onboard: 11 }
+    ],
+    dailyData: [
+      { date: '07-10', interview: 12, pass: 8, onboard: 3 },
+      { date: '07-11', interview: 15, pass: 10, onboard: 4 },
+      { date: '07-12', interview: 18, pass: 12, onboard: 5 },
+      { date: '07-13', interview: 10, pass: 7, onboard: 2 },
+      { date: '07-14', interview: 22, pass: 15, onboard: 6 },
+      { date: '07-15', interview: 20, pass: 14, onboard: 5 },
+      { date: '07-16', interview: 16, pass: 11, onboard: 4 }
+    ],
+    rpoChannels: [
+      { name: '战略供应商', count: 45, color: '#3b82f6' },
+      { name: '一类供应商', count: 68, color: '#8b5cf6' },
+      { name: '二类供应商', count: 52, color: '#059669' },
+      { name: '三类供应商', count: 28, color: '#f59e0b' }
+    ],
+    weeklyProcess: {
+      categories: ['自招', '校招', '渠道'],
+      series: [
+        { name: '到面', data: [85, 120, 175] },
+        { name: '参面', data: [72, 98, 145] },
+        { name: '通过', data: [45, 62, 88] },
+        { name: '报到', data: [28, 38, 52] },
+        { name: '签约', data: [25, 35, 48] }
+      ],
+      abcDemand: { A: 45, B: 68, C: 52 },
+      abcAchieved: { A: 38, B: 52, C: 35 }
+    }
+  },
+
+  // 培训-人才库
+  talentPool: {
+    overview: { total: 850, onDuty: 792, trainee: 45, reserve: 58, rate: 92.7 },
+    modules: [
+      { name: '小赢', total: 285, onDuty: 268, trainee: 10, reserve: 18 },
+      { name: '字节', total: 162, onDuty: 152, trainee: 5, reserve: 8 },
+      { name: '邮储', total: 121, onDuty: 115, trainee: 3, reserve: 5 },
+      { name: '交行', total: 98, onDuty: 92, trainee: 4, reserve: 6 },
+      { name: '自营前端', total: 85, onDuty: 80, trainee: 3, reserve: 4 },
+      { name: '自营后端', total: 65, onDuty: 60, trainee: 2, reserve: 3 },
+      { name: '其他', total: 34, onDuty: 25, trainee: 18, reserve: 14 }
+    ],
+    centers: [
+      { center: '太原', total: 220, onDuty: 205, trainee: 8, reserve: 15 },
+      { center: '南昌', total: 185, onDuty: 172, trainee: 6, reserve: 12 },
+      { center: '晋中', total: 152, onDuty: 142, trainee: 5, reserve: 10 },
+      { center: '沈阳', total: 138, onDuty: 128, trainee: 6, reserve: 8 },
+      { center: '南宁', total: 95, onDuty: 88, trainee: 4, reserve: 7 },
+      { center: '上海', total: 60, onDuty: 57, trainee: 16, reserve: 6 }
+    ],
+    detail: [
+      { id: 'T001', name: '张伟', center: '太原', module: '小赢', level: '在岗', queue: '一手', joinDate: '2024-03-15', status: '正常' },
+      { id: 'T002', name: '李娜', center: '太原', module: '小赢', level: '在岗', queue: '二手', joinDate: '2024-05-20', status: '正常' },
+      { id: 'T003', name: '王强', center: '南昌', module: '字节', level: '见习', queue: '一手', joinDate: '2025-06-01', status: '正常' },
+      { id: 'T004', name: '赵敏', center: '晋中', module: '邮储', level: '在岗', queue: '三手', joinDate: '2024-08-10', status: '正常' },
+      { id: 'T005', name: '陈刚', center: '沈阳', module: '交行', level: '后备', queue: '调解中心一手', joinDate: '2025-01-15', status: '正常' },
+      { id: 'T006', name: '刘洋', center: '南宁', module: '自营前端', level: '在岗', queue: '一手', joinDate: '2024-11-20', status: '正常' },
+      { id: 'T007', name: '杨芳', center: '上海', module: '自营后端', level: '在岗', queue: '四手', joinDate: '2024-02-28', status: '正常' },
+      { id: 'T008', name: '周明', center: '太原', module: '小赢', level: '见习', queue: '二手', joinDate: '2025-07-01', status: '正常' },
+      { id: 'T009', name: '吴静', center: '南昌', module: '字节', level: '在岗', queue: '一手', joinDate: '2024-09-15', status: '正常' },
+      { id: 'T010', name: '郑辉', center: '晋中', module: '邮储', level: '在岗', queue: '二手', joinDate: '2024-04-10', status: '正常' }
+    ]
+  },
+
+  // 培训-新培库
+  newTrain: {
+    overview: { enrolled: 120, signed: 108, grouped: 95, rate: 79.2, eliminated: 8, resigned: 5 },
+    centerOverview: [
+      { center: '太原', enrolled: 32, signed: 28, grouped: 25, eliminated: 2, resigned: 1 },
+      { center: '南昌', enrolled: 25, signed: 22, grouped: 20, eliminated: 1, resigned: 1 },
+      { center: '晋中', enrolled: 22, signed: 20, grouped: 18, eliminated: 1, resigned: 0 },
+      { center: '沈阳', enrolled: 18, signed: 16, grouped: 14, eliminated: 2, resigned: 1 },
+      { center: '南宁', enrolled: 15, signed: 14, grouped: 12, eliminated: 1, resigned: 1 },
+      { center: '上海', enrolled: 8, signed: 8, grouped: 6, eliminated: 1, resigned: 1 }
+    ],
+    projectDetail: [
+      { center: '太原', project: '小赢', enrolled: 18, signed: 16, grouped: 14, rate: 77.8 },
+      { center: '太原', project: '字节', enrolled: 14, signed: 12, grouped: 11, rate: 78.6 },
+      { center: '南昌', project: '小赢', enrolled: 15, signed: 13, grouped: 12, rate: 80.0 },
+      { center: '南昌', project: '邮储', enrolled: 10, signed: 9, grouped: 8, rate: 80.0 },
+      { center: '晋中', project: '字节', enrolled: 12, signed: 11, grouped: 10, rate: 83.3 },
+      { center: '沈阳', project: '交行', enrolled: 10, signed: 9, grouped: 8, rate: 80.0 },
+      { center: '南宁', project: '自营前端', enrolled: 8, signed: 7, grouped: 6, rate: 75.0 },
+      { center: '上海', project: '自营后端', enrolled: 8, signed: 8, grouped: 6, rate: 75.0 }
+    ]
+  },
+
+  // 培训-知识库（基于LMS最佳实践重构）
+  knowledgeBase: {
+    // ===== 统计概览 =====
+    overview: {
+      totalCourses: 156, totalViews: 4521, avgCompletion: 78.5,
+      activeLearners: 892, weeklyNew: 12, monthlyActive: 645,
+      totalDownloads: 1820, avgRating: 4.6, totalDuration: 3200
+    },
+    // ===== 课程分类树（层级结构） =====
+    categoryTree: [
+      { id: 'cat-1', name: '业务培训', icon: '📘', count: 68, children: [
+        { id: 'cat-1-1', name: '催收基础', count: 28 },
+        { id: 'cat-1-2', name: '催收技巧', count: 22 },
+        { id: 'cat-1-3', name: '案件管理', count: 18 }
+      ]},
+      { id: 'cat-2', name: '岗前培训', icon: '📗', count: 45, children: [
+        { id: 'cat-2-1', name: '公司文化', count: 12 },
+        { id: 'cat-2-2', name: '制度规范', count: 18 },
+        { id: 'cat-2-3', name: '系统操作', count: 15 }
+      ]},
+      { id: 'cat-3', name: '技能提升', icon: '📙', count: 32, children: [
+        { id: 'cat-3-1', name: '沟通技巧', count: 15 },
+        { id: 'cat-3-2', name: '心理管理', count: 10 },
+        { id: 'cat-3-3', name: '团队管理', count: 7 }
+      ]},
+      { id: 'cat-4', name: '管理制度', icon: '📕', count: 28, children: [
+        { id: 'cat-4-1', name: '合规制度', count: 15 },
+        { id: 'cat-4-2', name: '监管政策', count: 8 },
+        { id: 'cat-4-3', name: '内部管理', count: 5 }
+      ]},
+      { id: 'cat-5', name: '案例库', icon: '📔', count: 15, children: [
+        { id: 'cat-5-1', name: '成功案例', count: 8 },
+        { id: 'cat-5-2', name: '失败复盘', count: 4 },
+        { id: 'cat-5-3', name: '疑难案件', count: 3 }
+      ]}
+    ],
+    // ===== 学习路径 =====
+    learningPaths: [
+      { id: 'path-1', name: '新人入职30天通关', target: '新入职员工', courses: 6, duration: '40h', enrolled: 120, completed: 85, completionRate: 70.8, description: '从入职到独立上岗的完整30天学习路径，涵盖公司文化、制度规范、业务基础、系统操作', steps: [
+        { courseId: 'K001', title: '公司文化与组织架构', duration: '2h', required: true },
+        { courseId: 'K002', title: '员工手册与管理制度', duration: '3h', required: true },
+        { courseId: 'K003', title: '催收业务基础培训', duration: '8h', required: true },
+        { courseId: 'K009', title: '催收系统操作手册', duration: '6h', required: true },
+        { courseId: 'K004', title: '合规催收管理制度', duration: '4h', required: true },
+        { courseId: 'K010', title: '岗前结业考核', duration: '2h', required: true }
+      ]},
+      { id: 'path-2', name: '催收技能进阶之路', target: '在岗催收员', courses: 5, duration: '25h', enrolled: 285, completed: 142, completionRate: 49.8, description: '针对在岗催收员的技能提升路径，从基础话术到高级谈判技巧', steps: [
+        { courseId: 'K005', title: '电话催收技巧与话术', duration: '5h', required: true },
+        { courseId: 'K011', title: '客户异议处理话术', duration: '4h', required: true },
+        { courseId: 'K008', title: '催收心理学与情绪管理', duration: '6h', required: false },
+        { courseId: 'K014', title: '疑难案件催收策略', duration: '5h', required: true },
+        { courseId: 'K015', title: '谈判技巧进阶', duration: '5h', required: false }
+      ]},
+      { id: 'path-3', name: '组长管理能力培养', target: '储备组长/新晋组长', courses: 4, duration: '20h', enrolled: 45, completed: 18, completionRate: 40.0, description: '催收组长管理技能系统培养，涵盖团队管理、绩效面谈、新人带教', steps: [
+        { courseId: 'K016', title: '催收团队管理与绩效', duration: '6h', required: true },
+        { courseId: 'K017', title: '新人带教方法与技巧', duration: '5h', required: true },
+        { courseId: 'K018', title: '绩效面谈实操指南', duration: '4h', required: true },
+        { courseId: 'K019', title: '团队激励与文化建设', duration: '5h', required: false }
+      ]},
+      { id: 'path-4', name: '合规风控必修课', target: '全体员工', courses: 3, duration: '12h', enrolled: 892, completed: 756, completionRate: 84.8, description: '全员合规必修课程，确保业务开展符合法律法规与监管要求', steps: [
+        { courseId: 'K004', title: '合规催收管理制度汇编', duration: '4h', required: true },
+        { courseId: 'K007', title: '个人信息保护法解读', duration: '4h', required: true },
+        { courseId: 'K012', title: '监管政策动态汇编', duration: '4h', required: true }
+      ]}
+    ],
+    // ===== 课程目录（32条丰富数据） =====
+    courses: [
+      { id: 'K001', title: '公司文化与组织架构', categoryId: 'cat-2-1', categoryName: '公司文化', format: 'PPT', size: '12.5MB', duration: '45min', difficulty: '初级', level: '制度', uploadDate: '2026-07-10', views: 156, downloads: 45, completeRate: 92, rating: 4.8, author: '培训部-王芳', tags: ['公司文化', '组织架构', '入职'], description: '全面介绍公司发展历程、企业文化、组织架构及各部门职能，帮助新员工快速融入', targetAudience: '新入职员工', chapters: ['公司发展历程', '企业使命与价值观', '组织架构图', '各部门职能介绍', '晋升通道与发展路径'], status: '已发布' },
+      { id: 'K002', title: '员工手册与管理制度', categoryId: 'cat-2-2', categoryName: '制度规范', format: 'PDF', size: '8.2MB', duration: '60min', difficulty: '初级', level: '制度', uploadDate: '2026-07-08', views: 203, downloads: 78, completeRate: 95, rating: 4.9, author: '培训部-李明', tags: ['员工手册', '制度', '入职'], description: '员工手册全文，包含考勤制度、薪酬福利、奖惩条例、晋升机制等全部制度内容', targetAudience: '全体员工', chapters: ['考勤与休假制度', '薪酬与福利体系', '奖惩管理条例', '晋升与调岗机制', '离职与交接流程'], status: '已发布' },
+      { id: 'K003', title: '催收业务基础培训课件V3.0', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PPT', size: '15.6MB', duration: '90min', difficulty: '初级', level: 'SOP', uploadDate: '2026-07-05', views: 189, downloads: 62, completeRate: 88, rating: 4.7, author: '培训部-王芳', tags: ['催收基础', '业务规范', 'SOP'], description: '涵盖催收业务全流程、合规要求、话术规范，适用于全体催收员的基础培训课件', targetAudience: '新入职催收员', chapters: ['催收业务概述', '催收流程详解', '合规红线清单', '标准话术规范', '系统操作基础'], status: '已发布' },
+      { id: 'K004', title: '合规催收管理制度汇编', categoryId: 'cat-4-1', categoryName: '合规制度', format: 'PDF', size: '5.8MB', duration: '50min', difficulty: '中级', level: '制度', uploadDate: '2026-07-01', views: 312, downloads: 95, completeRate: 88, rating: 4.8, author: '合规部-张华', tags: ['合规', '制度', '红线'], description: '公司催收业务合规管理制度全文，包含红线清单、处罚标准、申诉流程', targetAudience: '全体员工', chapters: ['合规总则', '催收行为红线清单', '违规处罚标准', '申诉与复核流程', '合规案例警示'], status: '已发布' },
+      { id: 'K005', title: '电话催收技巧与话术指导', categoryId: 'cat-3-1', categoryName: '沟通技巧', format: '视频', size: '245MB', duration: '40min', difficulty: '中级', level: '案例', uploadDate: '2026-07-05', views: 189, downloads: 38, completeRate: 78, rating: 4.6, author: '培训部-王芳', tags: ['话术', '沟通技巧', '电话催收'], description: '资深催收员实战话术演示，包含开场白、异议处理、促成还款等场景', targetAudience: '在岗催收员', chapters: ['电话催收开场白技巧', '客户分类与话术策略', '异议处理标准流程', '促成还款技巧', '挂断前确认要点'], status: '已发布' },
+      { id: 'K006', title: '调解中心操作规程培训', categoryId: 'cat-1-3', categoryName: '案件管理', format: 'PDF', size: '6.7MB', duration: '35min', difficulty: '中级', level: 'SOP', uploadDate: '2026-06-25', views: 145, downloads: 42, completeRate: 85, rating: 4.5, author: '调解中心-刘伟', tags: ['调解', '三手案件', 'SOP'], description: '调解中心案件处理全流程SOP，适用于调解中心全体人员', targetAudience: '调解中心人员', chapters: ['调解中心职能定位', '案件接收与分配', '调解流程SOP', '调解文书规范', '案件归档与移交'], status: '已发布' },
+      { id: 'K007', title: '个人信息保护法解读与催收应用', categoryId: 'cat-4-1', categoryName: '合规制度', format: 'PPT', size: '18.6MB', duration: '55min', difficulty: '中级', level: '制度', uploadDate: '2026-06-22', views: 267, downloads: 88, completeRate: 90, rating: 4.7, author: '法务部-赵敏', tags: ['个保法', '合规', '法律'], description: '《个人信息保护法》核心条款解读，结合催收业务场景的应用指南', targetAudience: '全体员工', chapters: ['个保法立法背景', '核心条款解读', '催收场景合规应用', '数据安全保护措施', '违规法律责任'], status: '已发布' },
+      { id: 'K008', title: '催收心理学与情绪管理', categoryId: 'cat-3-2', categoryName: '心理管理', format: '视频', size: '280MB', duration: '60min', difficulty: '中级', level: '案例', uploadDate: '2026-06-10', views: 156, downloads: 25, completeRate: 68, rating: 4.4, author: '培训部-王芳', tags: ['心理学', '情绪管理', '压力疏导'], description: '催收员心理压力疏导与情绪管理技巧，帮助应对高强度工作压力', targetAudience: '在岗催收员', chapters: ['催收工作心理特征', '常见心理压力源', '情绪管理实用技巧', '压力释放方法', '心理健康自评'], status: '已发布' },
+      { id: 'K009', title: '催收系统操作手册V2.1', categoryId: 'cat-2-3', categoryName: '系统操作', format: 'PDF', size: '22.4MB', duration: '80min', difficulty: '初级', level: 'SOP', uploadDate: '2026-06-18', views: 421, downloads: 156, completeRate: 96, rating: 4.9, author: 'IT部-孙涛', tags: ['系统操作', '工具使用', 'SOP'], description: '催收业务系统完整操作手册，包含案件分配、外呼记录、还款登记等全部功能', targetAudience: '全体催收员', chapters: ['系统登录与界面', '案件分配与领取', '外呼记录操作', '还款登记流程', '报表导出与查询'], status: '已发布' },
+      { id: 'K010', title: '客户异议处理话术集锦', categoryId: 'cat-5-1', categoryName: '成功案例', format: 'PPT', size: '9.8MB', duration: '45min', difficulty: '中级', level: '案例', uploadDate: '2026-06-15', views: 234, downloads: 72, completeRate: 81, rating: 4.6, author: '培训部-陈静', tags: ['异议处理', '话术', '案例'], description: '汇总50+常见客户异议场景及标准应对话术，可直接打印随身携带', targetAudience: '在岗催收员', chapters: ['异议类型分类', '否认型异议话术', '拖延型异议话术', '对抗型异议话术', '话术实战演练'], status: '已发布' },
+      { id: 'K011', title: '催收行业监管政策动态汇编', categoryId: 'cat-4-2', categoryName: '监管政策', format: 'PDF', size: '7.2MB', duration: '40min', difficulty: '高级', level: '制度', uploadDate: '2026-06-12', views: 198, downloads: 65, completeRate: 74, rating: 4.5, author: '合规部-张华', tags: ['监管政策', '行业动态', '合规'], description: '2025-2026年催收行业监管政策动态汇总，含银保监会、公安部等发文解读', targetAudience: '管理层/合规岗', chapters: ['银保监会监管动态', '公安部执法指引', '行业自律公约', '地方监管政策', '政策趋势研判'], status: '已发布' },
+      { id: 'K012', title: '典型催收案例分析与复盘', categoryId: 'cat-5-1', categoryName: '成功案例', format: 'PPT', size: '15.3MB', duration: '50min', difficulty: '中级', level: '案例', uploadDate: '2026-06-28', views: 98, downloads: 32, completeRate: 65, rating: 4.3, author: '培训部-陈静', tags: ['案例', '复盘', '策略'], description: '精选12个典型催收案例，从案件背景、催收策略、结果复盘多角度分析', targetAudience: '在岗催收员', chapters: ['案例选取标准', '成功案例5则', '失败案例3则', '疑难案例4则', '复盘方法论'], status: '已发布' },
+      { id: 'K013', title: '催收业务数据分析与报表', categoryId: 'cat-1-3', categoryName: '案件管理', format: 'PPT', size: '11.2MB', duration: '35min', difficulty: '中级', level: 'SOP', uploadDate: '2026-06-08', views: 134, downloads: 48, completeRate: 82, rating: 4.4, author: '数据部-周强', tags: ['数据分析', '报表', '绩效'], description: '催收业务数据分析方法论，回款率、命中率的计算与报表解读', targetAudience: '组长/数据岗', chapters: ['核心指标定义', '回款率计算方法', '命中率分析维度', '报表解读技巧', '数据驱动决策'], status: '已发布' },
+      { id: 'K014', title: '疑难案件催收策略与实战', categoryId: 'cat-5-3', categoryName: '疑难案件', format: '视频', size: '320MB', duration: '55min', difficulty: '高级', level: '案例', uploadDate: '2026-06-05', views: 167, downloads: 28, completeRate: 72, rating: 4.7, author: '资深催收员-赵强', tags: ['疑难案件', '策略', '高级技巧'], description: '针对失联、恶意拖欠、多头借贷等疑难案件的催收策略与实战技巧', targetAudience: '资深催收员', chapters: ['失联客户查找技巧', '恶意拖欠应对策略', '多头借贷风险评估', '法律施压话术', '案件升级流程'], status: '已发布' },
+      { id: 'K015', title: '谈判技巧进阶——从对抗到合作', categoryId: 'cat-3-1', categoryName: '沟通技巧', format: '视频', size: '198MB', duration: '50min', difficulty: '高级', level: '案例', uploadDate: '2026-06-02', views: 143, downloads: 22, completeRate: 76, rating: 4.8, author: '外聘讲师-林教授', tags: ['谈判技巧', '沟通', '高级'], description: '高级谈判技巧培训，从心理学角度解析谈判博弈，实现从对抗到合作的转化', targetAudience: '资深催收员/组长', chapters: ['谈判心理学基础', 'BATNA最佳替代方案', '利益锚定技巧', '情绪杠杆运用', '合作型谈判实战'], status: '已发布' },
+      { id: 'K016', title: '催收团队管理与绩效考核', categoryId: 'cat-3-3', categoryName: '团队管理', format: '视频', size: '320MB', duration: '70min', difficulty: '高级', level: 'SOP', uploadDate: '2026-06-20', views: 112, downloads: 35, completeRate: 72, rating: 4.6, author: '培训部-王芳', tags: ['管理', '绩效', '团队'], description: '催收组长管理技能培训，涵盖团队激励、绩效面谈、新人带教等内容', targetAudience: '组长/储备组长', chapters: ['组长角色定位', '团队目标设定', '绩效面谈技巧', '新人带教方法', '团队冲突管理'], status: '已发布' },
+      { id: 'K017', title: '新人带教方法与技巧', categoryId: 'cat-3-3', categoryName: '团队管理', format: 'PPT', size: '8.5MB', duration: '40min', difficulty: '中级', level: 'SOP', uploadDate: '2026-05-28', views: 89, downloads: 31, completeRate: 85, rating: 4.5, author: '培训部-李明', tags: ['带教', '新人', '培训'], description: '系统化的新人带教方法论，帮助组长快速培养新人达到独立上岗标准', targetAudience: '组长/带教老师', chapters: ['带教周期规划', '第一周：融入与观察', '第二周：模拟练习', '第三周：实战跟听', '第四周：独立操作评估'], status: '已发布' },
+      { id: 'K018', title: '绩效面谈实操指南', categoryId: 'cat-3-3', categoryName: '团队管理', format: 'PDF', size: '4.2MB', duration: '30min', difficulty: '中级', level: 'SOP', uploadDate: '2026-05-25', views: 76, downloads: 28, completeRate: 80, rating: 4.4, author: '人力部-陈芳', tags: ['绩效面谈', '管理', '考核'], description: '绩效面谈全流程操作指南，包含面谈前准备、面谈话术、改进计划制定', targetAudience: '各级管理者', chapters: ['面谈前数据准备', '面谈开场技巧', '业绩反馈话术', '改进计划制定', '面谈记录与跟踪'], status: '已发布' },
+      { id: 'K019', title: '团队激励与文化建设', categoryId: 'cat-3-3', categoryName: '团队管理', format: 'PPT', size: '10.8MB', duration: '45min', difficulty: '中级', level: '案例', uploadDate: '2026-05-20', views: 95, downloads: 33, completeRate: 78, rating: 4.5, author: '培训部-王芳', tags: ['激励', '文化', '团队'], description: '催收团队激励方法与文化建设实践，提升团队凝聚力与战斗力', targetAudience: '各级管理者', chapters: ['激励理论框架', '物质激励方案', '精神激励技巧', '团队文化建设', '激励效果评估'], status: '已发布' },
+      { id: 'K020', title: '民法典催收相关条款解读', categoryId: 'cat-4-1', categoryName: '合规制度', format: 'PDF', size: '6.5MB', duration: '45min', difficulty: '高级', level: '制度', uploadDate: '2026-05-15', views: 178, downloads: 56, completeRate: 82, rating: 4.7, author: '法务部-赵敏', tags: ['民法典', '法律', '合规'], description: '民法典中与催收业务相关的合同编、侵权责任编核心条款解读', targetAudience: '管理层/合规岗', chapters: ['民法典总则要点', '合同编：债权转让', '合同编：保证与担保', '侵权责任：催收边界', '诉讼时效新规'], status: '已发布' },
+      { id: 'K021', title: '催录音质检标准与提升', categoryId: 'cat-1-2', categoryName: '催收技巧', format: 'PPT', size: '12.0MB', duration: '40min', difficulty: '中级', level: 'SOP', uploadDate: '2026-05-10', views: 124, downloads: 41, completeRate: 87, rating: 4.6, author: '质检部-孙丽', tags: ['质检', '录音', '标准'], description: '催收录音质检评分标准详解，帮助催收员了解质检要点并提升录音质量', targetAudience: '全体催收员/质检岗', chapters: ['质检评分维度', '开场白质检要点', '话术规范质检', '合规红线检测', '质检结果应用'], status: '已发布' },
+      { id: 'K022', title: '二押车辆催收实务指南', categoryId: 'cat-1-2', categoryName: '催收技巧', format: 'PDF', size: '5.5MB', duration: '35min', difficulty: '高级', level: 'SOP', uploadDate: '2026-05-05', views: 87, downloads: 24, completeRate: 75, rating: 4.3, author: '广汽项目组-马超', tags: ['二押', '车辆', '实务'], description: '二押车辆催收全流程实务指南，含车辆定位、拖车协调、处置变现', targetAudience: '广汽项目催收员', chapters: ['二押业务概述', '车辆定位方法', '拖车协调流程', '车辆评估与拍卖', '风险防范要点'], status: '已发布' },
+      { id: 'K023', title: '邮储项目专项培训手册', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PDF', size: '9.8MB', duration: '60min', difficulty: '中级', level: 'SOP', uploadDate: '2026-04-28', views: 145, downloads: 52, completeRate: 89, rating: 4.7, author: '邮储项目组-王磊', tags: ['邮储', '专项', 'SOP'], description: '邮储银行信用卡催收项目专项培训手册，涵盖业务规范、系统操作、话术要求', targetAudience: '邮储项目人员', chapters: ['邮储项目概况', '信用卡催收规范', '邮储系统操作', '专项话术要求', '考核标准'], status: '已发布' },
+      { id: 'K024', title: '字节项目催收业务培训', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PPT', size: '14.2MB', duration: '50min', difficulty: '中级', level: 'SOP', uploadDate: '2026-04-25', views: 132, downloads: 48, completeRate: 86, rating: 4.6, author: '字节项目组-刘洋', tags: ['字节', '专项', '培训'], description: '字节跳动消费金融催收项目专项培训，涵盖业务流程、合规要求、系统操作', targetAudience: '字节项目人员', chapters: ['字节项目概况', '消费金融催收流程', '合规特殊要求', '抖音放心借专项', '考核与淘汰'], status: '已发布' },
+      { id: 'K025', title: '小赢项目催收实战手册', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PDF', size: '11.5MB', duration: '55min', difficulty: '中级', level: 'SOP', uploadDate: '2026-04-20', views: 168, downloads: 62, completeRate: 91, rating: 4.8, author: '小赢项目组-张伟', tags: ['小赢', '专项', '实战'], description: '小赢科技催收项目实战手册，覆盖一手至四手全队列催收策略', targetAudience: '小赢项目人员', chapters: ['小赢项目概述', '一手案件策略', '二手案件策略', '三手/四手策略', '特殊案件处理'], status: '已发布' },
+      { id: 'K026', title: '交行项目催收规范与操作', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PDF', size: '7.8MB', duration: '40min', difficulty: '中级', level: 'SOP', uploadDate: '2026-04-15', views: 98, downloads: 35, completeRate: 83, rating: 4.5, author: '交行项目组-李娜', tags: ['交行', '专项', '规范'], description: '交通银行催收项目操作规范，含系统操作、话术要求、合规要点', targetAudience: '交行项目人员', chapters: ['交行项目概况', '系统操作规范', '话术合规要求', '报表提交标准', '违规处罚条例'], status: '已发布' },
+      { id: 'K027', title: '江西银行项目培训手册', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PDF', size: '6.2MB', duration: '35min', difficulty: '中级', level: 'SOP', uploadDate: '2026-04-10', views: 76, downloads: 28, completeRate: 80, rating: 4.4, author: '江西银行项目组-陈浩', tags: ['江西银行', '专项', '培训'], description: '江西银行催收项目培训手册，含业务流程、系统操作、考核标准', targetAudience: '江西银行项目人员', chapters: ['项目概况与背景', '业务流程规范', '系统操作指南', '考核标准说明', '常见问题FAQ'], status: '已发布' },
+      { id: 'K028', title: '华夏银行项目操作规程', categoryId: 'cat-1-1', categoryName: '催收基础', format: 'PDF', size: '5.8MB', duration: '30min', difficulty: '中级', level: 'SOP', uploadDate: '2026-04-05', views: 65, downloads: 22, completeRate: 78, rating: 4.3, author: '华夏银行项目组-赵敏', tags: ['华夏银行', '专项', '规程'], description: '华夏银行催收项目操作规程，涵盖系统操作、话术要求、合规标准', targetAudience: '华夏银行项目人员', chapters: ['项目概述', '系统操作规程', '标准话术模板', '合规风控要点', '报表与考核'], status: '已发布' },
+      { id: 'K029', title: '夜间催收安全防范指南', categoryId: 'cat-4-3', categoryName: '内部管理', format: 'PPT', size: '4.5MB', duration: '20min', difficulty: '初级', level: '制度', uploadDate: '2026-03-28', views: 234, downloads: 85, completeRate: 94, rating: 4.9, author: '行政部-王刚', tags: ['安全', '夜间', '防范'], description: '夜间催收工作安全防范指南，保障员工人身安全', targetAudience: '全体员工', chapters: ['夜间工作安全总则', '通勤安全防范', '办公区域安全', '突发事件应对', '紧急联系人清单'], status: '已发布' },
+      { id: 'K030', title: '催收场景下的投诉处理标准流程', categoryId: 'cat-4-3', categoryName: '内部管理', format: 'PDF', size: '3.8MB', duration: '25min', difficulty: '中级', level: 'SOP', uploadDate: '2026-03-20', views: 187, downloads: 68, completeRate: 85, rating: 4.6, author: '客服部-周婷', tags: ['投诉', '处理', '流程'], description: '客户投诉处理标准流程SOP，从投诉接收、调查、处理到回访的全流程规范', targetAudience: '全体催收员/客服', chapters: ['投诉分类与定级', '投诉接收与记录', '调查核实流程', '处理方案制定', '回访与归档'], status: '已发布' },
+      { id: 'K031', title: '催收录音的高效利用与复盘', categoryId: 'cat-1-2', categoryName: '催收技巧', format: '视频', size: '156MB', duration: '35min', difficulty: '中级', level: '案例', uploadDate: '2026-03-15', views: 112, downloads: 18, completeRate: 73, rating: 4.4, author: '培训部-陈静', tags: ['录音', '复盘', '提升'], description: '如何利用催收录音进行自我复盘和技能提升的方法论', targetAudience: '在岗催收员', chapters: ['录音复盘的价值', '复盘四步法', '优秀录音拆解', '问题录音诊断', '个人提升计划'], status: '已发布' },
+      { id: 'K032', title: '债务人心理画像与催收策略匹配', categoryId: 'cat-3-2', categoryName: '心理管理', format: 'PPT', size: '13.5MB', duration: '50min', difficulty: '高级', level: '案例', uploadDate: '2026-03-10', views: 156, downloads: 45, completeRate: 79, rating: 4.7, author: '外聘讲师-心理学博士陈', tags: ['心理画像', '策略', '高级'], description: '基于心理学理论的债务人分类画像，匹配差异化催收策略', targetAudience: '资深催收员/组长', chapters: ['债务人心理分类模型', '逃避型债务人策略', '对抗型债务人策略', '求助型债务人策略', '欺诈型债务人识别'], status: '已发布' }
+    ],
+    // ===== 学习趋势统计 =====
+    trends: {
+      monthlyViews: [
+        { month: '1月', views: 320, downloads: 120 },
+        { month: '2月', views: 385, downloads: 145 },
+        { month: '3月', views: 445, downloads: 168 },
+        { month: '4月', views: 510, downloads: 195 },
+        { month: '5月', views: 580, downloads: 210 },
+        { month: '6月', views: 650, downloads: 245 },
+        { month: '7月', views: 720, downloads: 285 }
+      ],
+      categoryDistribution: [
+        { name: '业务培训', value: 68 },
+        { name: '岗前培训', value: 45 },
+        { name: '技能提升', value: 32 },
+        { name: '管理制度', value: 28 },
+        { name: '案例库', value: 15 }
+      ],
+      topCourses: [
+        { title: '催收系统操作手册V2.1', views: 421 },
+        { title: '合规催收管理制度汇编', views: 312 },
+        { title: '个人信息保护法解读', views: 267 },
+        { title: '客户异议处理话术集锦', views: 234 },
+        { title: '夜间催收安全防范指南', views: 234 }
+      ],
+      topLearners: [
+        { name: '张伟', center: '太原', hours: 48.5, courses: 28 },
+        { name: '李娜', center: '南昌', hours: 42.3, courses: 25 },
+        { name: '王强', center: '晋中', hours: 38.7, courses: 22 },
+        { name: '赵敏', center: '沈阳', hours: 35.2, courses: 20 },
+        { name: '陈刚', center: '南宁', hours: 32.8, courses: 18 }
+      ]
+    },
+    // ===== 知识标签云 =====
+    tagCloud: [
+      { tag: '催收基础', count: 28, color: '#3b82f6' },
+      { tag: '合规', count: 22, color: '#ef4444' },
+      { tag: '话术', count: 18, color: '#f59e0b' },
+      { tag: 'SOP', count: 16, color: '#10b981' },
+      { tag: '制度', count: 15, color: '#8b5cf6' },
+      { tag: '系统操作', count: 14, color: '#06b6d4' },
+      { tag: '入职', count: 12, color: '#ec4899' },
+      { tag: '案例', count: 11, color: '#f97316' },
+      { tag: '管理', count: 10, color: '#6366f1' },
+      { tag: '心理学', count: 8, color: '#14b8a6' },
+      { tag: '专项', count: 8, color: '#a855f7' },
+      { tag: '沟通技巧', count: 7, color: '#e11d48' },
+      { tag: '团队', count: 6, color: '#0ea5e9' },
+      { tag: '法律', count: 5, color: '#84cc16' },
+      { tag: '安全', count: 4, color: '#facc15' },
+      { tag: '复盘', count: 4, color: '#fb7185' }
+    ]
+  },
+
+  // 培训-题库
+  questionBank: {
+    overview: { total: 485, single: 220, multi: 125, judge: 95, essay: 45 },
+    exams: [
+      { id: 'E001', name: '2026年7月岗前培训考试', candidates: 45, submitted: 42, avgScore: 82.5, passRate: 88.1, status: '进行中' },
+      { id: 'E002', name: '催收业务基础测试-第3期', candidates: 38, submitted: 38, avgScore: 85.2, passRate: 92.1, status: '已结束' },
+      { id: 'E003', name: '合规催收制度考核', candidates: 52, submitted: 50, avgScore: 78.8, passRate: 84.0, status: '已结束' },
+      { id: 'E004', name: '调解中心操作规程考试', candidates: 28, submitted: 28, avgScore: 86.3, passRate: 96.4, status: '已结束' }
+    ],
+    questions: [
+      { id: 'Q001', type: '单选', question: '催收电话拨打时间应在哪个时间段进行？', options: ['8:00-22:00', '9:00-21:00', '8:00-21:00', '9:00-22:00'], answer: 'C', difficulty: '简单' },
+      { id: 'Q002', type: '多选', question: '以下哪些属于违规催收行为？', options: ['威胁恐吓', '冒充司法机关', '正常提醒还款', '骚扰债务人亲友'], answer: 'ABD', difficulty: '中等' },
+      { id: 'Q003', type: '判断', question: '催收人员可以向第三方透露债务人的欠款信息。', options: ['正确', '错误'], answer: 'B', difficulty: '简单' },
+      { id: 'Q004', type: '单选', question: '调解中心三手案件的首次跟进时限是多久？', options: ['24小时', '48小时', '72小时', '一周'], answer: 'B', difficulty: '中等' },
+      { id: 'Q005', type: '简答', question: '请简述催收过程中遇到债务人提出异议时的标准处理流程。', options: [], answer: '参考标准答案', difficulty: '困难' }
+    ]
+  },
+
+  // 人事-编制看板
+  headcount: {
+    overview: { planned: 950, actual: 892, vacant: 58, recruiting: 45, rate: 93.9 },
+    departments: [
+      { name: '小赢', planned: 300, actual: 285, vacant: 15, recruiting: 12 },
+      { name: '字节', planned: 165, actual: 152, vacant: 13, recruiting: 10 },
+      { name: '邮储', planned: 125, actual: 115, vacant: 10, recruiting: 8 },
+      { name: '交行', planned: 100, actual: 92, vacant: 8, recruiting: 5 },
+      { name: '自营前端', planned: 90, actual: 85, vacant: 5, recruiting: 4 },
+      { name: '自营后端', planned: 70, actual: 65, vacant: 5, recruiting: 3 },
+      { name: '二线职能', planned: 100, actual: 98, vacant: 2, recruiting: 3 }
+    ],
+    centers: [
+      { center: '太原', planned: 250, actual: 235, vacant: 15, rate: 94.0 },
+      { center: '南昌', planned: 200, actual: 188, vacant: 12, rate: 94.0 },
+      { center: '晋中', planned: 165, actual: 155, vacant: 10, rate: 93.9 },
+      { center: '沈阳', planned: 150, actual: 138, vacant: 12, rate: 92.0 },
+      { center: '南宁', planned: 105, actual: 98, vacant: 7, rate: 93.3 },
+      { center: '上海', planned: 80, actual: 78, vacant: 2, rate: 97.5 }
+    ]
+  },
+
+  // 人事-入转调离流程
+  hrProcesses: [
+    { id: 'HR001', type: '入职', applicant: '张三', department: '小赢', center: '太原', date: '2026-07-15', status: '审批中', currentStep: 'HR审核' },
+    { id: 'HR002', type: '转正', applicant: '李四', department: '字节', center: '南昌', date: '2026-07-12', status: '审批中', currentStep: '部门负责人审批' },
+    { id: 'HR003', type: '调岗', applicant: '王五', from: '小赢一手', to: '小赢二手', center: '太原', date: '2026-07-10', status: '已通过', currentStep: '完成' },
+    { id: 'HR004', type: '离职', applicant: '赵六', department: '邮储', center: '晋中', date: '2026-07-08', status: '审批中', currentStep: '交接确认' },
+    { id: 'HR005', type: '入职', applicant: '孙七', department: '交行', center: '沈阳', date: '2026-07-05', status: '已通过', currentStep: '完成' },
+    { id: 'HR006', type: '转正', applicant: '周八', department: '自营前端', center: '南宁', date: '2026-07-01', status: '已驳回', currentStep: '终止' }
+  ],
+
+  // 人事-合同到期
+  contracts: [
+    { id: 'C001', name: '张伟', department: '小赢', center: '太原', type: '劳动合同', startDate: '2024-03-15', endDate: '2026-09-15', daysLeft: 61, status: '即将到期' },
+    { id: 'C002', name: '李娜', department: '小赢', center: '太原', type: '劳动合同', startDate: '2024-05-20', endDate: '2026-08-20', daysLeft: 35, status: '紧急' },
+    { id: 'C003', name: '王强', department: '字节', center: '南昌', type: '试用期合同', startDate: '2025-06-01', endDate: '2026-09-01', daysLeft: 47, status: '即将到期' },
+    { id: 'C004', name: '赵敏', department: '邮储', center: '晋中', type: '劳动合同', startDate: '2024-08-10', endDate: '2026-08-10', daysLeft: 25, status: '紧急' },
+    { id: 'C005', name: '陈刚', department: '交行', center: '沈阳', type: '劳动合同', startDate: '2025-01-15', endDate: '2026-10-15', daysLeft: 91, status: '正常' },
+    { id: 'C006', name: '刘洋', department: '自营前端', center: '南宁', type: '劳动合同', startDate: '2024-11-20', endDate: '2026-11-20', daysLeft: 127, status: '正常' },
+    { id: 'C007', name: '杨芳', department: '自营后端', center: '上海', type: '劳动合同', startDate: '2024-02-28', endDate: '2026-08-15', daysLeft: 30, status: '紧急' }
+  ],
+
+  // 行政-办公用品库存
+  supplies: [
+    { id: 'S001', name: 'A4打印纸', category: '纸张', stock: 185, unit: '箱', safetyStock: 50, status: '正常' },
+    { id: 'S002', name: '签字笔（黑）', category: '文具', stock: 42, unit: '盒', safetyStock: 30, status: '正常' },
+    { id: 'S003', name: '文件夹', category: '文具', stock: 28, unit: '个', safetyStock: 50, status: '预警' },
+    { id: 'S004', name: '订书机', category: '文具', stock: 15, unit: '个', safetyStock: 10, status: '正常' },
+    { id: 'S005', name: '便利贴', category: '文具', stock: 8, unit: '盒', safetyStock: 20, status: '预警' },
+    { id: 'S006', name: '白板笔', category: '文具', stock: 35, unit: '支', safetyStock: 15, status: '正常' },
+    { id: 'S007', name: '打印墨盒', category: '耗材', stock: 12, unit: '个', safetyStock: 8, status: '正常' },
+    { id: 'S008', name: '胶带', category: '文具', stock: 5, unit: '卷', safetyStock: 15, status: '预警' }
+  ],
+  suppliesUsage: [
+    { month: '1月', count: 285 },
+    { month: '2月', count: 220 },
+    { month: '3月', count: 310 },
+    { month: '4月', count: 295 },
+    { month: '5月', count: 340 },
+    { month: '6月', count: 320 },
+    { month: '7月', count: 185 }
+  ],
+
+  // 行政-固定资产
+  assets: [
+    { id: 'A001', name: '笔记本电脑', user: '张伟', department: '小赢', center: '太原', status: '在用', purchaseDate: '2024-03-15', value: 5500 },
+    { id: 'A002', name: '台式电脑', user: '李娜', department: '小赢', center: '太原', status: '在用', purchaseDate: '2024-05-20', value: 3800 },
+    { id: 'A003', name: '显示器', user: '王强', department: '字节', center: '南昌', status: '在用', purchaseDate: '2025-06-01', value: 1200 },
+    { id: 'A004', name: '打印机', user: '行政部', department: '行政', center: '太原', status: '在用', purchaseDate: '2023-08-10', value: 2800 },
+    { id: 'A005', name: '笔记本电脑', user: '—', department: '—', center: '太原', status: '闲置', purchaseDate: '2024-01-10', value: 4500 }
+  ],
+
+  // 行政-费用看板
+  adminBudget: {
+    annual: 2800000, spent: 1680000, rate: 60.0,
+    categories: [
+      { name: '办公用品', budget: 350000, spent: 210000 },
+      { name: '固定资产', budget: 800000, spent: 520000 },
+      { name: '水电物业', budget: 650000, spent: 380000 },
+      { name: '差旅费用', budget: 500000, spent: 280000 },
+      { name: '会议培训', budget: 300000, spent: 180000 },
+      { name: '其他费用', budget: 200000, spent: 110000 }
+    ],
+    monthlyTrend: [
+      { month: '1月', budget: 233, spent: 198 },
+      { month: '2月', budget: 233, spent: 185 },
+      { month: '3月', spent: 245, budget: 233 },
+      { month: '4月', spent: 220, budget: 233 },
+      { month: '5月', spent: 268, budget: 233 },
+      { month: '6月', spent: 255, budget: 233 },
+      { month: '7月', spent: 119, budget: 233 }
+    ]
+  },
+
+  // 公关-舆情看板
+  publicOpinion: {
+    overview: { total: 342, positive: 68, neutral: 25, negative: 7, alerts: 2, hotTopics: 5 },
+    platforms: {
+      wechat:  { total: 86,  positive: 62, neutral: 28, negative: 10, latest: '传发金融获评2025年度优秀催收服务机构' },
+      weibo:   { total: 124, positive: 48, neutral: 35, negative: 17, latest: '#催收行业新规# 传发金融积极响应监管要求' },
+      douyin:  { total: 68,  positive: 32, neutral: 28, negative: 40, latest: '催收员的一天：高压工作背后的真实生活' },
+      xiaohongshu: { total: 52, positive: 58, neutral: 30, negative: 12, latest: '传发金融面试经验分享｜催收员岗位' },
+      zhihu:   { total: 34,  positive: 35, neutral: 50, negative: 15, latest: '催收行业的发展前景如何？' },
+      maimai:  { total: 28,  positive: 43, neutral: 32, negative: 25, latest: '传发金融员工爆料：入职培训和晋升通道' }
+    },
+    trend: [
+      { day: '07-10', positive: 45, neutral: 18, negative: 3 },
+      { day: '07-11', positive: 52, neutral: 15, negative: 5 },
+      { day: '07-12', positive: 38, neutral: 22, negative: 8 },
+      { day: '07-13', positive: 48, neutral: 16, negative: 4 },
+      { day: '07-14', positive: 55, neutral: 12, negative: 2 },
+      { day: '07-15', positive: 42, neutral: 20, negative: 5 },
+      { day: '07-16', positive: 35, neutral: 15, negative: 3 }
+    ],
+    hotTopics: [
+      { rank: 1, topic: '传发金融获评行业优秀催收机构', heat: 1250, sentiment: '正面', platform: '微信公众号' },
+      { rank: 2, topic: '催收行业监管新规出台', heat: 980, sentiment: '中性', platform: '微博' },
+      { rank: 3, topic: '某催收公司被投诉暴力催收', heat: 820, sentiment: '负面', platform: '抖音' },
+      { rank: 4, topic: '传发金融太原中心开业周年', heat: 650, sentiment: '正面', platform: '小红书' },
+      { rank: 5, topic: '金融科技助力催收行业转型', heat: 520, sentiment: '正面', platform: '知乎' }
+    ],
+    alerts: [
+      { id: 'AL001', time: '2026-07-16 14:30', source: '微博', level: '高', content: '有网友发帖称某催收公司存在骚扰行为，涉及本公司品牌', status: '待处理', handler: '' },
+      { id: 'AL002', time: '2026-07-15 10:15', source: '知乎', level: '中', content: '有用户在知乎提问催收行业前景，部分回答提及本公司', status: '处理中', handler: '公关部-李明' }
+    ],
+    platformContent: {
+      wechat: [
+        { title: '传发金融获评2025年度优秀催收服务机构', author: '金融科技观察', time: '2026-07-15', reads: '1.2万', likes: 89, sentiment: '正面' },
+        { title: '催收行业合规化发展路径探讨', author: '金融合规周刊', time: '2026-07-14', reads: '8560', likes: 45, sentiment: '中性' },
+        { title: '传发金融新员工培训体系揭秘', author: 'HR方法论', time: '2026-07-13', reads: '6230', likes: 67, sentiment: '正面' }
+      ],
+      weibo: [
+        { title: '#催收行业新规# 传发金融积极响应监管要求', author: '@金融时报', time: '2026-07-16 09:30', reads: '2.8万', comments: 156, sentiment: '正面' },
+        { title: '网友投诉某催收公司电话骚扰，客服称会核实处理', author: '@消费者维权', time: '2026-07-15 22:15', reads: '3.5万', comments: 423, sentiment: '负面' },
+        { title: '传发金融太原中心举办周年庆活动，员工福利曝光', author: '@山西财经', time: '2026-07-14 14:20', reads: '1.6万', comments: 89, sentiment: '正面' },
+        { title: '催收行业平均薪资调研：传发金融位居中上游', author: '@职场观察家', time: '2026-07-13 10:45', reads: '9800', comments: 67, sentiment: '中性' }
+      ],
+      douyin: [
+        { title: '催收员的一天：高压工作背后的真实生活', author: '@职场真相', time: '2026-07-15', views: '45.6万', likes: '1.2万', comments: 892, sentiment: '中性' },
+        { title: '传发金融员工分享入职3个月的真实感受', author: '@太原打工人', time: '2026-07-14', views: '23.8万', likes: '8900', comments: 456, sentiment: '正面' },
+        { title: '投诉！这家催收公司天天打电话！', author: '@维权小哥', time: '2026-07-13', views: '68.2万', likes: '2.1万', comments: 3421, sentiment: '负面' },
+        { title: '催收行业收入揭秘，传发金融新人月薪多少？', author: '@薪资大揭秘', time: '2026-07-12', views: '18.5万', likes: '5600', comments: 234, sentiment: '中性' }
+      ],
+      xiaohongshu: [
+        { title: '传发金融面试经验分享｜催收员岗位', author: '@求职小助手', time: '2026-07-15', views: '2.3万', likes: 456, comments: 89, sentiment: '正面' },
+        { title: '太原找工作｜催收行业值得入吗？传发金融怎么样', author: '@太原求职圈', time: '2026-07-14', views: '1.8万', likes: 321, comments: 67, sentiment: '中性' },
+        { title: '传发金融周年庆伴手礼开箱！太用心了', author: '@职场甜心', time: '2026-07-13', views: '8900', likes: 234, comments: 45, sentiment: '正面' },
+        { title: '催收公司避雷指南｜哪些公司靠谱', author: '@职场避雷针', time: '2026-07-12', views: '3.5万', likes: 567, comments: 123, sentiment: '中性' }
+      ],
+      zhihu: [
+        { title: '催收行业的发展前景如何？传发金融这类公司值得去吗？', author: '金融从业者', time: '2026-07-14', views: '1.2万', answers: 23, sentiment: '中性' },
+        { title: '在传发金融做催收员是一种怎样的体验？', author: '匿名用户', time: '2026-07-13', views: '8900', answers: 15, sentiment: '正面' },
+        { title: '催收行业监管趋严，对从业者和公司意味着什么？', author: '法律硕士', time: '2026-07-12', views: '2.1万', answers: 34, sentiment: '中性' }
+      ],
+      maimai: [
+        { title: '传发金融员工爆料：入职培训和晋升通道', author: '匿名', time: '2026-07-15', views: '4500', comments: 23, sentiment: '正面' },
+        { title: '催收行业压力大吗？传发金融工作强度如何', author: '匿名', time: '2026-07-14', views: '3200', comments: 18, sentiment: '中性' }
+      ]
+    },
+    douyinDetail: {
+      brandVideos: 156, totalViews: '2.3万', commentMentions: 68, negativeComments: 3,
+      hotTopics: 12, topicExposure: '580万',
+      topVideos: [
+        { title: '催收员的一天：高压工作背后的真实生活', author: '@职场真相', views: '45.6万', likes: '1.2万', comments: 892, sentiment: '中性', time: '2026-07-15' },
+        { title: '传发金融员工分享入职3个月的真实感受', author: '@太原打工人', views: '23.8万', likes: '8900', comments: 456, sentiment: '正面', time: '2026-07-14' },
+        { title: '投诉！这家催收公司天天打电话！', author: '@维权小哥', views: '68.2万', likes: '2.1万', comments: 3421, sentiment: '负面', time: '2026-07-13' }
+      ]
+    },
+    xiaohongshuDetail: {
+      brandNotes: 89, totalCollects: '1.2万', commentMentions: 52, negativeComments: 2,
+      topicTags: 8, topicViews: '320万',
+      topNotes: [
+        { title: '传发金融面试经验分享｜催收员岗位', author: '@求职小助手', views: '2.3万', likes: 456, comments: 89, sentiment: '正面', time: '2026-07-15' },
+        { title: '太原找工作｜催收行业值得入吗？', author: '@太原求职圈', views: '1.8万', likes: 321, comments: 67, sentiment: '中性', time: '2026-07-14' },
+        { title: '传发金融周年庆伴手礼开箱！', author: '@职场甜心', views: '8900', likes: 234, comments: 45, sentiment: '正面', time: '2026-07-13' }
+      ]
+    }
+  },
+
+  // AI知识库问答语料
+  aiKnowledge: [
+    // 招聘管理
+    { keywords: ['招聘', '招人', '招募'], answer: '【招聘管理】招聘流程：①用人部门提交需求 → ②HR审核编制与JD → ③发布招聘渠道（RPO/BOSS/智联） → ④简历筛选 → ⑤初试（HR） → ⑥复试（主管） → ⑦终试（中心负责人） → ⑧Offer发放 → ⑨入职跟进。催收员岗位招聘周期目标15天。' },
+    { keywords: ['RPO', '供应商', '渠道'], answer: '【RPO渠道】合作供应商：猎聘（高端岗）、智联（基础岗）、BOSS直聘（急招）、前程无忧（校招）。各中心达成率：太原78% · 南昌82% · 晋中75% · 沈阳80% · 南宁76% · 上海85%。季度评估，末位淘汰。' },
+    { keywords: ['面试', '初试', '复试'], answer: '【面试流程】催收员：HR初试（沟通/抗压15min）→ 主管复试（业务/情景20min）。二线岗增加中心负责人终试（管理/价值观15min）。结果48小时内反馈。' },
+    { keywords: ['入职跟进', '新员工跟踪'], answer: '【入职跟进】30/60/90天跟踪：Day1入职手续+导师分配；Day7首次面谈；Day30试用期评估；Day60中期复盘；Day90转正评估。流失高峰在入职前30天，重点关注。' },
+    // 培训管理
+    { keywords: ['培训', '课件', '学习', '知识库'], answer: '【培训管理】三级培训：①岗前培训（文化/制度/系统 3天） → ②业务培训（催收/合规/质检 5天） → ③在岗辅导（导师1对1 30天）。培训方式：线上课件+线下授课+实操演练。每季度考核，未通过补训。' },
+    { keywords: ['知识库架构', '知识库怎么用'], answer: '【知识库架构】"三级分类×四层内容"模型：一级分类：业务培训/合规风控/岗前培训/管理技能/产品技术；内容层级：制度文件 → SOP手册 → 实战案例 → FAQ问答。支持多维检索。' },
+    { keywords: ['考试', '题库', '岗前考试'], answer: '【岗前考试】线上闭卷50题（单选20/多选15/判断10/简答5），满分100分，80分及格。未通过3天后补考，再未通过延长试用期7天。题库每月更新，禁止泄题。' },
+    { keywords: ['新员工培训', '岗前培训内容'], answer: '【新员工岗前培训】Day1公司介绍+文化+制度+保密协议；Day2催收业务概述+合规红线+系统操作；Day3话术演练+角色扮演+结业考试。通过率目标≥90%，未通过安排导师单独辅导。' },
+    // 人事管理
+    { keywords: ['考勤', '打卡', '迟到', '早退'], answer: '【考勤制度】工作日9:00-18:00，午休12:00-13:30。企业微信打卡。迟到≤30分钟扣半天事假；>30分钟按旷工半天。每月3次容错机会。请假提前1天OA提交。' },
+    { keywords: ['入职', '新员工', '手续'], answer: '【入职流程】①HR发送offer确认日期 → ②准备材料（身份证/学历/银行卡/体检报告） → ③Day1报到：手续+工位+账号+导师 → ④岗前培训（3天） → ⑤签订劳动合同 → ⑥30天试用期跟踪。材料缺项7日内补齐。' },
+    { keywords: ['转正', '试用期'], answer: '【转正流程】试用期结束前15天：①主管提交《试用期考核表》 → ②转正述职（15min汇报+15min问答） → ③评分≥80分通过 → ④办理转正手续 → ⑤薪资次月调整。试用期3-6个月，连续2月绩效A可提前转正。' },
+    { keywords: ['离职', '辞职', '离职流程'], answer: '【离职管理】正式员工提前30天书面申请，试用期提前3天。流程：①提交申请 → ②主管审批（3天内） → ③工作交接（≥7天） → ④归还资产 → ⑤办理手续 → ⑥开具证明 → ⑦社保转移。离职面谈必做。' },
+    { keywords: ['合同', '续签', '到期'], answer: '【合同管理】首次签订3年，续签5年。到期前45天系统提醒，到期前30天内可在线申请续签，HR5个工作日内审批。合同模板已标准化，特殊条款需法务审核。' },
+    { keywords: ['编制', '空缺', '编制使用率'], answer: '【编制管理】编制年度审批，季度微调。使用率目标90-95%：低于85%需加速招聘，超过100%需总部特批。调整流程：中心申请 → HR审核 → 总部审批 → 系统更新。数据每月1日更新。' },
+    // 行政管理
+    { keywords: ['办公用品', '领用', '申请', '出库'], answer: '【办公用品管理】领用流程：系统提交申请 → 选择物品 → 主管审批（高值物品） → 行政发放 → 签收确认。常用物品直接领取；高值物品需审批。每月25日盘点，低于安全库存自动预警。限额50元/月/人。' },
+    { keywords: ['固定资产', '借用', '盘点', '新增资产'], answer: '【固定资产管理】分类：电子设备/办公家具/通讯设备。借用：系统申请 → 部门审批 → 行政调配 → 领取签收。盘点：年度全面盘点+季度抽盘（扫码盘点）。报废：满3年可申请，残值回收。遗失按账面价值50%赔偿。' },
+    { keywords: ['报销', '费用', '报销流程'], answer: '【费用报销】OA提交 → 上传发票 → 选择类别（差旅/招待/办公/培训） → 主管审批 → 财务审核 → 次月15日打款。标准：差旅（高铁二等座/经济舱/住宿≤400元/晚）、招待（≤200元/人）。单笔≥5000元需事前申请。' },
+    { keywords: ['会议室', '预订', '会议室管理'], answer: '【会议室预订】系统预订，提前1天预约。≤10人小会议室提前1天，>10人培训教室提前3天。使用时长：常规≤2小时，培训/团建≤半天。取消需提前2小时释放。使用后恢复原状。' },
+    // 公共关系管理
+    { keywords: ['舆情', '监控', '预警'], answer: '【舆情监控】覆盖6大平台：微信公众号/微博/抖音/小红书/知乎/脉脉。关键词：公司名称/产品/高管/竞品/行业热点。预警分级：🔴高级（负面+传播>1万）2小时内上报总经理；🟡中级（1000-1万）4小时内处理；🟢低级24小时内回复。' },
+    { keywords: ['危机公关', '负面舆情', '怎么处理'], answer: '【危机公关流程】①监测发现 → ②快速评估（30分钟定级） → ③成立应急小组（公关+法务+业务） → ④统一口径 → ⑤发布声明（官网+微博+微信） → ⑥持续跟踪（72小时密集监控） → ⑦复盘报告（3天内）。原则：速度第一、态度诚恳、事实清楚、承担责任。' },
+    { keywords: ['品牌', '品牌管理', ' spokesperson'], answer: '【品牌管理】视觉规范：LOGO/标准色（#3B82F6主+#1A2B4C辅）/字体（微软雅黑）。对外宣传：所有稿件需公关部审核，数据需财务确认。Spokesperson制度：只有指定发言人可接受媒体采访。每月发布2-3篇正面内容。' },
+    { keywords: ['抖音', '小红书', '短视频舆情'], answer: '【抖音&小红书监控】抖音：品牌视频156条，互动2.3万，评论提及68条（负面3条），热门话题12个（曝光580万）。小红书：品牌笔记89篇，收藏1.2万，评论52条（负面2条），话题标签8个（浏览320万）。当前均为低风险。' },
+    // 通用
+    { keywords: ['福利', '社保', '公积金'], answer: '【员工福利】①五险一金（最高基数）；②带薪年假（满1年5天，满3年10天）；③节日福利（春节/端午/中秋各500元购物卡）；④生日礼金300元+半天假；⑤年度体检；⑥团建2000元/人/年；⑦夜宵补贴30元/次（加班至21:00后）；⑧通讯补贴100元/月（业务岗）。' },
+    { keywords: ['社保缴纳', '公积金比例'], answer: '【社保公积金】缴纳基数：上年度月平均工资（上限社平工资3倍）。养老（公司16%/个人8%）、医疗（公司10%/个人2%）、失业（各0.5%）、工伤（公司0.2%）、生育（公司0.8%）、公积金（各12%）。每月15日前缴纳，企业微信可查明细。' }
+  ]
+};
+
+// ============ API 路由 ============
+app.get('/api/dashboard', (req, res) => res.json(mockData.dashboard));
+
+app.get('/api/recruit/funnel', (req, res) => res.json(mockData.recruitFunnel));
+app.get('/api/recruit/dashboard', (req, res) => res.json(mockData.dashboard.recruit));
+
+app.get('/api/train/talent-pool', (req, res) => res.json(mockData.talentPool));
+app.get('/api/train/new-train', (req, res) => res.json(mockData.newTrain));
+app.get('/api/train/knowledge', (req, res) => res.json(mockData.knowledgeBase));
+app.get('/api/train/knowledge/course/:id', (req, res) => {
+  const course = mockData.knowledgeBase.courses.find(c => c.id === req.params.id);
+  if (course) res.json(course);
+  else res.status(404).json({ error: '课程不存在' });
+});
+app.get('/api/train/question-bank', (req, res) => res.json(mockData.questionBank));
+
+app.get('/api/hr/headcount', (req, res) => res.json(mockData.headcount));
+app.get('/api/hr/processes', (req, res) => res.json(mockData.hrProcesses));
+app.get('/api/hr/contracts', (req, res) => res.json(mockData.contracts));
+
+app.get('/api/admin/supplies', (req, res) => res.json({ items: mockData.supplies, usage: mockData.suppliesUsage }));
+app.get('/api/admin/assets', (req, res) => res.json(mockData.assets));
+app.get('/api/admin/budget', (req, res) => res.json(mockData.adminBudget));
+
+app.get('/api/pr/opinion', (req, res) => res.json(mockData.publicOpinion));
+
+// AI问答
+app.post('/api/ai/query', (req, res) => {
+  const { question } = req.body;
+  if (!question) return res.status(400).json({ error: '请输入问题' });
+  const q = question.toLowerCase();
+  let bestMatch = null;
+  let bestScore = 0;
+  for (const item of mockData.aiKnowledge) {
+    for (const kw of item.keywords) {
+      if (q.includes(kw.toLowerCase())) {
+        const score = kw.length;
+        if (score > bestScore) { bestScore = score; bestMatch = item; }
+      }
+    }
+  }
+  if (bestMatch) {
+    res.json({ matched: true, answer: bestMatch.answer, source: '综管知识库', confidence: Math.min(95, 60 + bestScore * 5) });
+  } else {
+    res.json({ matched: false, answer: '抱歉，未在知识库中找到相关问题。已记录您的问题并转人工处理，请留意后续通知。', source: 'AI助手', confidence: 0 });
+  }
+});
+
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+
+app.listen(PORT, () => {
+  console.log(`综管AI线上管理平台已启动: http://localhost:${PORT}`);
+});
