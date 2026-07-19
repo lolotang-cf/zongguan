@@ -26,7 +26,7 @@ EXPOSE 80
 # 设置环境变量
 ENV PORT=80
 ENV NODE_ENV=production
-ENV BUILD_VERSION=20260717_v6
+ENV BUILD_VERSION=20260719_v3
 
-# 启动服务
-CMD ["node", "server.js"]
+# 启动服务（V3 入口为 server/index.js）
+CMD ["node", "server/index.js"]
