@@ -1,0 +1,20 @@
+{
+  "envId": "lolotang-d4g5f9sq0fbe9c235",
+  "version": "2.0",
+  "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
+  "functionRoot": "./server",
+  "framework": {
+    "name": "zongguan-platform",
+    "plugins": {
+      "web": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "outputPath": "./public",
+          "cloudBaseRunPath": "/api"
+        }
+      }
+    },
+    "buildCommand": "",
+    "installCommand": ""
+  }
+}
