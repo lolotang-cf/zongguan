@@ -68,12 +68,12 @@ function renderToolbar(pageId) {
   const dates = (state.historyDates || []).map(function(d){ return '<option value="' + d + '" ' + (state.asOf === d ? 'selected' : '') + '>' + d + '</option>'; }).join('');
   tb.innerHTML = ''
     + '<div class="tb-left">'
-    + '<span class="tb-label">📅 数据日期</span>'
+    + '<span class="tb-label"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-calendar\"></use></svg> 数据日期</span>'
     + '<select id="asOfSelect" onchange="onAsOfChange()" class="tb-select"><option value="">最新</option>' + dates + '</select>'
     + '</div>'
     + '<div class="tb-right">'
-    + '<button class="btn btn-outline btn-sm" onclick="doExport(\'' + col + '\')">📥 导出</button>'
-    + '<button class="btn btn-primary btn-sm" onclick="doImport(\'' + col + '\')">📤 导入</button>'
+    + '<button class="btn btn-outline btn-sm" onclick="doExport(\'' + col + '\')"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-download\"></use></svg> 导出</button>'
+    + '<button class="btn btn-primary btn-sm" onclick="doImport(\'' + col + '\')"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-upload\"></use></svg> 导入</button>'
     + '</div>';
 }
 
@@ -133,11 +133,11 @@ async function loadHrCoreKpi() {
   let cards = '';
   kpis.forEach(function(k) {
     const bg = k.s === true ? COLORS.green : k.s === false ? COLORS.red : COLORS.blue;
-    const ic = k.s === true ? '🟢' : k.s === false ? '🔴' : '🔵';
+    const ic = k.s === true ? '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-circle-green\"></use></svg>' : k.s === false ? '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-circle-red\"></use></svg>' : '🔵';
     const tr = k.s === true ? 'up' : k.s === false ? 'down' : 'up';
-    cards += '<div class="kpi-card"><div class="kpi-accent" style="background:' + bg + '"></div><div class="kpi-icon">' + ic + '</div><div class="kpi-value">' + k.v + '</div><div class="kpi-label">' + k.n + '</div><div class="kpi-trend ' + tr + '">' + k.t + ' ' + (k.s === true ? '✅' : k.s === false ? '⚠️' : '') + '</div></div>';
+    cards += '<div class="kpi-card"><div class="kpi-accent" style="background:' + bg + '"></div><div class="kpi-icon">' + ic + '</div><div class="kpi-value">' + k.v + '</div><div class="kpi-label">' + k.n + '</div><div class="kpi-trend ' + tr + '">' + k.t + ' ' + (k.s === true ? '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-check-circle-2\"></use></svg>' : k.s === false ? '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-alert-circle\"></use></svg>' : '') + '</div></div>';
   });
-  renderPage('<div class="kpi-grid cols-3">' + cards + '</div><div class="chart-card"><div class="chart-title">🎯 核心指标红绿灯（目标 vs 实际）</div><table class="data-table"><thead><tr><th>指标</th><th>实际</th><th>目标</th><th>状态</th></tr></thead><tbody>' + rows + '</tbody></table></div>');
+  renderPage('<div class="kpi-grid cols-3">' + cards + '</div><div class="chart-card"><div class="chart-title"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-target\"></use></svg> 核心指标红绿灯（目标 vs 实际）</div><table class="data-table"><thead><tr><th>指标</th><th>实际</th><th>目标</th><th>状态</th></tr></thead><tbody>' + rows + '</tbody></table></div>');
 }
 
 async function loadHrWeekly() {
@@ -155,12 +155,12 @@ async function loadHrWeekly() {
   if (!todos) todos = '<div class="todo-item">暂无待办</div>';
   renderPage(
     '<div class="kpi-grid cols-4">'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.green + '"></div><div class="kpi-icon">➕</div><div class="kpi-value">' + (s.entry || 0) + '</div><div class="kpi-label">本周入职</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.red + '"></div><div class="kpi-icon">➖</div><div class="kpi-value">' + (s.leave || 0) + '</div><div class="kpi-label">本周离职</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon">✅</div><div class="kpi-value">' + (s.regular || 0) + '</div><div class="kpi-label">转正</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon">🔄</div><div class="kpi-value">' + (s.transfer || 0) + '</div><div class="kpi-label">调岗</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.green + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-plus-circle\"></use></svg></div><div class="kpi-value">' + (s.entry || 0) + '</div><div class="kpi-label">本周入职</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.red + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-minus-circle\"></use></svg></div><div class="kpi-value">' + (s.leave || 0) + '</div><div class="kpi-label">本周离职</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-check-circle-2\"></use></svg></div><div class="kpi-value">' + (s.regular || 0) + '</div><div class="kpi-label">转正</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-refresh-cw\"></use></svg></div><div class="kpi-value">' + (s.transfer || 0) + '</div><div class="kpi-label">调岗</div></div>'
     + '</div><div class="row cols-2">'
-    + '<div class="chart-card"><div class="chart-title">📅 各中心人员变动</div><table class="data-table"><thead><tr><th>中心</th><th>入职</th><th>离职</th><th>净增减</th></tr></thead><tbody>' + byCenter + '</tbody></table></div>'
+    + '<div class="chart-card"><div class="chart-title"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-calendar\"></use></svg> 各中心人员变动</div><table class="data-table"><thead><tr><th>中心</th><th>入职</th><th>离职</th><th>净增减</th></tr></thead><tbody>' + byCenter + '</tbody></table></div>'
     + '<div class="chart-card"><div class="chart-title">📌 下周待办事项</div><div class="todo-list">' + todos + '</div></div>'
     + '</div>'
   );
@@ -177,11 +177,11 @@ async function loadHrLabor() {
   });
   renderPage(
     '<div class="kpi-grid cols-3">'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon">⚖️</div><div class="kpi-value">' + list.length + '</div><div class="kpi-label">劳动关系案件</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon">⏳</div><div class="kpi-value">' + list.filter(function(x){ return x.status === '处理中'; }).length + '</div><div class="kpi-label">处理中</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.green + '"></div><div class="kpi-icon">✅</div><div class="kpi-value">' + list.filter(function(x){ return x.status === '已结案'; }).length + '</div><div class="kpi-label">已结案</div></div>'
-    + '</div><div class="filter-bar"><button class="btn btn-primary" onclick="alert(\'新增劳动关系案件\')">➕ 新增案件</button><button class="btn btn-outline" onclick="alert(\'导出案件台账\')">📥 导出</button></div>'
-    + '<div class="chart-card"><div class="chart-title">⚖️ 劳动关系台账（敏感信息已脱敏）</div><table class="data-table"><thead><tr><th>编号</th><th>姓名</th><th>中心</th><th>类型</th><th>状态</th><th>进展</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-scale\"></use></svg></div><div class="kpi-value">' + list.length + '</div><div class="kpi-label">劳动关系案件</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-hourglass\"></use></svg></div><div class="kpi-value">' + list.filter(function(x){ return x.status === '处理中'; }).length + '</div><div class="kpi-label">处理中</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.green + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-check-circle-2\"></use></svg></div><div class="kpi-value">' + list.filter(function(x){ return x.status === '已结案'; }).length + '</div><div class="kpi-label">已结案</div></div>'
+    + '</div><div class="filter-bar"><button class="btn btn-primary" onclick="alert(\'新增劳动关系案件\')"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-plus-circle\"></use></svg> 新增案件</button><button class="btn btn-outline" onclick="alert(\'导出案件台账\')"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-download\"></use></svg> 导出</button></div>'
+    + '<div class="chart-card"><div class="chart-title"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-scale\"></use></svg> 劳动关系台账（敏感信息已脱敏）</div><table class="data-table"><thead><tr><th>编号</th><th>姓名</th><th>中心</th><th>类型</th><th>状态</th><th>进展</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
   );
 }
 
@@ -196,10 +196,10 @@ async function loadHrProbation() {
   });
   renderPage(
     '<div class="kpi-grid cols-3">'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.red + '"></div><div class="kpi-icon">🚨</div><div class="kpi-value">' + list.filter(function(x){ return (x.daysLeft || 0) <= 7; }).length + '</div><div class="kpi-label">7天内到期</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">' + list.filter(function(x){ return (x.daysLeft || 0) <= 15; }).length + '</div><div class="kpi-label">15天内到期</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon">📝</div><div class="kpi-value">' + list.length + '</div><div class="kpi-label">试用期总人数</div></div>'
-    + '</div><div class="chart-card"><div class="chart-title">📝 试用期到期提醒（提前7/15天推送）</div><table class="data-table"><thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>部门</th><th>入职日</th><th>到期日</th><th>剩余</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.red + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-alert-triangle\"></use></svg></div><div class="kpi-value">' + list.filter(function(x){ return (x.daysLeft || 0) <= 7; }).length + '</div><div class="kpi-label">7天内到期</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-alert-circle\"></use></svg></div><div class="kpi-value">' + list.filter(function(x){ return (x.daysLeft || 0) <= 15; }).length + '</div><div class="kpi-label">15天内到期</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-edit\"></use></svg></div><div class="kpi-value">' + list.length + '</div><div class="kpi-label">试用期总人数</div></div>'
+    + '</div><div class="chart-card"><div class="chart-title"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-edit\"></use></svg> 试用期到期提醒（提前7/15天推送）</div><table class="data-table"><thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>部门</th><th>入职日</th><th>到期日</th><th>剩余</th><th>操作</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
   );
 }
 
@@ -215,9 +215,9 @@ async function loadAlerts() {
   });
   renderPage(
     '<div class="kpi-grid cols-3">'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.red + '"></div><div class="kpi-icon">🚨</div><div class="kpi-value">' + (cnt.high || 0) + '</div><div class="kpi-label">紧急预警</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon">⚠️</div><div class="kpi-value">' + (cnt.mid || 0) + '</div><div class="kpi-label">中期预警</div></div>'
-    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon">📋</div><div class="kpi-value">' + (cnt.low || 0) + '</div><div class="kpi-label">提示</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.red + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-alert-triangle\"></use></svg></div><div class="kpi-value">' + (cnt.high || 0) + '</div><div class="kpi-label">紧急预警</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.orange + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-alert-circle\"></use></svg></div><div class="kpi-value">' + (cnt.mid || 0) + '</div><div class="kpi-label">中期预警</div></div>'
+    + '<div class="kpi-card"><div class="kpi-accent" style="background:' + COLORS.blue + '"></div><div class="kpi-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-clipboard-list\"></use></svg></div><div class="kpi-value">' + (cnt.low || 0) + '</div><div class="kpi-label">提示</div></div>'
     + '</div><div class="alert-center">' + cards + '</div>'
   );
 }
