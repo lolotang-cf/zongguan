@@ -26,5 +26,21 @@
     },
     "buildCommand": "",
     "installCommand": ""
-  }
+  },
+  "cloudrun": {
+    "name": "zongguan-platform"
+  },
+  "functionRoot": "./functions",
+  "functions": [
+    {
+      "name": "zongguan-api",
+      "timeout": 30,
+      "runtime": "Nodejs18.15",
+      "handler": "index.main",
+      "envVariables": {
+        "DEPLOY_MODE": "event",
+        "NODE_ENV": "production"
+      }
+    }
+  ]
 }

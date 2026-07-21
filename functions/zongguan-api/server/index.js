@@ -289,14 +289,9 @@ app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'in
 process.on('SIGINT', () => { db.persistAll(); process.exit(0); });
 process.on('SIGTERM', () => { db.persistAll(); process.exit(0); });
 
-// 监听策略：
-// - 本地直接 `node server/index.js` 或云端 Web 函数（scf_bootstrap 启动）→ 监听端口
-// - 云端事件函数（SCF_EVENT=1，由适配器用 http 桥接 Express）→ 不监听
-const IS_EVENT_FN = process.env.DEPLOY_MODE === 'event';
-const BIND_HOST = process.env.HOST || '0.0.0.0';
-if (!IS_EVENT_FN) {
-  app.listen(PORT, BIND_HOST, () => {
-    console.log(`综管AI线上管理平台 V3(迭代版) 已启动: http://${BIND_HOST}:${PORT}`);
+if (!IS_SCF) {
+  app.listen(PORT, () => {
+    console.log(`综管AI线上管理平台 V3(迭代版) 已启动: http://localhost:${PORT}`);
   });
 }
 

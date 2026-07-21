@@ -7,17 +7,12 @@
  */
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
 
-// 云函数代码目录（/var/user）只读，数据必须落到可写目录：优先 DATA_DIR 环境变量，否则用系统临时目录
-const DATA_DIR = process.env.DATA_DIR || path.join(os.tmpdir(), 'zongguan-data');
+const DATA_DIR = path.join(__dirname, '..', '..', 'data');
 const SNAPSHOT_DIR = path.join(DATA_DIR, 'snapshots');
 const HISTORY_DIR = path.join(DATA_DIR, 'history');
 
-[DATA_DIR, SNAPSHOT_DIR, HISTORY_DIR].forEach(d => {
-  try { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
-  catch (e) { console.warn('[store] 数据目录创建失败，将仅用内存模式:', d, e.message); }
-});
+[DATA_DIR, SNAPSHOT_DIR, HISTORY_DIR].forEach(d => { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); });
 
 /** @type {Record<string, any>} 内存集合（当前值） */
 const collections = {};
