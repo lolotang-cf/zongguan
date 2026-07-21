@@ -323,6 +323,18 @@
         "color": "#f59e0b"
       }
     ],
+    "selfRecruit": [
+      {"name":"社招直招","count":38,"color":"#06b6d4"},
+      {"name":"内部推荐","count":22,"color":"#8b5cf6"},
+      {"name":"猎头","count":12,"color":"#f59e0b"},
+      {"name":"人才库激活","count":8,"color":"#84cc16"}
+    ],
+    "groupRecruit": [
+      {"name":"校园宣讲会","count":45,"color":"#3b82f6"},
+      {"name":"校企合作","count":28,"color":"#10b981"},
+      {"name":"管培生计划","count":18,"color":"#f59e0b"},
+      {"name":"实习生转正","count":15,"color":"#8b5cf6"}
+    ],
     "weeklyProcess": {
       "categories": [
         "自招",
