@@ -12,3 +12,20 @@ test-token2.bat
 test-token3.bat
 test-railway.bat
 nul
+
+# 调试/验证脚本与临时文件（非交付源码）
+*.py
+*.png
+*.txt
+debug_submit.js
+screenshot.js
+screenshot_verify.js
+test_endpoints.js
+test_me.js
+test_scope.js
+verify_*.js
+full_scan_all.js
+screenshots/
+versions/
+deploy/
+functions/
