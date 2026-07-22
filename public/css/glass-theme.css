@@ -1,0 +1,163 @@
+/* =========================================================
+   毛玻璃主题覆盖层 (glass-theme)
+   仅覆盖主界面核心组件（侧边栏/顶栏/卡片/表格/标签）
+   深层功能页（知识库/详情弹窗/模态框）保留浅色卡片
+   部署前 V28.1 为回退点；撤回=删除 index.html 中本文件引用
+   ========================================================= */
+
+/* 背景：深蓝渐变 + 浮动光晕（模拟登录页视觉语言） */
+body {
+  background:
+    radial-gradient(circle at 12% 16%, rgba(79,172,254,0.20), transparent 40%),
+    radial-gradient(circle at 86% 82%, rgba(138,109,215,0.18), transparent 45%),
+    radial-gradient(circle at 52% 48%, rgba(30,90,138,0.14), transparent 60%),
+    linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a40 100%) !important;
+  background-attachment: fixed;
+  color: #fff !important;
+}
+
+/* 侧边栏 - 毛玻璃 */
+.sidebar {
+  background: rgba(20,30,55,0.55) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+/* 顶部栏 - 毛玻璃 */
+.topbar {
+  background: rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: none !important;
+}
+.topbar .page-title { color: #fff !important; }
+.topbar .search-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+}
+.topbar .search-box input { color: #fff; }
+.topbar .search-box input::placeholder { color: rgba(255,255,255,0.35); }
+.topbar .user-info { color: rgba(255,255,255,0.8); }
+.topbar .user-avatar { background: linear-gradient(135deg, #4FACFE, #8A6DD7); color: #fff; }
+.logout-btn {
+  background: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important;
+}
+.logout-btn:hover { background: rgba(255,255,255,0.14) !important; color: #fff !important; }
+
+/* 页面工具栏 - 毛玻璃 */
+.page-toolbar {
+  background: rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: none !important;
+}
+.page-toolbar .tb-label { color: rgba(255,255,255,0.6); }
+.tb-select {
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.tb-select:focus { border-color: #4FACFE; }
+.tb-select option { background: #1a2b4c; color: #fff; }
+
+/* KPI 卡片 - 毛玻璃 */
+.kpi-card {
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: none !important;
+}
+.kpi-card:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(79,172,254,0.4) !important;
+  transform: translateY(-2px);
+}
+.kpi-card .kpi-value { color: #fff !important; }
+.kpi-card .kpi-label { color: rgba(255,255,255,0.55) !important; }
+
+/* 图表卡 - 毛玻璃 */
+.chart-card {
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: none !important;
+}
+.chart-card .chart-title { color: #fff !important; }
+.chart-card .chart-desc { color: rgba(255,255,255,0.5) !important; }
+
+/* 区块标题 */
+.section-title { color: #fff !important; }
+
+/* 数据表格 - 在毛玻璃卡内 */
+.data-table thead th { background: rgba(20,30,55,0.6) !important; color: #fff; }
+.data-table tbody td { color: rgba(255,255,255,0.82); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.data-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+.data-table tbody tr:hover { background: rgba(255,255,255,0.08); }
+
+/* 标签描边 */
+.tag-outline { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); }
+
+/* 预警卡 - 毛玻璃 */
+.alert-card {
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: none !important;
+}
+.alert-card:hover { background: rgba(255,255,255,0.1) !important; transform: translateY(-2px); }
+.alert-title { color: #fff !important; }
+.alert-desc { color: rgba(255,255,255,0.6) !important; }
+.alert-foot { color: rgba(255,255,255,0.6); border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* 子标签 / Tab */
+.sub-tabs {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: none !important;
+}
+.sub-tab { color: rgba(255,255,255,0.6); }
+.sub-tab:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.sub-tab.active { background: linear-gradient(135deg, #4FACFE, #8A6DD7); color: #fff; }
+
+/* 筛选栏 */
+.filter-bar select, .filter-bar input {
+  background: rgba(255,255,255,0.07);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.filter-bar select:focus, .filter-bar input:focus { border-color: #4FACFE; }
+.filter-bar select option { background: #1a2b4c; color: #fff; }
+.filter-bar .btn-outline {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+}
+
+/* 通用按钮 */
+.btn-outline {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+}
+.btn-outline:hover { border-color: #4FACFE; color: #fff; }
+
+/* 内联统计 */
+.stat-inline .val { color: #fff; }
+.stat-inline .lbl { color: rgba(255,255,255,0.55); }
+
+/* Loading */
+.loading { color: rgba(255,255,255,0.6); }
+.loading .spinner { border: 3px solid rgba(255,255,255,0.15); border-top-color: #4FACFE; }
+
+/* 待办列表 */
+.todo-item { color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.08); }
