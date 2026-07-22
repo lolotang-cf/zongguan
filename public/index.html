@@ -34,6 +34,11 @@
 <symbol id="icon-alert-triangle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
 <symbol id="icon-files" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 7h-3.5l-2-2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h11.5a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M19.5 13.5 22 16v5a2 2 0 0 1-2 2h-4.5"/></symbol>
 <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+<symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="icon-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 3-9 9"/><path d="m15 3 6 6"/><path d="M21 3v6h-6"/></symbol>
+<symbol id="icon-running" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5a2 2 0 1 0-4 0 2 2 0 0 0 4 0z"/><path d="m17 21-2.5-4.5L11 14l-3 3"/><path d="m16 14 2-7-4.5-2.5"/><path d="M4 19h5"/></symbol>
+<symbol id="icon-party" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.8"/><path d="M11 13c1.5-3 5.5-6 8-6-1 2.5-4 6.5-7 8"/><path d="M14.5 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M20 4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/></symbol>
+<symbol id="icon-waving-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2v2"/><path d="M16 4a2 2 0 0 1 2 2"/><path d="M20 6a2 2 0 0 1 2 2"/><path d="M17 13c-1.5 2-3.5 4-6 4-2.5 0-4-1.5-4-4V7a2 2 0 1 1 4 0v4"/><path d="M10 7v4"/></symbol>
 <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
 <symbol id="icon-plus-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></symbol>
 <symbol id="icon-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
@@ -231,7 +236,7 @@
       <div class="page-title" id="pageTitle">综管驾驶舱</div>
       <div class="topbar-right">
         <div class="search-box">
-          <span>🔍</span>
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg>
           <input type="text" placeholder="搜索功能、报表、知识库..." id="globalSearch">
         </div>
         <div class="user-info">
@@ -246,6 +251,6 @@
   </div>
 </div>
 
-<script src="/js/app.js?v=27"></script>
+<script src="/js/app.js?v=32"></script>
 </body>
 </html>

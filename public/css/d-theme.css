@@ -13,6 +13,23 @@
   --accent-soft: #FCEDE4;   /* 橙浅底 */
 }
 
+/* ========== SVG 图标统一尺寸（替换 emoji） ========== */
+.icon-svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.search-box .icon-svg {
+  width: 16px;
+  height: 16px;
+  color: #9CA3AF;
+}
+.nav-icon .icon-svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* ========== 背景 & 全局 ========== */
 body { background: var(--bg); }
 
@@ -23,14 +40,19 @@ body { background: var(--bg); }
   border-right: 1px solid #E8E8E6;
 }
 .sidebar-header { border-bottom-color: #E8E8E6; }
-.sidebar-header .logo { color: #1D1D1F; }
+.sidebar-header .logo {
+  color: #1D1D1F;
+  font-size: 15px;           /* 调小，避免换行 */
+  white-space: nowrap;       /* 强制一行显示 */
+  letter-spacing: 0.3px;
+}
 .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
 
-.nav-group-title { color: #AEAEB2; }
-.nav-group-title:hover { background: #EFEFED; }
-.nav-subgroup-title { color: #86868B; }
+.nav-group-title { color: #4E5969; font-weight: 700; }   /* 加深，提升可读性 */
+.nav-group-title:hover { background: #EFEFED; color: #1D1D1F; }
+.nav-subgroup-title { color: #6B7280; font-weight: 600; } /* 加深 */
 .nav-subgroup-title:hover { background: #EFEFED; color: #1D1D1F; }
-.nav-item { color: #48484A; }
+.nav-item { color: #4E5969; }                            /* 同步加深 */
 .nav-item:hover { background: #EFEFED; color: #1D1D1F; }
 .nav-item.active {
   background: var(--accent-soft);
@@ -113,8 +135,31 @@ body { background: var(--bg); }
   color: var(--text);
   font-weight: 600;
   border-bottom: 1px solid #E8E8E6;
+  padding: 12px 12px;                     /* 与加大后的td对齐 */
 }
-.data-table td { border-bottom: 1px solid #F4F4F2; }
+.data-table tbody td {
+  padding: 14px 12px;                     /* 行间距加大 */
+  border-bottom: 1px solid #F4F4F2;
+}
+
+/* 模块权限分配：图标放大 */
+.data-table tbody td .icon-svg {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+}
+
+/* 角色权限矩阵：操作列最小宽度 + 按钮强制不换行 */
+.data-table thead th:last-child,
+.data-table tbody td:last-child {
+  white-space: nowrap;
+  min-width: 100px;
+}
+.data-table tbody td:last-child .btn-outline {
+  white-space: nowrap !important;
+  font-size: 13px !important;
+  padding: 6px 14px !important;
+}
 
 /* ========== 预警卡片（去掉彩色左边框） ========== */
 .alert-card {

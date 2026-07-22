@@ -166,7 +166,7 @@ const NAV_CONFIG = [
     { id: 'admin-asset', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-monitor\"></use></svg>', name: '固定资产管理', title: '固定资产管理' },
     { id: 'admin-supplies', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-package\"></use></svg>', name: '办公用品管理', title: '办公用品库存与领用管理' },
     { id: 'admin-gift', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-gift\"></use></svg>', name: '礼品管理', title: '礼品管理' },
-    { id: 'admin-print', icon: '🖨️', name: '文印管理', title: '文印管理' },
+    { id: 'admin-print', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-printer"></use></svg>', name: '文印管理', title: '文印管理' },
     { id: 'admin-manual', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-book-opened\"></use></svg>', name: '行政操作手册', title: '行政操作手册知识库' }
   ]},
   { group: '事务台账', items: [
@@ -181,7 +181,7 @@ const NAV_CONFIG = [
     { id: 'pr-media', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-radio\"></use></svg>', name: '媒体资源库', title: '媒体资源库' }
   ]},
   { group: '系统管理', items: [
-    { id: 'sys-permission', icon: '🔐', name: '权限管理', title: '统一权限体系' }
+    { id: 'sys-permission', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-lock"></use></svg>', name: '权限管理', title: '统一权限体系' }
   ]},
   { group: '智能助手', items: [
     { id: 'ai-chat', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-bot\"></use></svg>', name: '综管智能小助手', title: '综管智能小助手' }
@@ -195,7 +195,8 @@ function init() {
   loadHistoryDates();
   renderToolbar();
   updateScopeBadge();
-  navigate('dashboard');
+  const navParam = new URLSearchParams(location.search).get('nav');
+  navigate(navParam || 'dashboard');
 }
 
 function renderSidebar() {
@@ -954,8 +955,8 @@ async function loadSysPermission() {
     <div class="kpi-grid cols-4">
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.totalRoles}</div><div class="kpi-label">角色总数</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user"></use></svg></div><div class="kpi-value">${data.overview.totalUsers}</div><div class="kpi-label">系统用户数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">🔑</div><div class="kpi-value">${data.overview.totalPermissions}</div><div class="kpi-label">权限项</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">🔓</div><div class="kpi-value">${data.overview.pendingApprovals}</div><div class="kpi-label">待审批权限申请</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-key"></use></svg></div><div class="kpi-value">${data.overview.totalPermissions}</div><div class="kpi-label">权限项</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-lock"></use></svg></div><div class="kpi-value">${data.overview.pendingApprovals}</div><div class="kpi-label">待审批权限申请</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
@@ -1219,7 +1220,7 @@ async function loadRecruitDaily() {
     <div class="kpi-grid cols-4">
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].interview}</div><div class="kpi-label">今日到面</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].pass}</div><div class="kpi-label">今日通过</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon">🎉</div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].onboard}</div><div class="kpi-label">今日入职</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-party"></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].onboard}</div><div class="kpi-label">今日入职</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.dailyData.reduce((s,d)=>s+d.interview,0)}</div><div class="kpi-label">本周累计到面</div></div>
     </div>
     <div class="chart-card">
@@ -1365,7 +1366,7 @@ async function loadTrainNew() {
     </div>
     <div class="kpi-grid cols-5">
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-graduation-cap"></use></svg></div><div class="kpi-value">${data.overview.enrolled}</div><div class="kpi-label">参训人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">✍️</div><div class="kpi-value">${data.overview.signed}</div><div class="kpi-label">签合同人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-pen-tool"></use></svg></div><div class="kpi-value">${data.overview.signed}</div><div class="kpi-label">签合同人数</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.grouped}</div><div class="kpi-label">入组人数</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">转化率</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.eliminated + data.overview.resigned}</div><div class="kpi-label">淘汰+离职</div></div>
@@ -2671,11 +2672,11 @@ async function loadHrTurnover() {
 
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">👋</div><div class="kpi-value">${ov.totalTurnover || 0}</div><div class="kpi-label">年度累计流失</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-waving-hand"></use></svg></div><div class="kpi-value">${ov.totalTurnover || 0}</div><div class="kpi-label">年度累计流失</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${(ov.rate || 0)}%</div><div class="kpi-label">流失率</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg></div><div class="kpi-value">${ov.monthTurnover || 0}</div><div class="kpi-label">本月流失</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">⭐</div><div class="kpi-value">${ov.coreTurnover || 0}</div><div class="kpi-label">核心岗位流失</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">⏱️</div><div class="kpi-value">${ov.avgTenure || 0}月</div><div class="kpi-label">平均司龄</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-star"></use></svg></div><div class="kpi-value">${ov.coreTurnover || 0}</div><div class="kpi-label">核心岗位流失</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clock"></use></svg></div><div class="kpi-value">${ov.avgTenure || 0}月</div><div class="kpi-label">平均司龄</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
@@ -3395,7 +3396,7 @@ async function loadTrainInstructor() {
   renderPage(`
     <div class="kpi-grid cols-5">
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user-check"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">讲师总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">⭐</div><div class="kpi-value">${data.overview.fiveStar}</div><div class="kpi-label">五星级讲师</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-star"></use></svg></div><div class="kpi-value">${data.overview.fiveStar}</div><div class="kpi-label">五星级讲师</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trophy"></use></svg></div><div class="kpi-value">${data.overview.special}</div><div class="kpi-label">特聘讲师</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-library"></use></svg></div><div class="kpi-value">${data.overview.totalCourses}</div><div class="kpi-label">累计授课</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-door-open"></use></svg></div><div class="kpi-value">${data.overview.resigned}</div><div class="kpi-label">已离职讲师</div></div>
@@ -3513,8 +3514,8 @@ async function loadTrainCadreLoss() {
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-briefcase"></use></svg></div><div class="kpi-value">${data.overview.totalCadres}</div><div class="kpi-label">干部总数</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-down"></use></svg></div><div class="kpi-value">${data.overview.lossCount}</div><div class="kpi-label">流失人数</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.overview.lossRate}%</div><div class="kpi-label">流失率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon">🏃</div><div class="kpi-value">${data.overview.activeRate}%</div><div class="kpi-label">主动流失占比</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">⏱️</div><div class="kpi-value">${data.overview.avgTenure}年</div><div class="kpi-label">平均在职年限</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-running"></use></svg></div><div class="kpi-value">${data.overview.activeRate}%</div><div class="kpi-label">主动流失占比</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clock"></use></svg></div><div class="kpi-value">${data.overview.avgTenure}年</div><div class="kpi-label">平均在职年限</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
@@ -3870,7 +3871,7 @@ async function loadPrMedia() {
     <div class="kpi-grid cols-4">
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-radio"></use></svg></div><div class="kpi-value">${data.overview.totalMedia}</div><div class="kpi-label">合作媒体数</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user"></use></svg></div><div class="kpi-value">${data.overview.totalContacts}</div><div class="kpi-label">记者联系人</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">⭐</div><div class="kpi-value">${data.overview.coreMedia}</div><div class="kpi-label">核心媒体</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-star"></use></svg></div><div class="kpi-value">${data.overview.coreMedia}</div><div class="kpi-label">核心媒体</div></div>
       <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-newspaper"></use></svg></div><div class="kpi-value">${data.overview.recentReports}</div><div class="kpi-label">本月报道数</div></div>
     </div>
     <div class="chart-card">
@@ -3919,7 +3920,10 @@ async function loadHrPolicy() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="filter-bar">
-      <input type="text" placeholder="<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 搜索制度名称/关键词..." style="flex:1;max-width:400px">
+      <div style="position:relative;flex:1;max-width:400px">
+        <svg class="icon-svg" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9CA3AF;pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg>
+        <input type="text" placeholder="搜索制度名称/关键词..." style="width:100%;padding-left:32px">
+      </div>
       <select><option value="">全部分类</option><option>考勤管理</option><option>薪酬福利</option><option>绩效考核</option><option>劳动合同</option><option>员工手册</option><option>奖惩制度</option></select>
       <select><option value="">全部状态</option><option>现行</option><option>修订中</option><option>已废止</option></select>
       <button class="btn btn-primary">搜索</button>
@@ -3949,7 +3953,10 @@ async function loadAdminManual() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="filter-bar">
-      <input type="text" placeholder="<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 搜索手册/操作流程..." style="flex:1;max-width:400px">
+      <div style="position:relative;flex:1;max-width:400px">
+        <svg class="icon-svg" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9CA3AF;pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg>
+        <input type="text" placeholder="搜索手册/操作流程..." style="width:100%;padding-left:32px">
+      </div>
       <select><option value="">全部分类</option><option>办公环境</option><option>资产管理</option><option>采购流程</option><option>印章管理</option><option>车辆管理</option><option>会议管理</option></select>
       <button class="btn btn-primary">搜索</button>
       <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-plus-circle"></use></svg> 上传手册</button>
