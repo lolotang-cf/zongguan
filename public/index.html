@@ -94,26 +94,126 @@
 
 <link rel="stylesheet" href="/css/main.css?v=17">
 <script src="/vendor/echarts.min.js"></script>
+<style>
+/* === V28: 玻璃拟态科技风登录页 (Glassmorphism Tech Login) === */
+.zg-login-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #1a1a40 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 9999;
+}
+.zg-glow { position: absolute; border-radius: 50%; pointer-events: none; }
+.zg-glow-1 { top: -80px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(79,172,254,0.15) 0%, transparent 70%); }
+.zg-glow-2 { bottom: -100px; left: -50px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(138,99,214,0.12) 0%, transparent 70%); }
+.zg-glow-3 { top: 150px; left: 100px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(79,172,254,0.08) 0%, transparent 70%); }
+.zg-glow-4 { bottom: 120px; right: 180px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(232,115,74,0.08) 0%, transparent 70%); }
+
+.zg-login-container {
+  display: flex;
+  align-items: center;
+  gap: 150px;
+  z-index: 1;
+  padding: 40px 100px 40px 40px;
+  max-width: 1560px;
+  width: 100%;
+}
+.zg-brand-area {
+  flex: 1;
+  max-width: 560px;
+  color: #fff;
+  padding-left: 100px;
+}
+.zg-brand-header { display: flex; align-items: center; gap: 14px; margin-bottom: 52px; }
+.zg-logo-img { width: 58px; height: 58px; border-radius: 15px; object-fit: contain; background: rgba(255,255,255,0.08); padding: 4px; }
+.zg-brand-name h1 { font-size: 22px; font-weight: 700; letter-spacing: 1.5px; line-height: 1.25; }
+.zg-brand-name span { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 3px; text-transform: uppercase; }
+.zg-brand-divider { width: 52px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #4FACFE 0%, #8A6DD7 100%); margin: 0 0 46px; }
+.zg-brand-eyebrow { font-size: 13px; font-weight: 500; letter-spacing: 5px; color: rgba(79,172,254,0.85); text-transform: uppercase; margin-bottom: 22px; }
+.zg-brand-title { font-size: 46px; font-weight: 700; line-height: 1.3; letter-spacing: 1px; margin-bottom: 24px; text-shadow: 0 2px 16px rgba(0,0,0,0.25); }
+.zg-brand-subtitle { font-size: 18px; font-weight: 400; color: rgba(255,255,255,0.6); line-height: 1.6; letter-spacing: 0.5px; margin-bottom: 52px; }
+.zg-brand-tags { display: flex; gap: 12px; }
+.zg-brand-tags .zg-tag { font-size: 13px; color: rgba(255,255,255,0.72); padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); letter-spacing: 1px; }
+
+.zg-login-card {
+  width: 440px;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px;
+  padding: 46px 38px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.zg-login-h2 { text-align: center; font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 10px; }
+.zg-login-hint { text-align: center; font-size: 14px; color: rgba(255,255,255,0.38); margin-bottom: 34px; }
+.zg-input-wrap { display: flex; align-items: center; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 11px; padding: 15px 18px; gap: 12px; margin-bottom: 22px; transition: all 0.25s; }
+.zg-input-wrap:focus-within { border-color: rgba(79,172,254,0.55); background: rgba(255,255,255,0.09); }
+.zg-input-wrap input { flex: 1; background: none; border: none; outline: none; color: #fff; font-size: 16px; font-family: inherit; }
+.zg-input-wrap input::placeholder { color: rgba(255,255,255,0.32); }
+.zg-btn-login { width: 100%; padding: 16px; background: linear-gradient(135deg, #4FACFE 0%, #8A6DD7 100%); border: none; border-radius: 11px; color: #fff; font-size: 17px; font-weight: 600; cursor: pointer; letter-spacing: 6px; transition: all 0.3s; box-shadow: 0 4px 16px rgba(79,172,254,0.25); }
+.zg-btn-login:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(79,172,254,0.38); }
+.zg-login-tip { text-align: center; margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.3); }
+.login-err { color: #ff8585; font-size: 13px; text-align: center; margin-bottom: 14px; }
+</style>
 </head>
 <body>
 <!-- 登录弹窗 -->
-<div class="login-overlay" id="loginOverlay" style="display:none">
-  <div class="login-card">
-    <div class="login-logo">综管综合管理平台</div>
-    <div class="login-subtitle">请登录后使用</div>
-    <form id="loginForm" onsubmit="return doLogin(event)">
-      <div class="login-row">
-        <label>账号</label>
-        <input type="text" id="loginUsername" autocomplete="username" placeholder="请输入账号" required>
+<div class="zg-login-overlay" id="loginOverlay" style="display:none">
+  <div class="zg-glow zg-glow-1"></div>
+  <div class="zg-glow zg-glow-2"></div>
+  <div class="zg-glow zg-glow-3"></div>
+  <div class="zg-glow zg-glow-4"></div>
+
+  <div class="zg-login-container">
+    <!-- 左侧品牌区 -->
+    <div class="zg-brand-area">
+      <div class="zg-brand-header">
+        <img src="/logo-login.png" alt="传发金融" class="zg-logo-img" />
+        <div class="zg-brand-name">
+          <h1>传发金融</h1>
+          <span>CHUANFA JINRONG</span>
+        </div>
       </div>
-      <div class="login-row">
-        <label>密码</label>
-        <input type="password" id="loginPassword" autocomplete="current-password" placeholder="请输入密码" required>
+      <div class="zg-brand-divider"></div>
+      <div class="zg-brand-eyebrow">WELCOME</div>
+      <div class="zg-brand-title">综合管理平台</div>
+      <div class="zg-brand-subtitle">综合管理部 · 赋能业务全面发展</div>
+      <div class="zg-brand-tags">
+        <span class="zg-tag">安全</span>
+        <span class="zg-tag">高效</span>
+        <span class="zg-tag">智能</span>
       </div>
-      <div class="login-err" id="loginErr" style="display:none"></div>
-      <button type="submit" class="login-btn" id="loginBtn">登 录</button>
-      <div class="login-tip">默认账号：admin / Zg@2026!</div>
-    </form>
+    </div>
+
+    <!-- 右侧登录卡片 -->
+    <div class="zg-login-card">
+      <h2 class="zg-login-h2">账号登录</h2>
+      <p class="zg-login-hint">请输入您的账号信息</p>
+      <form id="loginForm" onsubmit="return doLogin(event)" class="zg-login-form">
+        <div class="zg-input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          <input type="text" id="loginUsername" autocomplete="username" placeholder="请输入账号" required>
+        </div>
+        <div class="zg-input-wrap">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+          <input type="password" id="loginPassword" autocomplete="current-password" placeholder="请输入密码" required>
+        </div>
+        <div class="login-err" id="loginErr" style="display:none"></div>
+        <button type="submit" class="zg-btn-login" id="loginBtn">登 录</button>
+        <div class="zg-login-tip">默认账号：admin / Zg@2026!</div>
+      </form>
+    </div>
   </div>
 </div>
 <div class="app-layout">
