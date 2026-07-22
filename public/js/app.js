@@ -166,7 +166,7 @@ const NAV_CONFIG = [
     { id: 'admin-asset', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-monitor\"></use></svg>', name: '固定资产管理', title: '固定资产管理' },
     { id: 'admin-supplies', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-package\"></use></svg>', name: '办公用品管理', title: '办公用品库存与领用管理' },
     { id: 'admin-gift', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-gift\"></use></svg>', name: '礼品管理', title: '礼品管理' },
-    { id: 'admin-print', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-printer"></use></svg>', name: '文印管理', title: '文印管理' },
+    { id: 'admin-print', icon: '<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-printer&quot;></use></svg>', name: '文印管理', title: '文印管理' },
     { id: 'admin-manual', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-book-opened\"></use></svg>', name: '行政操作手册', title: '行政操作手册知识库' }
   ]},
   { group: '事务台账', items: [
@@ -181,7 +181,7 @@ const NAV_CONFIG = [
     { id: 'pr-media', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-radio\"></use></svg>', name: '媒体资源库', title: '媒体资源库' }
   ]},
   { group: '系统管理', items: [
-    { id: 'sys-permission', icon: '<svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-lock"></use></svg>', name: '权限管理', title: '统一权限体系' }
+    { id: 'sys-permission', icon: '<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-lock&quot;></use></svg>', name: '权限管理', title: '统一权限体系' }
   ]},
   { group: '智能助手', items: [
     { id: 'ai-chat', icon: '<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-bot\"></use></svg>', name: '综管智能小助手', title: '综管智能小助手' }
@@ -606,7 +606,7 @@ window.showSupplyRequisition = function(i) {
     + '<label style="display:block;margin:12px 0 8px;font-size:13px;color:#666">用途说明</label>'
     + '<textarea placeholder="请输入用途..." rows="3" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;resize:none;box-sizing:border-box"></textarea>'
     + '</div></div>'
-    + '<div class="detail-actions"><button class="btn btn-primary" onclick="closeDetailModal();alert(✨ 已提交领用申请：' + i.name + ')">提交申请</button>'
+    + '<div class="detail-actions"><button class="btn btn-primary" onclick="closeDetailModal();alert(已提交领用申请：' + i.name + ')">提交申请</button>'
     + '<button class="btn btn-outline" onclick="closeDetailModal()">取消</button></div>'
   );
 };
@@ -750,7 +750,7 @@ async function loadDashboard() {
   const syncTime = new Date().toLocaleString('zh-CN', { hour12: false });
 
   renderPage(`
-    <div class="section-title">🚦 五模块核心指标红绿灯</div>
+    <div class="section-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-traffic-light&quot;></use></svg> 五模块核心指标红绿灯</div>
     <div class="kpi-grid cols-5">
       ${lightData.map(l => {
         const st = getLight(l.target, l.actual);
@@ -779,21 +779,21 @@ async function loadDashboard() {
     </div>
 
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg></div><div class="kpi-value">${data.recruit.yearOnboard}/${data.recruit.yearDemand}</div><div class="kpi-label">年度招聘达成</div><div class="kpi-trend up">▲ ${data.recruit.rate}%</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.train.talentPool.onDuty}</div><div class="kpi-label">人才库在岗人数</div><div class="kpi-trend up">▲ ${data.train.talentPool.rate}%</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.hr.headcount.actual}/${data.hr.headcount.planned}</div><div class="kpi-label">编制使用率</div><div class="kpi-trend up">▲ ${data.hr.headcount.rate}%</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></div><div class="kpi-value">${data.admin.supplies.lowStock}</div><div class="kpi-label">办公用品库存预警</div><div class="kpi-trend down">▼ 待处理</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-megaphone"></use></svg></div><div class="kpi-value">${data.pr.alerts}</div><div class="kpi-label">舆情预警</div><div class="kpi-trend down">▼ 待处理</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg></div><div class="kpi-value">${data.recruit.yearOnboard}/${data.recruit.yearDemand}</div><div class="kpi-label">年度招聘达成</div><div class="kpi-trend up">▲ ${data.recruit.rate}%</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${data.train.talentPool.onDuty}</div><div class="kpi-label">人才库在岗人数</div><div class="kpi-trend up">▲ ${data.train.talentPool.rate}%</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.hr.headcount.actual}/${data.hr.headcount.planned}</div><div class="kpi-label">编制使用率</div><div class="kpi-trend up">▲ ${data.hr.headcount.rate}%</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></div><div class="kpi-value">${data.admin.supplies.lowStock}</div><div class="kpi-label">办公用品库存预警</div><div class="kpi-trend down">▼ 待处理</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-megaphone&quot;></use></svg></div><div class="kpi-value">${data.pr.alerts}</div><div class="kpi-label">舆情预警</div><div class="kpi-trend down">▼ 待处理</div></div>
     </div>
 
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> 招聘漏斗</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> 招聘漏斗</div>
         <div class="chart-desc">各环节转化率</div>
         <div id="dashFunnel" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 招聘趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 招聘趋势</div>
         <div class="chart-desc">月度需求与入职对比</div>
         <div id="dashRecruitTrend" style="height:280px"></div>
       </div>
@@ -801,12 +801,12 @@ async function loadDashboard() {
 
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg> 人员变动趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg> 人员变动趋势</div>
         <div class="chart-desc">月度入职/离职对比</div>
         <div id="dashHrTrend" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-megaphone"></use></svg> 舆情情感分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-megaphone&quot;></use></svg> 舆情情感分布</div>
         <div class="chart-desc">近7天舆情情感分析</div>
         <div id="dashPrSentiment" style="height:280px"></div>
       </div>
@@ -814,7 +814,7 @@ async function loadDashboard() {
 
     <div class="row cols-3">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-graduation-cap"></use></svg> 培训概览</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-graduation-cap&quot;></use></svg> 培训概览</div>
         <div class="stat-inline" style="margin-top:12px">
           <div class="stat-item"><div class="val">${data.train.newTrain.enrolled}</div><div class="lbl">新培参训</div></div>
           <div class="stat-item"><div class="val">${data.train.newTrain.rate}%</div><div class="lbl">转化率</div></div>
@@ -823,7 +823,7 @@ async function loadDashboard() {
         <div style="margin-top:16px"><div style="font-size:12px;color:var(--text-light);margin-bottom:6px">学习完成率</div><div class="progress"><div class="progress-bar green" style="width:${data.train.knowledge.avgCompletion}%"></div></div></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-coins"></use></svg> 行政费用执行</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-coins&quot;></use></svg> 行政费用执行</div>
         <div class="stat-inline" style="margin-top:12px">
           <div class="stat-item"><div class="val">${(data.admin.budget.spent/10000).toFixed(0)}万</div><div class="lbl">已支出</div></div>
           <div class="stat-item"><div class="val">${(data.admin.budget.annual/10000).toFixed(0)}万</div><div class="lbl">年度预算</div></div>
@@ -832,17 +832,17 @@ async function loadDashboard() {
         <div style="margin-top:16px"><div style="font-size:12px;color:var(--text-light);margin-bottom:6px">预算执行进度</div><div class="progress"><div class="progress-bar blue" style="width:${data.admin.budget.rate}%"></div></div></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg> 待办事项</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg> 待办事项</div>
         <div style="margin-top:8px">
-          <div class="alert-item alert-warning"><span class="alert-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></span><div>合同即将到期 <strong>${data.hr.contractExpiring}</strong> 份，请及时处理续签</div></div>
-          <div class="alert-item alert-danger"><span class="alert-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></span><div>办公用品库存预警 <strong>${data.admin.supplies.lowStock}</strong> 项，请及时补充</div></div>
-          <div class="alert-item alert-info"><span class="alert-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></span><div>入转调离流程 <strong>${data.hr.onboarding + data.hr.transfer + data.hr.resignation}</strong> 个进行中</div></div>
+          <div class="alert-item alert-warning"><span class="alert-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></span><div>合同即将到期 <strong>${data.hr.contractExpiring}</strong> 份，请及时处理续签</div></div>
+          <div class="alert-item alert-danger"><span class="alert-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></span><div>办公用品库存预警 <strong>${data.admin.supplies.lowStock}</strong> 项，请及时补充</div></div>
+          <div class="alert-item alert-info"><span class="alert-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></span><div>入转调离流程 <strong>${data.hr.onboarding + data.hr.transfer + data.hr.resignation}</strong> 个进行中</div></div>
         </div>
       </div>
     </div>
 
     <div class="chart-card" style="margin-top:8px">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg> 系统数据同步状态</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg> 系统数据同步状态</div>
       <div class="chart-desc">各模块数据最近更新时间</div>
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px">
         <div style="text-align:center;padding:14px 12px 10px;background:var(--bg);border-radius:8px">
@@ -953,10 +953,10 @@ async function loadSysPermission() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.totalRoles}</div><div class="kpi-label">角色总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user"></use></svg></div><div class="kpi-value">${data.overview.totalUsers}</div><div class="kpi-label">系统用户数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-key"></use></svg></div><div class="kpi-value">${data.overview.totalPermissions}</div><div class="kpi-label">权限项</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-lock"></use></svg></div><div class="kpi-value">${data.overview.pendingApprovals}</div><div class="kpi-label">待审批权限申请</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${data.overview.totalRoles}</div><div class="kpi-label">角色总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-user&quot;></use></svg></div><div class="kpi-value">${data.overview.totalUsers}</div><div class="kpi-label">系统用户数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-key&quot;></use></svg></div><div class="kpi-value">${data.overview.totalPermissions}</div><div class="kpi-label">权限项</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-lock&quot;></use></svg></div><div class="kpi-value">${data.overview.pendingApprovals}</div><div class="kpi-label">待审批权限申请</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
@@ -964,12 +964,12 @@ async function loadSysPermission() {
         <table class="data-table">
           <thead><tr><th>角色</th><th>描述</th><th>用户数</th><th>权限数</th><th>操作</th></tr></thead>
           <tbody>
-            ${data.roles.map(r => `<tr><td><strong>${r.name}</strong></td><td>${r.desc}</td><td>${r.userCount}</td><td>${r.permissionCount}</td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'⚙ 配置权限 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>为该角色配置菜单与操作权限，保存后即时生效。</p>\',\'保存权限\',\'modalCb_saveRolePerm\')">配置权限</button></td></tr>`).join('')}
+            ${data.roles.map(r => `<tr><td><strong>${r.name}</strong></td><td>${r.desc}</td><td>${r.userCount}</td><td>${r.permissionCount}</td><td><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-settings&quot;></use></svg> 配置权限 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>为该角色配置菜单与操作权限，保存后即时生效。</p>\',\'保存权限\',\'modalCb_saveRolePerm\')">配置权限</button></td></tr>`).join('')}
           </tbody>
         </table>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 模块权限分配</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 模块权限分配</div>
         <table class="data-table">
           <thead><tr><th>模块</th><th>查看</th><th>编辑</th><th>审批</th><th>导出</th><th>管理</th></tr></thead>
           <tbody>
@@ -979,11 +979,11 @@ async function loadSysPermission() {
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bell"></use></svg> 权限申请记录</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bell&quot;></use></svg> 权限申请记录</div>
       <table class="data-table">
         <thead><tr><th>申请人</th><th>角色</th><th>申请权限</th><th>申请理由</th><th>申请时间</th><th>状态</th><th>操作</th></tr></thead>
         <tbody>
-          ${data.applications.map(a => `<tr><td>${a.applicant}</td><td>${a.role}</td><td>${a.permission}</td><td>${a.reason}</td><td>${a.time}</td><td><span class="tag ${a.status==='已批准'?'tag-success':a.status==='待审批'?'tag-warning':'tag-danger'}">${a.status}</span></td><td>${a.status==='待审批' ? `<button class="btn btn-primary" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'审批通过\',\'<p style=\'margin:0;color:#666;font-size:13px\'>确认通过该权限申请？</p>\',\'批准\',\'权限申请已通过\')">批准</button> <button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showFormModal(\'⚠ 驳回申请\',[{\'name\':\'rejReason\',\'label\':\'驳回理由\',\'type\':\'textarea\',\'required\':true,\'rows\':3,\'placeholder\':\'请说明驳回原因\'}],\'确认驳回\',\'modalCb_rejectPerm\')">驳回</button>` : '—'}</td></tr>`).join('')}
+          ${data.applications.map(a => `<tr><td>${a.applicant}</td><td>${a.role}</td><td>${a.permission}</td><td>${a.reason}</td><td>${a.time}</td><td><span class="tag ${a.status==='已批准'?'tag-success':a.status==='待审批'?'tag-warning':'tag-danger'}">${a.status}</span></td><td>${a.status==='待审批' ? `<button class="btn btn-primary" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'审批通过\',\'<p style=\'margin:0;color:#666;font-size:13px\'>确认通过该权限申请？</p>\',\'批准\',\'权限申请已通过\')">批准</button> <button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showFormModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg> 驳回申请\',[{\'name\':\'rejReason\',\'label\':\'驳回理由\',\'type\':\'textarea\',\'required\':true,\'rows\':3,\'placeholder\':\'请说明驳回原因\'}],\'确认驳回\',\'modalCb_rejectPerm\')">驳回</button>` : '—'}</td></tr>`).join('')}
         </tbody>
       </table>
     </div>
@@ -1010,11 +1010,11 @@ async function loadRecruitFunnel() {
       <select><option>全部中心</option><option>太原</option><option>南昌</option><option>晋中</option><option>沈阳</option><option>南宁</option><option>上海</option></select>
       <select><option>全部岗位</option><option>催收员</option><option>质检员</option><option>组长</option><option>二线职能</option></select>
       <select><option>本月</option><option>本季度</option><option>本年</option></select>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-download"></use></svg> 导出</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-download&quot;></use></svg> 导出</button>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> 招聘漏斗</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> 招聘漏斗</div>
         <div class="chart-desc">各环节转化率 · 全部中心汇总</div>
         <div class="funnel-container" style="margin-top:12px;display:flex;flex-direction:column;align-items:center;padding:8px 0">
           ${stages.map((s, i) => {
@@ -1040,13 +1040,13 @@ async function loadRecruitFunnel() {
         </div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各中心对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各中心对比</div>
         <div class="chart-desc">各中心招聘各环节数据</div>
         <div id="centerCompare" style="height:320px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 各中心招聘明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 各中心招聘明细</div>
       <table class="data-table">
         <thead><tr><th>中心</th><th>岗位发布</th><th>简历收取</th><th>筛选通过</th><th>面试</th><th>Offer</th><th>入职</th><th>整体转化率</th></tr></thead>
         <tbody>
@@ -1082,29 +1082,29 @@ async function loadRecruitAchievement() {
   const r = data.recruit;
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${r.yearDemand}</div><div class="kpi-label">年度需求数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${r.yearOnboard}</div><div class="kpi-label">年度入职数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${r.rate}%</div><div class="kpi-label">年度达成率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg></div><div class="kpi-value">${r.monthOnboard}/${r.monthDemand}</div><div class="kpi-label">本月达成</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${r.yearDemand}</div><div class="kpi-label">年度需求数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${r.yearOnboard}</div><div class="kpi-label">年度入职数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${r.rate}%</div><div class="kpi-label">年度达成率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg></div><div class="kpi-value">${r.monthOnboard}/${r.monthDemand}</div><div class="kpi-label">本月达成</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 年度需求入职趋势</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 年度需求入职趋势</div>
       <div class="chart-desc">月度需求与入职对比</div>
       <div id="achievementTrend" style="height:350px"></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> RPO渠道供应商达成</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> RPO渠道供应商达成</div>
       <div class="chart-desc">按渠道供应商类别展示入职数量</div>
       <div id="rpoChart" style="height:300px"></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user-plus"></use></svg> 自招达成</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-user-plus&quot;></use></svg> 自招达成</div>
         <div class="chart-desc">社招直招 / 内推 / 猎头 / 人才库激活</div>
         <div id="selfRecruitChart" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg> 校招达成</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg> 校招达成</div>
         <div class="chart-desc">校园宣讲 / 校企合作 / 管培生 / 实习转正</div>
         <div id="groupRecruitChart" style="height:280px"></div>
       </div>
@@ -1161,20 +1161,20 @@ async function loadRecruitWeekly() {
   if (!data) return;
   const wp = data.weeklyProcess;
   renderPage(`
-    <div class="filter-bar"><select><option>全部中心</option><option>太原</option><option>南昌</option></select><select><option>本周</option><option>上周</option></select><button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-download"></use></svg> 导出</button></div>
+    <div class="filter-bar"><select><option>全部中心</option><option>太原</option><option>南昌</option></select><select><option>本周</option><option>上周</option></select><button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-download&quot;></use></svg> 导出</button></div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各渠道过程数据</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各渠道过程数据</div>
       <div class="chart-desc">自招/校招/渠道 - 到面/参面/通过/报到/签约</div>
       <div id="weeklyProcess" style="height:350px"></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> 经验分类需求达成</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> 经验分类需求达成</div>
         <div class="chart-desc">ABC经验分类需求与达成对比</div>
         <div id="abcChart" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 各渠道明细</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 各渠道明细</div>
         <table class="data-table">
           <thead><tr><th>渠道</th><th>到面</th><th>参面</th><th>通过</th><th>报到</th><th>签约</th><th>达成率</th></tr></thead>
           <tbody>
@@ -1216,20 +1216,20 @@ async function loadRecruitDaily() {
   const data = await fetchAPI(API.recruitFunnel);
   if (!data) return;
   renderPage(`
-    <div class="filter-bar"><select><option>全部中心</option><option>太原</option><option>南昌</option></select><span style="font-size:13px;color:var(--text-light)">数据更新时间：2026-07-16 18:00</span><button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-download"></use></svg> 导出日报</button></div>
+    <div class="filter-bar"><select><option>全部中心</option><option>太原</option><option>南昌</option></select><span style="font-size:13px;color:var(--text-light)">数据更新时间：2026-07-16 18:00</span><button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-download&quot;></use></svg> 导出日报</button></div>
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].interview}</div><div class="kpi-label">今日到面</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].pass}</div><div class="kpi-label">今日通过</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-party"></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].onboard}</div><div class="kpi-label">今日入职</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.dailyData.reduce((s,d)=>s+d.interview,0)}</div><div class="kpi-label">本周累计到面</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].interview}</div><div class="kpi-label">今日到面</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].pass}</div><div class="kpi-label">今日通过</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-party&quot;></use></svg></div><div class="kpi-value">${data.dailyData[data.dailyData.length-1].onboard}</div><div class="kpi-label">今日入职</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.dailyData.reduce((s,d)=>s+d.interview,0)}</div><div class="kpi-label">本周累计到面</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar-days"></use></svg> 每日过程趋势</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar-days&quot;></use></svg> 每日过程趋势</div>
       <div class="chart-desc">近7天到面/通过/入职数据</div>
       <div id="dailyTrend" style="height:350px"></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 每日明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 每日明细</div>
       <table class="data-table">
         <thead><tr><th>日期</th><th>到面</th><th>通过</th><th>报到</th><th>通过率</th></tr></thead>
         <tbody>${data.dailyData.map(d => `<tr><td>${d.date}</td><td>${d.interview}</td><td>${d.pass}</td><td>${d.onboard}</td><td><span class="tag tag-info">${((d.pass/d.interview)*100).toFixed(1)}%</span></td></tr>`).join('')}</tbody>
@@ -1273,30 +1273,30 @@ async function loadTrainTalent() {
       <span style="font-size:12px;padding:2px 10px;background:${COLORS.blue}20;color:${COLORS.blue};border-radius:4px;font-weight:600">当前权限：总部-全部中心</span>
     </div>
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">编制总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.onDuty}</div><div class="kpi-label">在岗总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-graduation-cap"></use></svg></div><div class="kpi-value">${data.overview.trainee}</div><div class="kpi-label">见习总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></div><div class="kpi-value">${data.overview.reserve}</div><div class="kpi-label">后备总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">人员储备率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">编制总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.onDuty}</div><div class="kpi-label">在岗总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-graduation-cap&quot;></use></svg></div><div class="kpi-value">${data.overview.trainee}</div><div class="kpi-label">见习总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></div><div class="kpi-value">${data.overview.reserve}</div><div class="kpi-label">后备总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">人员储备率</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各模块人才分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各模块人才分布</div>
         <div class="chart-desc">编制/在岗/见习/后备 - 树状图</div>
         <div id="talentTreeMap" style="height:320px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg> 各中心人才分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg> 各中心人才分布</div>
         <div class="chart-desc">各中心编制/在岗/见习/后备对比</div>
         <div id="talentCenter" style="height:320px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 人才库详细数据</div>
-      <div class="filter-bar"><select><option>全部中心</option><option>太原</option><option>南昌</option></select><select><option>全部模块</option><option>小赢</option><option>字节</option></select><input type="text" placeholder="搜索姓名..."><button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 筛选</button></div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 人才库详细数据</div>
+      <div class="filter-bar"><select><option>全部中心</option><option>太原</option><option>南昌</option></select><select><option>全部模块</option><option>小赢</option><option>字节</option></select><input type="text" placeholder="搜索姓名..."><button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg> 筛选</button></div>
       <table class="data-table">
         <thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>模块</th><th>层级</th><th>队列</th><th>入职日期</th><th>状态</th><th>操作</th></tr></thead>
-        <tbody>${data.detail.map(d => `<tr><td>${d.id}</td><td><strong>${d.name}</strong></td><td>${d.center}</td><td>${d.module}</td><td><span class="tag ${d.level==='在岗'?'tag-success':d.level==='见习'?'tag-warning':'tag-info'}">${d.level}</span></td><td>${d.queue}</td><td>${d.joinDate}</td><td><span class="tag tag-success">${d.status}</span></td><td><button class="btn btn-outline" style="padding:2px 10px;font-size:12px" onclick="showFormModal(\'✏ 编辑人员 - \' + rowCellText(this,1),[{\'name\':\'personName\',\'label\':\'姓名\',\'required\':true,\'value\':rowCellText(this,1)},{\'name\':\'personDept\',\'label\':\'所属部门\',\'value\':rowCellText(this,2)},{\'name\':\'personRole\',\'label\':\'岗位\',\'value\':rowCellText(this,3)},{\'name\':\'personPhone\',\'label\':\'联系电话\',\'value\':rowCellText(this,4)}],\'保存\',\'modalCb_editPerson\')"> 编辑</button></td></tr>`).join('')}</tbody>
+        <tbody>${data.detail.map(d => `<tr><td>${d.id}</td><td><strong>${d.name}</strong></td><td>${d.center}</td><td>${d.module}</td><td><span class="tag ${d.level==='在岗'?'tag-success':d.level==='见习'?'tag-warning':'tag-info'}">${d.level}</span></td><td>${d.queue}</td><td>${d.joinDate}</td><td><span class="tag tag-success">${d.status}</span></td><td><button class="btn btn-outline" style="padding:2px 10px;font-size:12px" onclick="showFormModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-pencil&quot;></use></svg> 编辑人员 - \' + rowCellText(this,1),[{\'name\':\'personName\',\'label\':\'姓名\',\'required\':true,\'value\':rowCellText(this,1)},{\'name\':\'personDept\',\'label\':\'所属部门\',\'value\':rowCellText(this,2)},{\'name\':\'personRole\',\'label\':\'岗位\',\'value\':rowCellText(this,3)},{\'name\':\'personPhone\',\'label\':\'联系电话\',\'value\':rowCellText(this,4)}],\'保存\',\'modalCb_editPerson\')"> 编辑</button></td></tr>`).join('')}</tbody>
       </table>
     </div>
   `);
@@ -1365,32 +1365,32 @@ async function loadTrainNew() {
       <span style="font-size:12px;padding:2px 10px;background:${COLORS.blue}20;color:${COLORS.blue};border-radius:4px;font-weight:600">当前权限：总部-全部中心</span>
     </div>
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-graduation-cap"></use></svg></div><div class="kpi-value">${data.overview.enrolled}</div><div class="kpi-label">参训人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-pen-tool"></use></svg></div><div class="kpi-value">${data.overview.signed}</div><div class="kpi-label">签合同人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.grouped}</div><div class="kpi-label">入组人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">转化率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.eliminated + data.overview.resigned}</div><div class="kpi-label">淘汰+离职</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-graduation-cap&quot;></use></svg></div><div class="kpi-value">${data.overview.enrolled}</div><div class="kpi-label">参训人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-pen-tool&quot;></use></svg></div><div class="kpi-value">${data.overview.signed}</div><div class="kpi-label">签合同人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${data.overview.grouped}</div><div class="kpi-label">入组人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">转化率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.eliminated + data.overview.resigned}</div><div class="kpi-label">淘汰+离职</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg> 参训→签约→入组 转化漏斗</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg> 参训→签约→入组 转化漏斗</div>
         <div class="chart-desc">新培全流程转化率分析</div>
         <div id="newTrainFunnel" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg> 各中心新培参训情况</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg> 各中心新培参训情况</div>
         <div id="newTrainCenter" style="height:300px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各项目新人训概览</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各项目新人训概览</div>
       <div id="newTrainProject" style="height:300px"></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 各中心各项目明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 各中心各项目明细</div>
       <table class="data-table">
         <thead><tr><th>中心</th><th>项目</th><th>参训</th><th>签约</th><th>入组</th><th>转化率</th><th>操作</th></tr></thead>
-        <tbody>${data.projectDetail.map(p => `<tr><td><strong>${p.center}</strong></td><td>${p.project}</td><td>${p.enrolled}</td><td>${p.signed}</td><td>${p.grouped}</td><td><span class="tag ${p.rate>=80?'tag-success':'tag-warning'}">${p.rate}%</span></td><td><button class="btn btn-outline" style="padding:2px 10px;font-size:12px" onclick="showFormModal(\'✏ 编辑项目 - \' + rowCellText(this,1),[{\'name\':\'projName\',\'label\':\'项目名称\',\'required\':true,\'value\':rowCellText(this,1)},{\'name\':\'projManager\',\'label\':\'负责人\',\'value\':rowCellText(this,2)},{\'name\':\'projStatus\',\'label\':\'状态\',\'type\':\'select\',\'options\':[\'进行中\',\'已结项\',\'暂停\'],\'value\':\'进行中\'},{\'name\':\'projDesc\',\'label\':\'项目说明\',\'type\':\'textarea\',\'rows\':3,\'value\':rowCellText(this,3)}],\'保存\',\'modalCb_editProject\')"> 编辑</button></td></tr>`).join('')}</tbody>
+        <tbody>${data.projectDetail.map(p => `<tr><td><strong>${p.center}</strong></td><td>${p.project}</td><td>${p.enrolled}</td><td>${p.signed}</td><td>${p.grouped}</td><td><span class="tag ${p.rate>=80?'tag-success':'tag-warning'}">${p.rate}%</span></td><td><button class="btn btn-outline" style="padding:2px 10px;font-size:12px" onclick="showFormModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-pencil&quot;></use></svg> 编辑项目 - \' + rowCellText(this,1),[{\'name\':\'projName\',\'label\':\'项目名称\',\'required\':true,\'value\':rowCellText(this,1)},{\'name\':\'projManager\',\'label\':\'负责人\',\'value\':rowCellText(this,2)},{\'name\':\'projStatus\',\'label\':\'状态\',\'type\':\'select\',\'options\':[\'进行中\',\'已结项\',\'暂停\'],\'value\':\'进行中\'},{\'name\':\'projDesc\',\'label\':\'项目说明\',\'type\':\'textarea\',\'rows\':3,\'value\':rowCellText(this,3)}],\'保存\',\'modalCb_editProject\')"> 编辑</button></td></tr>`).join('')}</tbody>
       </table>
     </div>
   `);
@@ -1448,7 +1448,7 @@ async function loadTrainKnowledge() {
   if (!data) return;
 
   const PALETTE_KB = ['#3b82f6','#10b981','#f59e0b','#8b5cf6','#ef4444','#06b6d4','#ec4899','#f97316'];
-  const fmtIcon = { 'PPT':'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-bar-chart-2\"></use></svg>','PDF':'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-text\"></use></svg>','视频':'🎬','Word':'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-edit\"></use></svg>' };
+  const fmtIcon = { 'PPT':'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-bar-chart-2\"></use></svg>','PDF':'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-text\"></use></svg>','视频':'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-video&quot;></use></svg> ','Word':'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-edit\"></use></svg>' };
   const lvlColor = { '制度':'tag-success','SOP':'tag-warning','案例':'tag-danger','FAQ':'tag-gray' };
   const diffColor = { '初级':'tag-info','中级':'tag-warning','高级':'tag-danger' };
   let kbData = data;
@@ -1463,20 +1463,20 @@ async function loadTrainKnowledge() {
     renderPage(`
       <!-- KPI概览 -->
       <div class="kpi-grid cols-5">
-        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[0]}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-library"></use></svg></div><div class="kpi-value">${kbData.overview.totalCourses}</div><div class="kpi-label">课件总数</div></div>
-        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[1]}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-eye"></use></svg></div><div class="kpi-value">${kbData.overview.totalViews.toLocaleString()}</div><div class="kpi-label">总浏览量</div></div>
-        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[2]}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-arrow-down"></use></svg>️</div><div class="kpi-value">${kbData.overview.totalDownloads}</div><div class="kpi-label">总下载量</div></div>
-        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[3]}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${kbData.overview.activeLearners}</div><div class="kpi-label">活跃学员</div></div>
-        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[4]}"></div><div class="kpi-icon">⭐</div><div class="kpi-value">${kbData.overview.avgRating}</div><div class="kpi-label">平均评分</div></div>
+        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[0]}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-library&quot;></use></svg></div><div class="kpi-value">${kbData.overview.totalCourses}</div><div class="kpi-label">课件总数</div></div>
+        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[1]}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-eye&quot;></use></svg></div><div class="kpi-value">${kbData.overview.totalViews.toLocaleString()}</div><div class="kpi-label">总浏览量</div></div>
+        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[2]}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-arrow-down&quot;></use></svg></div><div class="kpi-value">${kbData.overview.totalDownloads}</div><div class="kpi-label">总下载量</div></div>
+        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[3]}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${kbData.overview.activeLearners}</div><div class="kpi-label">活跃学员</div></div>
+        <div class="kpi-card"><div class="kpi-accent" style="background:${PALETTE_KB[4]}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg></div><div class="kpi-value">${kbData.overview.avgRating}</div><div class="kpi-label">平均评分</div></div>
       </div>
 
       <!-- Tab导航 -->
       <div class="sub-tabs" id="kbTabs">
         <button class="sub-tab ${kbCurrentTab==='catalog'?'active':''}" onclick="switchKbTab('catalog')"> 课程目录</button>
-        <button class="sub-tab ${kbCurrentTab==='paths'?'active':''}" onclick="switchKbTab('paths')">🛤️ 学习路径</button>
+        <button class="sub-tab ${kbCurrentTab==='paths'?'active':''}" onclick="switchKbTab('paths')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-route&quot;></use></svg> 学习路径</button>
         <button class="sub-tab ${kbCurrentTab==='stats'?'active':''}" onclick="switchKbTab('stats')"> 学习统计</button>
-        <button class="sub-tab ${kbCurrentTab==='tags'?'active':''}" onclick="switchKbTab('tags')">️ 知识标签</button>
-        <button class="sub-tab ${kbCurrentTab==='recent'?'active':''}" onclick="switchKbTab('recent')">🆕 最近更新</button>
+        <button class="sub-tab ${kbCurrentTab==='tags'?'active':''}" onclick="switchKbTab('tags')"> 知识标签</button>
+        <button class="sub-tab ${kbCurrentTab==='recent'?'active':''}" onclick="switchKbTab('recent')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-new&quot;></use></svg> 最近更新</button>
       </div>
 
       <!-- Tab内容区 -->
@@ -1517,7 +1517,7 @@ async function loadTrainKnowledge() {
       <div style="display:flex;gap:16px">
         <!-- 左侧分类树 -->
         <div class="kb-sidebar">
-          <div class="kb-sidebar-title">📁 课程分类</div>
+          <div class="kb-sidebar-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-folder&quot;></use></svg> 课程分类</div>
           <div class="kb-cat-item ${!kbCurrentCategory?'active':''}" onclick="filterByCategory('')"> 全部课程 (${kbData.courses.length})</div>
           ${kbData.categoryTree.map(cat => `
             <div class="kb-cat-group">
@@ -1543,7 +1543,7 @@ async function loadTrainKnowledge() {
             <select id="kbLvlFilter" onchange="onKbFilter()"><option value="">全部层级</option><option>制度</option><option>SOP</option><option>案例</option></select>
             <div style="margin-left:auto;display:flex;gap:4px">
               <button class="btn ${kbViewMode==='card'?'btn-primary':'btn-outline'}" style="padding:6px 12px" onclick="setKbView('card')">▦ 卡片</button>
-              <button class="btn ${kbViewMode==='table'?'btn-primary':'btn-outline'}" style="padding:6px 12px" onclick="setKbView('table')">☰ 列表</button>
+              <button class="btn ${kbViewMode==='table'?'btn-primary':'btn-outline'}" style="padding:6px 12px" onclick="setKbView('table')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-list&quot;></use></svg> 列表</button>
             </div>
             <button class="btn btn-outline" onclick="showFormModal(\'上传课件\',[{\'name\':\'courseName\',\'label\':\'课件名称\',\'required\':true},{\'name\':\'courseType\',\'label\':\'类型\',\'type\':\'select\',\'options\':[\'PPT\',\'PDF\',\'视频\',\'Word\'],\'value\':\'PPT\'},{\'name\':\'courseSize\',\'label\':\'文件大小(MB)\',\'type\':\'number\'}],\'开始上传\',\'课件上传中\')"> 上传课件</button>
           </div>
@@ -1587,9 +1587,9 @@ async function loadTrainKnowledge() {
             <div class="kb-card-desc">${k.description}</div>
             <div class="kb-card-tags">${(k.tags||[]).slice(0,3).map(t=>`<span class="kb-tag">${t}</span>`).join('')}</div>
             <div class="kb-card-meta">
-              <span>⏱️ ${k.duration}</span>
-              <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-eye"></use></svg> ${k.views}</span>
-              <span>⭐ ${k.rating}</span>
+              <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg> ${k.duration}</span>
+              <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-eye&quot;></use></svg> ${k.views}</span>
+              <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg> ${k.rating}</span>
             </div>
             <div class="kb-card-progress">
               <div class="progress" style="flex:1"><div class="progress-bar ${k.completeRate>=80?'green':'orange'}" style="width:${k.completeRate}%"></div></div>
@@ -1618,7 +1618,7 @@ async function loadTrainKnowledge() {
                 <td>${k.duration}</td>
                 <td>${k.views}</td>
                 <td>${k.downloads}</td>
-                <td>⭐${k.rating}</td>
+                <td><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg> ${k.rating}</td>
                 <td><div class="progress" style="width:50px;display:inline-block;vertical-align:middle"><div class="progress-bar ${k.completeRate>=80?'green':'orange'}" style="width:${k.completeRate}%"></div></div> <span style="font-size:12px">${k.completeRate}%</span></td>
                 <td>${k.author}</td>
                 <td>
@@ -1632,9 +1632,9 @@ async function loadTrainKnowledge() {
         <div style="padding:12px 16px;background:var(--bg);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--text-light)">
           <span>共 ${list.length} 条课件</span>
           <div style="display:flex;gap:8px">
-            <button class="btn btn-outline" style="padding:4px 12px;font-size:12px">⬅ 上一页</button>
+            <button class="btn btn-outline" style="padding:4px 12px;font-size:12px"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-arrow-left&quot;></use></svg> 上一页</button>
             <span style="padding:4px 12px">1 / 1</span>
-            <button class="btn btn-outline" style="padding:4px 12px;font-size:12px">下一页 ➡</button>
+            <button class="btn btn-outline" style="padding:4px 12px;font-size:12px">下一页 <svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-arrow-right&quot;></use></svg> </button>
           </div>
         </div>
       </div>`;
@@ -1675,11 +1675,11 @@ async function loadTrainKnowledge() {
           <div class="kb-path-card">
             <div class="kb-path-header" style="background:linear-gradient(135deg,${PALETTE_KB[i%8]},${PALETTE_KB[(i+1)%8]})">
               <div class="kb-path-name">${p.name}</div>
-              <div class="kb-path-target"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> ${p.target}</div>
+              <div class="kb-path-target"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> ${p.target}</div>
               <div class="kb-path-meta">
-                <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-library"></use></svg> ${p.courses}门课</span>
-                <span>⏱️ ${p.duration}</span>
-                <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg> ${p.enrolled}人</span>
+                <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-library&quot;></use></svg> ${p.courses}门课</span>
+                <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg> ${p.duration}</span>
+                <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg> ${p.enrolled}人</span>
               </div>
             </div>
             <div class="kb-path-body">
@@ -1690,7 +1690,7 @@ async function loadTrainKnowledge() {
                     <div class="kb-step-num" style="background:${PALETTE_KB[i%8]}">${idx+1}</div>
                     <div class="kb-step-info">
                       <div class="kb-step-title">${s.title} ${s.required?'<span class="tag tag-danger" style="font-size:9px;padding:1px 4px">必修</span>':'<span class="tag tag-gray" style="font-size:9px;padding:1px 4px">选修</span>'}</div>
-                      <div class="kb-step-meta">⏱️ ${s.duration}</div>
+                      <div class="kb-step-meta"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg> ${s.duration}</div>
                     </div>
                   </div>
                 `).join('')}
@@ -1716,27 +1716,27 @@ async function loadTrainKnowledge() {
     return `
       <div class="row cols-2">
         <div class="chart-card">
-          <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 月度浏览与下载趋势</div>
+          <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 月度浏览与下载趋势</div>
           <div id="kbChartTrend" style="height:280px"></div>
         </div>
         <div class="chart-card">
-          <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 课程分类分布</div>
+          <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 课程分类分布</div>
           <div id="kbChartCategory" style="height:280px"></div>
         </div>
       </div>
       <div class="row cols-2">
         <div class="chart-card">
-          <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trophy"></use></svg> 热门课程 TOP5</div>
+          <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trophy&quot;></use></svg> 热门课程 TOP5</div>
           <div id="kbChartTopCourses" style="height:280px"></div>
         </div>
         <div class="chart-card">
-          <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user"></use></svg> 学习达人榜</div>
+          <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-user&quot;></use></svg> 学习达人榜</div>
           <table class="data-table" style="margin-top:12px">
             <thead><tr><th>排名</th><th>姓名</th><th>中心</th><th>学习时长</th><th>完成课程</th></tr></thead>
             <tbody>
               ${kbData.trends.topLearners.map((l,i) => `
                 <tr>
-                  <td><span style="font-size:18px">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]}</span></td>
+                  <td><span style="font-size:18px">${['<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trophy&quot;></use></svg> ','<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trophy&quot;></use></svg> ','<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trophy&quot;></use></svg> ','4⃣','5⃣'][i]}</span></td>
                   <td style="font-weight:600">${l.name}</td>
                   <td>${l.center}</td>
                   <td>${l.hours}h</td>
@@ -1808,7 +1808,7 @@ async function loadTrainKnowledge() {
     const maxCount = Math.max(...kbData.tagCloud.map(t=>t.count));
     return `
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-tag"></use></svg>️ 知识标签云</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-tag&quot;></use></svg> 知识标签云</div>
         <div class="kb-tag-cloud">
           ${kbData.tagCloud.map(t => `
             <span class="kb-tag-cloud-item" style="font-size:${12+Math.round((t.count/maxCount)*16)}px;color:${t.color};border-color:${t.color}33;background:${t.color}11" onclick="searchByTag('${t.tag}')">
@@ -1818,7 +1818,7 @@ async function loadTrainKnowledge() {
         </div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 标签关联课程</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 标签关联课程</div>
         <div class="kb-tag-list">
           ${kbData.tagCloud.map(t => `
             <div class="kb-tag-row">
@@ -1845,7 +1845,7 @@ async function loadTrainKnowledge() {
     const sorted = [...kbData.courses].sort((a,b) => b.uploadDate.localeCompare(a.uploadDate)).slice(0, 10);
     return `
       <div class="chart-card">
-        <div class="chart-title">🆕 最近10条更新课件</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-new&quot;></use></svg> 最近10条更新课件</div>
         <div class="kb-recent-timeline">
           ${sorted.map((k,i) => `
             <div class="kb-recent-item">
@@ -1855,8 +1855,8 @@ async function loadTrainKnowledge() {
                 <div class="kb-recent-meta">
                   <span class="tag tag-info" style="font-size:10px">${k.categoryName}</span>
                   <span style="margin-left:8px">${k.author}</span>
-                  <span style="margin-left:8px"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg> ${k.uploadDate}</span>
-                  <span style="margin-left:8px"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-eye"></use></svg> ${k.views}</span>
+                  <span style="margin-left:8px"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg> ${k.uploadDate}</span>
+                  <span style="margin-left:8px"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-eye&quot;></use></svg> ${k.views}</span>
                 </div>
               </div>
             </div>
@@ -1872,7 +1872,7 @@ async function loadTrainKnowledge() {
     if (!k) return;
     document.getElementById('kbModalHeader').innerHTML = `
       <div class="kb-modal-title">${fmtIcon[k.format]||'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-file-text\"></use></svg>'} ${k.title}</div>
-      <button class="kb-modal-close" onclick="closeKbModal()">✕</button>
+      <button class="kb-modal-close" onclick="closeKbModal()"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-x&quot;></use></svg> </button>
     `;
     document.getElementById('kbModalBody').innerHTML = `
       <div class="kb-detail-section">
@@ -1884,36 +1884,36 @@ async function loadTrainKnowledge() {
         <div class="kb-detail-item"><span class="kb-detail-label">格式</span><span class="kb-detail-val">${k.format} (${k.size})</span></div>
         <div class="kb-detail-item"><span class="kb-detail-label">难度</span><span class="kb-detail-val"><span class="tag ${diffColor[k.difficulty]||'tag-gray'}">${k.difficulty}</span></span></div>
         <div class="kb-detail-item"><span class="kb-detail-label">层级</span><span class="kb-detail-val"><span class="tag ${lvlColor[k.level]||'tag-gray'}">${k.level}</span></span></div>
-        <div class="kb-detail-item"><span class="kb-detail-label">时长</span><span class="kb-detail-val">⏱️ ${k.duration}</span></div>
+        <div class="kb-detail-item"><span class="kb-detail-label">时长</span><span class="kb-detail-val"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg> ${k.duration}</span></div>
         <div class="kb-detail-item"><span class="kb-detail-label">作者</span><span class="kb-detail-val">${k.author}</span></div>
         <div class="kb-detail-item"><span class="kb-detail-label">目标学员</span><span class="kb-detail-val">${k.targetAudience}</span></div>
         <div class="kb-detail-item"><span class="kb-detail-label">上传日期</span><span class="kb-detail-val">${k.uploadDate}</span></div>
       </div>
       <div class="kb-detail-section">
-        <div class="kb-detail-subtitle"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-book-opened"></use></svg> 课程章节</div>
+        <div class="kb-detail-subtitle"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-book-opened&quot;></use></svg> 课程章节</div>
         <div class="kb-chapter-list">
           ${k.chapters.map((ch,idx) => `
             <div class="kb-chapter-item">
               <div class="kb-chapter-num">${idx+1}</div>
               <div class="kb-chapter-name">${ch}</div>
-              <div class="kb-chapter-status"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg> 可学习</div>
+              <div class="kb-chapter-status"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg> 可学习</div>
             </div>
           `).join('')}
         </div>
       </div>
       <div class="kb-detail-section">
-        <div class="kb-detail-subtitle"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 学习数据</div>
+        <div class="kb-detail-subtitle"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 学习数据</div>
         <div class="kb-detail-stats">
           <div class="kb-stat-box"><div class="kb-stat-val">${k.views}</div><div class="kb-stat-lbl">浏览量</div></div>
           <div class="kb-stat-box"><div class="kb-stat-val">${k.downloads}</div><div class="kb-stat-lbl">下载量</div></div>
           <div class="kb-stat-box"><div class="kb-stat-val">${k.completeRate}%</div><div class="kb-stat-lbl">完成率</div></div>
-          <div class="kb-stat-box"><div class="kb-stat-val">⭐${k.rating}</div><div class="kb-stat-lbl">评分</div></div>
+          <div class="kb-stat-box"><div class="kb-stat-val"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg> ${k.rating}</div><div class="kb-stat-lbl">评分</div></div>
         </div>
       </div>
       <div class="kb-detail-actions">
-        <button class="btn btn-primary" onclick="showConfirmModal(\'▶ 在线学习 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>进入在线学习模式。</p>\',\'开始学习\',\'已进入在线学习\')">▶️ 开始学习</button>
-        <button class="btn btn-outline" onclick="showConfirmModal(\'下载文档 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>开始下载文档。</p>\',\'开始下载\',\'文档开始下载\')">️ 下载课件</button>
-        <button class="btn btn-outline" onclick="showConfirmModal(\'⭐ 收藏 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>已将课件加入收藏。</p>\',\'好的\',\'已收藏\')">⭐ 收藏</button>
+        <button class="btn btn-primary" onclick="showConfirmModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-play&quot;></use></svg> 在线学习 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>进入在线学习模式。</p>\',\'开始学习\',\'已进入在线学习\')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-play&quot;></use></svg> 开始学习</button>
+        <button class="btn btn-outline" onclick="showConfirmModal(\'下载文档 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>开始下载文档。</p>\',\'开始下载\',\'文档开始下载\')"> 下载课件</button>
+        <button class="btn btn-outline" onclick="showConfirmModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg> 收藏 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>已将课件加入收藏。</p>\',\'好的\',\'已收藏\')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg> 收藏</button>
         <button class="btn btn-outline" onclick="showConfirmModal(\'分享\',\'<p style=\'margin:0;color:#666;font-size:13px\'>分享链接已复制到剪贴板。</p>\',\'好的\',\'分享链接已复制\')"> 分享</button>
       </div>
     `;
@@ -1953,17 +1953,17 @@ async function loadTrainExam() {
   ];
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-file-edit"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">题目总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">🔘</div><div class="kpi-value">${data.overview.single}</div><div class="kpi-label">单选题</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">☑️</div><div class="kpi-value">${data.overview.multi}</div><div class="kpi-label">多选题</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.judge}</div><div class="kpi-label">判断题</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">✍️</div><div class="kpi-value">${data.overview.essay}</div><div class="kpi-label">简答题</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-file-edit&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">题目总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.single}</div><div class="kpi-label">单选题</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-square&quot;></use></svg></div><div class="kpi-value">${data.overview.multi}</div><div class="kpi-label">多选题</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.judge}</div><div class="kpi-label">判断题</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-pencil&quot;></use></svg></div><div class="kpi-value">${data.overview.essay}</div><div class="kpi-label">简答题</div></div>
     </div>
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg></div><div class="kpi-value">${monthExamCount}</div><div class="kpi-label">本月考试次数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${totalCandidates}</div><div class="kpi-label">累计参考人次</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${avgPassRate}%</div><div class="kpi-label">平均通过率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trophy"></use></svg></div><div class="kpi-value">${maxScore}</div><div class="kpi-label">最高分</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg></div><div class="kpi-value">${monthExamCount}</div><div class="kpi-label">本月考试次数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${totalCandidates}</div><div class="kpi-label">累计参考人次</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${avgPassRate}%</div><div class="kpi-label">平均通过率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trophy&quot;></use></svg></div><div class="kpi-value">${maxScore}</div><div class="kpi-label">最高分</div></div>
     </div>
     <div class="filter-bar" style="gap:0;border-bottom:2px solid var(--border);margin-bottom:16px">
       <button class="btn btn-primary" style="border-radius:6px 6px 0 0;padding:8px 20px;font-size:13px;color:#fff" onclick="document.querySelectorAll('[id^=teTab-]').forEach(el=>el.style.display='none');document.getElementById('teTab-exam').style.display='block';this.parentNode.querySelectorAll('button').forEach(b=>{b.style.background='var(--card)';b.style.color='var(--text)'});this.style.background='var(--accent)';this.style.color='#fff'">考试管理</button>
@@ -1973,7 +1973,7 @@ async function loadTrainExam() {
     </div>
     <div id="teTab-exam" style="display:block">
       <div class="chart-card">
-        <div class="chart-title"> 考试列表 <div style="float:right;display:flex;gap:6px"><button class="btn btn-primary" style="padding:4px 12px;font-size:12px" onclick="showFormModal(\'创建考试\',[{\'name\':\'examName\',\'label\':\'考试名称\',\'required\':true},{\'name\':\'examTime\',\'label\':\'考试时间\'},{\'name\':\'examPeople\',\'label\':\'应考人员\'},{\'name\':\'examScope\',\'label\':\'题目范围\',\'type\':\'textarea\',\'rows\':2}],\'创建考试\',\'考试已创建\')"> 创建考试</button><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'自动组卷\',\'<p style=\'margin:0;color:#666;font-size:13px\'>按题型比例（单选40%/多选25%/判断25%/简答10%）自动组卷。</p>\',\'开始组卷\',\'已启动自动组卷\')">⚡ 自动组卷</button></div></div>
+        <div class="chart-title"> 考试列表 <div style="float:right;display:flex;gap:6px"><button class="btn btn-primary" style="padding:4px 12px;font-size:12px" onclick="showFormModal(\'创建考试\',[{\'name\':\'examName\',\'label\':\'考试名称\',\'required\':true},{\'name\':\'examTime\',\'label\':\'考试时间\'},{\'name\':\'examPeople\',\'label\':\'应考人员\'},{\'name\':\'examScope\',\'label\':\'题目范围\',\'type\':\'textarea\',\'rows\':2}],\'创建考试\',\'考试已创建\')"> 创建考试</button><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'自动组卷\',\'<p style=\'margin:0;color:#666;font-size:13px\'>按题型比例（单选40%/多选25%/判断25%/简答10%）自动组卷。</p>\',\'开始组卷\',\'已启动自动组卷\')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-zap&quot;></use></svg> 自动组卷</button></div></div>
         <table class="data-table">
           <thead><tr><th>考试编号</th><th>考试名称</th><th>应考</th><th>已交</th><th>平均分</th><th>通过率</th><th>状态</th><th>操作</th></tr></thead>
           <tbody>
@@ -1995,14 +1995,14 @@ async function loadTrainExam() {
     </div>
     <div id="teTab-score" style="display:none">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 成绩分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 成绩分布</div>
         <div class="chart-desc">各分数段参考人数分布</div>
         <div id="examScoreDist" style="height:320px"></div>
       </div>
     </div>
     <div id="teTab-wrong" style="display:none">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg> 高频错题排行 TOP5</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg> 高频错题排行 TOP5</div>
         <div class="chart-desc">基于近期考试数据统计</div>
         <table class="data-table">
           <thead><tr><th>排名</th><th>题目</th><th>错误率</th><th>知识点</th><th>改进建议</th></tr></thead>
@@ -2038,23 +2038,23 @@ async function loadHrHeadcount() {
   if (!data) return;
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.overview.planned}</div><div class="kpi-label">编制总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.actual}</div><div class="kpi-label">在岗人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.vacant}</div><div class="kpi-label">空缺人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">编制使用率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.overview.planned}</div><div class="kpi-label">编制总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.actual}</div><div class="kpi-label">在岗人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.vacant}</div><div class="kpi-label">空缺人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${data.overview.rate}%</div><div class="kpi-label">编制使用率</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各部门编制使用</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各部门编制使用</div>
         <div id="deptHeadcount" style="height:320px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg> 各中心编制使用率</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg> 各中心编制使用率</div>
         <div id="centerHeadcount" style="height:320px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 编制明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 编制明细</div>
       <table class="data-table">
         <thead><tr><th>部门</th><th>编制数</th><th>在岗数</th><th>空缺</th><th>招聘中</th><th>使用率</th><th>状态</th></tr></thead>
         <tbody>
@@ -2132,10 +2132,10 @@ async function loadHrProcess() {
   }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-hourglass"></use></svg></div><div class="kpi-value">${pending}</div><div class="kpi-label">审批中数量</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${passed}</div><div class="kpi-label">本月已通过</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-x-circle"></use></svg></div><div class="kpi-value">${rejected}</div><div class="kpi-label">本月已驳回</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">⏱️</div><div class="kpi-value">${avgDays}</div><div class="kpi-label">平均审批时长(天)</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-hourglass&quot;></use></svg></div><div class="kpi-value">${pending}</div><div class="kpi-label">审批中数量</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${passed}</div><div class="kpi-label">本月已通过</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-x-circle&quot;></use></svg></div><div class="kpi-value">${rejected}</div><div class="kpi-label">本月已驳回</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg></div><div class="kpi-value">${avgDays}</div><div class="kpi-label">平均审批时长(天)</div></div>
     </div>
     <div class="filter-bar" style="gap:0;border-bottom:2px solid var(--border);margin-bottom:16px">
       <button class="btn btn-primary" style="border-radius:6px 6px 0 0;padding:8px 20px;font-size:13px" onclick="hrProcessFilter('全部', this)">全部</button>
@@ -2154,7 +2154,7 @@ async function loadHrProcess() {
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg> 入转调离流程列表</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg> 入转调离流程列表</div>
       <table class="data-table">
         <thead><tr><th>流程编号</th><th>类型</th><th>申请人</th><th>部门/调转</th><th>中心</th><th>申请日期</th><th>当前节点</th><th>审批进度</th><th>状态</th><th>操作</th></tr></thead>
         <tbody id="hrProcessBody">
@@ -2167,7 +2167,7 @@ async function loadHrProcess() {
       </table>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 月度趋势</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 月度趋势</div>
       <div class="chart-desc">各类型入转调离月度数量</div>
       <div id="hrProcessTrend" style="height:320px"></div>
     </div>
@@ -2212,10 +2212,10 @@ async function loadHrContract() {
   const in90 = data.filter(c=>c.daysLeft>60&&c.daysLeft<=90).length;
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-triangle"></use></svg></div><div class="kpi-value">${in30}</div><div class="kpi-label">30天内到期</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${in60}</div><div class="kpi-label">30-60天到期</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg></div><div class="kpi-value">${in90}</div><div class="kpi-label">60-90天到期</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">待续签合同总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg></div><div class="kpi-value">${in30}</div><div class="kpi-label">30天内到期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${in60}</div><div class="kpi-label">30-60天到期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg></div><div class="kpi-value">${in90}</div><div class="kpi-label">60-90天到期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">待续签合同总数</div></div>
     </div>
     <div class="chart-card">
       <div class="chart-title"> 合同到期分级预警 <div style="float:right;display:flex;gap:6px"><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'推送续签提醒\',\'<p style=\'margin:0;color:#666;font-size:13px\'>向员工推送企业微信续签提醒。</p>\',\'确认推送\',\'续签提醒已推送\')"> 推送提醒</button><button class="btn btn-outline" style="padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'导出预警清单\',\'<p style=\'margin:0;color:#666;font-size:13px\'>合同预警清单将导出为 Excel。</p>\',\'确认导出\',\'合同预警清单已导出\')"> 导出</button></div></div>
@@ -2258,25 +2258,25 @@ async function loadAdminSupplies() {
   const items = data.items || [];
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></div><div class="kpi-value">${items.length}</div><div class="kpi-label">物品种类</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${items.reduce((s,i)=>s+(i.stock||0),0)}</div><div class="kpi-label">库存总量</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${items.filter(i=>i.status==='预警').length}</div><div class="kpi-label">库存预警</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-upload"></use></svg></div><div class="kpi-value">${(data.usage && data.usage.length) ? data.usage[data.usage.length-1].count : 0}</div><div class="kpi-label">本月领用</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></div><div class="kpi-value">${items.length}</div><div class="kpi-label">物品种类</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${items.reduce((s,i)=>s+(i.stock||0),0)}</div><div class="kpi-label">库存总量</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${items.filter(i=>i.status==='预警').length}</div><div class="kpi-label">库存预警</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-upload&quot;></use></svg></div><div class="kpi-value">${(data.usage && data.usage.length) ? data.usage[data.usage.length-1].count : 0}</div><div class="kpi-label">本月领用</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 月度领用趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 月度领用趋势</div>
         <div id="suppliesTrend" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg> 库存预警</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg> 库存预警</div>
         <div style="margin-top:8px">
-          ${data.items.filter(i=>i.status==='预警').map(i => `<div class="alert-item alert-danger"><span class="alert-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></span><div><strong>${i.name}</strong> - 当前库存: ${i.stock}${i.unit}，低于安全库存 ${i.safetyStock}${i.unit}</div></div>`).join('') || '<div class="alert-item alert-success"><span class="alert-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-check-circle-2\"></use></svg></span><div>暂无库存预警</div></div>'}
+          ${data.items.filter(i=>i.status==='预警').map(i => `<div class="alert-item alert-danger"><span class="alert-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></span><div><strong>${i.name}</strong> - 当前库存: ${i.stock}${i.unit}，低于安全库存 ${i.safetyStock}${i.unit}</div></div>`).join('') || '<div class="alert-item alert-success"><span class="alert-icon"><svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-check-circle-2\"></use></svg></span><div>暂无库存预警</div></div>'}
         </div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 库存明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 库存明细</div>
       <div class="filter-bar">
         <button class="btn btn-primary"  id="zg_btn_0"> 入库</button>
         <button class="btn btn-outline"  id="zg_btn_1"> 领用</button>
@@ -2310,13 +2310,13 @@ async function loadAdminAsset() {
   const statusMap = { '在用': 'tag-success', '闲置': 'tag-warning', '报废': 'tag-danger' };
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-monitor"></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">资产总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.filter(a=>a.status==='在用').length}</div><div class="kpi-label">在用</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></div><div class="kpi-value">${data.filter(a=>a.status==='闲置').length}</div><div class="kpi-label">闲置</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon">🗑️</div><div class="kpi-value">${data.filter(a=>a.status==='报废').length}</div><div class="kpi-label">报废</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-monitor&quot;></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">资产总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.filter(a=>a.status==='在用').length}</div><div class="kpi-label">在用</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></div><div class="kpi-value">${data.filter(a=>a.status==='闲置').length}</div><div class="kpi-label">闲置</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trash-2&quot;></use></svg></div><div class="kpi-value">${data.filter(a=>a.status==='报废').length}</div><div class="kpi-label">报废</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 固定资产明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 固定资产明细</div>
       <div class="filter-bar"><input type="text" placeholder="搜索资产..." id="assetSearch"><button class="btn btn-outline"  id="zg_btn_3"> 新增资产</button><button class="btn btn-primary" onclick="showAssetTransfer()"> 固资转出</button></div>
       <table class="data-table">
         <thead><tr><th>资产编号</th><th>资产名称</th><th>使用人</th><th>部门</th><th>中心</th><th>采购日期</th><th>价值</th><th>状态</th><th>操作</th></tr></thead>
@@ -2334,23 +2334,23 @@ async function loadAdminBudget() {
   if (!data) return;
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-coins"></use></svg></div><div class="kpi-value">${(data.annual/10000).toFixed(0)}万</div><div class="kpi-label">年度预算</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">💸</div><div class="kpi-value">${(data.spent/10000).toFixed(0)}万</div><div class="kpi-label">实际支出</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.rate}%</div><div class="kpi-label">执行率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${((data.annual-data.spent)/10000).toFixed(0)}万</div><div class="kpi-label">剩余预算</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-coins&quot;></use></svg></div><div class="kpi-value">${(data.annual/10000).toFixed(0)}万</div><div class="kpi-label">年度预算</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-coins&quot;></use></svg></div><div class="kpi-value">${(data.spent/10000).toFixed(0)}万</div><div class="kpi-label">实际支出</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.rate}%</div><div class="kpi-label">执行率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${((data.annual-data.spent)/10000).toFixed(0)}万</div><div class="kpi-label">剩余预算</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各类别预算执行</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各类别预算执行</div>
         <div id="budgetCategory" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 月度费用趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 月度费用趋势</div>
         <div id="budgetTrend" style="height:300px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 各类别明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 各类别明细</div>
       <table class="data-table">
         <thead><tr><th>费用类别</th><th>年度预算</th><th>实际支出</th><th>剩余</th><th>执行率</th><th>进度</th></tr></thead>
         <tbody>
@@ -2406,28 +2406,28 @@ async function loadPrOpinion() {
 
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">舆情总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-smile"></use></svg></div><div class="kpi-value">${data.overview.positive}%</div><div class="kpi-label">正面</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-minus"></use></svg></div><div class="kpi-value">${data.overview.neutral}%</div><div class="kpi-label">中性</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-frown"></use></svg></div><div class="kpi-value">${data.overview.negative}%</div><div class="kpi-label">负面</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-triangle"></use></svg></div><div class="kpi-value">${data.overview.alerts}</div><div class="kpi-label">预警待处理</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">舆情总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-smile&quot;></use></svg></div><div class="kpi-value">${data.overview.positive}%</div><div class="kpi-label">正面</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-minus&quot;></use></svg></div><div class="kpi-value">${data.overview.neutral}%</div><div class="kpi-label">中性</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-frown&quot;></use></svg></div><div class="kpi-value">${data.overview.negative}%</div><div class="kpi-label">负面</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg></div><div class="kpi-value">${data.overview.alerts}</div><div class="kpi-label">预警待处理</div></div>
     </div>
-    ${data.alerts.length > 0 ? `<div class="chart-card"><div class="chart-title"> 负面舆情预警</div>${data.alerts.map(a => `<div class="alert-item alert-${a.level==='高'?'danger':'warning'}"><span class="alert-icon">${a.level==='高'?'':''}</span><div><strong>[${a.level}]</strong> ${a.time} · ${a.source} — ${a.content}<br><span style="font-size:12px;color:var(--text-light)">状态: ${a.status} ${a.handler?'· 处理人: '+a.handler:''}</span> <button class="btn btn-outline" style="padding:2px 10px;font-size:11px;margin-left:8px" onclick="showFormModal(\'⚠ 处理舆情预警 - \' + rowCellText(this,0),[{\'name\':\'handleResult\',\'label\':\'处理结果\',\'type\':\'select\',\'options\':[\'属实-已处理\',\'属实-处理中\',\'不实-已澄清\'],\'value\':\'属实-处理中\'},{\'name\':\'handleNote\',\'label\':\'处理说明\',\'type\':\'textarea\',\'required\':true,\'rows\':3}],\'提交处理\',\'预警已处理\')">处理</button></div></div>`).join('')}</div>` : ''}
+    ${data.alerts.length > 0 ? `<div class="chart-card"><div class="chart-title"> 负面舆情预警</div>${data.alerts.map(a => `<div class="alert-item alert-${a.level==='高'?'danger':'warning'}"><span class="alert-icon">${a.level==='高'?'':''}</span><div><strong>[${a.level}]</strong> ${a.time} · ${a.source} — ${a.content}<br><span style="font-size:12px;color:var(--text-light)">状态: ${a.status} ${a.handler?'· 处理人: '+a.handler:''}</span> <button class="btn btn-outline" style="padding:2px 10px;font-size:11px;margin-left:8px" onclick="showFormModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg> 处理舆情预警 - \' + rowCellText(this,0),[{\'name\':\'handleResult\',\'label\':\'处理结果\',\'type\':\'select\',\'options\':[\'属实-已处理\',\'属实-处理中\',\'不实-已澄清\'],\'value\':\'属实-处理中\'},{\'name\':\'handleNote\',\'label\':\'处理说明\',\'type\':\'textarea\',\'required\':true,\'rows\':3}],\'提交处理\',\'预警已处理\')">处理</button></div></div>`).join('')}</div>` : ''}
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 舆情情感趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 舆情情感趋势</div>
         <div class="chart-desc">近7天全平台情感分布</div>
         <div id="opinionTrend" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-flame"></use></svg> 热门话题 TOP5</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-flame&quot;></use></svg> 热门话题 TOP5</div>
         <div style="margin-top:12px">
           ${data.hotTopics.map(t => `<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-size:20px;font-weight:700;color:${t.rank<=3?'var(--danger)':'var(--text-light)'};width:24px">${t.rank}</span><div style="flex:1"><div style="font-size:14px;font-weight:600">${t.topic}</div><div style="font-size:12px;color:var(--text-light)">热度: ${t.heat} · 来源: ${t.platform || '多平台'}</div></div><span class="tag ${t.sentiment==='正面'?'tag-success':t.sentiment==='负面'?'tag-danger':'tag-warning'}">${t.sentiment}</span></div>`).join('')}
         </div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">📱 多平台舆情监控矩阵</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-phone&quot;></use></svg> 多平台舆情监控矩阵</div>
       <div class="chart-desc">覆盖微信公众号 · 微博 · 抖音 · 小红书 · 知乎 · 脉脉</div>
       <div class="platform-matrix" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px">
         ${[
@@ -2435,7 +2435,7 @@ async function loadPrOpinion() {
           {key:'weibo', name:'微博', icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-megaphone\"></use></svg>', color:'#E6162D', ...data.platforms.weibo},
           {key:'douyin', name:'抖音', icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-music\"></use></svg>', color:'#000000', ...data.platforms.douyin},
           {key:'xiaohongshu', name:'小红书', icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-book\"></use></svg>', color:'#FF2442', ...data.platforms.xiaohongshu},
-          {key:'zhihu', name:'知乎', icon:'❓', color:'#0084FF', ...data.platforms.zhihu},
+          {key:'zhihu', name:'知乎', icon:'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-question&quot;></use></svg> ', color:'#0084FF', ...data.platforms.zhihu},
           {key:'maimai', name:'脉脉', icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-briefcase-alt\"></use></svg>', color:'#0066FF', ...data.platforms.maimai}
         ].map(p => `
           <div class="platform-card" style="background:var(--card);border-radius:8px;border:1px solid var(--border);padding:12px;transition:all .2s;cursor:pointer;position:relative;overflow:hidden" onmouseover="this.style.boxShadow='var(--shadow)'" onmouseout="this.style.boxShadow='none'" onclick="switchPrTab('${p.key}')">
@@ -2454,44 +2454,44 @@ async function loadPrOpinion() {
                 <div style="width:${p.negative}%;background:var(--danger)"></div>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-light);margin-top:3px">
-                <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-smile"></use></svg> ${p.positive}%</span>
-                <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-minus"></use></svg> ${p.neutral}%</span>
-                <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-frown"></use></svg> ${p.negative}%</span>
+                <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-smile&quot;></use></svg> ${p.positive}%</span>
+                <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-minus&quot;></use></svg> ${p.neutral}%</span>
+                <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-frown&quot;></use></svg> ${p.negative}%</span>
               </div>
             </div>
             <div style="font-size:11px;color:var(--text-light);background:var(--bg);border-radius:4px;padding:6px 8px;display:flex;gap:6px;align-items:flex-start">
-              <span style="font-size:10px;color:${p.color};font-weight:700;flex-shrink:0"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-flame"></use></svg>最新</span>
+              <span style="font-size:10px;color:${p.color};font-weight:700;flex-shrink:0"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-flame&quot;></use></svg>最新</span>
               <span style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.3">${p.latest}</span>
             </div>
           </div>
         `).join('')}
       </div>
       <div style="margin-top:12px;font-size:12px;color:var(--text-light);display:flex;gap:24px;flex-wrap:wrap">
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 全平台舆情总数：<strong style="color:var(--primary)">${Object.values(data.platforms).reduce((a,b)=>a+(typeof b==='object'&&b.total?b.total:0),0)}</strong> 条</span>
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-smile"></use></svg> 正面占比：<strong style="color:var(--success)">${data.overview.positive}%</strong></span>
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-frown"></use></svg> 负面占比：<strong style="color:var(--danger)">${data.overview.negative}%</strong></span>
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-triangle"></use></svg> 预警待处理：<strong style="color:var(--danger)">${data.overview.alerts}</strong> 条</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 全平台舆情总数：<strong style="color:var(--primary)">${Object.values(data.platforms).reduce((a,b)=>a+(typeof b==='object'&&b.total?b.total:0),0)}</strong> 条</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-smile&quot;></use></svg> 正面占比：<strong style="color:var(--success)">${data.overview.positive}%</strong></span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-frown&quot;></use></svg> 负面占比：<strong style="color:var(--danger)">${data.overview.negative}%</strong></span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg> 预警待处理：<strong style="color:var(--danger)">${data.overview.alerts}</strong> 条</span>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-music"></use></svg> 抖音专项舆情监控</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-music&quot;></use></svg> 抖音专项舆情监控</div>
       <div class="chart-desc">实时监控中 · 品牌视频${dd.brandVideos||156}条 · 总互动${dd.totalViews||'2.3万'} · 风险等级：低风险</div>
       <div style="margin-top:16px">
         <table class="data-table">
           <thead><tr><th style="width:40px">#</th><th>视频标题</th><th>作者</th><th>发布时间</th><th>播放量</th><th>点赞</th><th>评论</th><th>情感</th><th>操作</th></tr></thead>
           <tbody>
-            ${(dd.topVideos||[]).map((v,i) => `<tr><td>${i+1}</td><td><strong>${v.title}</strong></td><td>${v.author}</td><td>${v.time}</td><td>${v.views}</td><td>${v.likes}</td><td>${v.comments}</td><td><span class="tag ${v.sentiment==='正面'?'tag-success':v.sentiment==='负面'?'tag-danger':'tag-warning'}">${v.sentiment}</span></td><td><button class="btn btn-outline" style="padding:2px 10px;font-size:11px" onclick="showConfirmModal(\'🎬 抖音视频 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>标题：\' + rowCellText(this,1) + \'<br>作者：\' + rowCellText(this,2) + \'</p>\',\'打开抖音\',\'正在打开抖音\')">查看</button></td></tr>`).join('')}
+            ${(dd.topVideos||[]).map((v,i) => `<tr><td>${i+1}</td><td><strong>${v.title}</strong></td><td>${v.author}</td><td>${v.time}</td><td>${v.views}</td><td>${v.likes}</td><td>${v.comments}</td><td><span class="tag ${v.sentiment==='正面'?'tag-success':v.sentiment==='负面'?'tag-danger':'tag-warning'}">${v.sentiment}</span></td><td><button class="btn btn-outline" style="padding:2px 10px;font-size:11px" onclick="showConfirmModal(\'<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-video&quot;></use></svg> 抖音视频 - \' + rowCellText(this,1),\'<p style=\'margin:0;color:#666;font-size:13px\'>标题：\' + rowCellText(this,1) + \'<br>作者：\' + rowCellText(this,2) + \'</p>\',\'打开抖音\',\'正在打开抖音\')">查看</button></td></tr>`).join('')}
           </tbody>
         </table>
       </div>
       <div style="padding:12px 0;font-size:12px;color:var(--text-light);display:flex;gap:24px">
-        <span>📹 品牌相关视频：<strong>${dd.brandVideos||156}</strong> 条</span>
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-message-circle"></use></svg> 评论提及：<strong>${dd.commentMentions||68}</strong> 条（负面 <strong style="color:var(--danger)">${dd.negativeComments||3}</strong> 条）</span>
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-flame"></use></svg> 热门话题：<strong>${dd.hotTopics||12}</strong> 个（曝光 <strong>${dd.topicExposure||'580万'}</strong>）</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-video&quot;></use></svg> 品牌相关视频：<strong>${dd.brandVideos||156}</strong> 条</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-message-circle&quot;></use></svg> 评论提及：<strong>${dd.commentMentions||68}</strong> 条（负面 <strong style="color:var(--danger)">${dd.negativeComments||3}</strong> 条）</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-flame&quot;></use></svg> 热门话题：<strong>${dd.hotTopics||12}</strong> 个（曝光 <strong>${dd.topicExposure||'580万'}</strong>）</span>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-book"></use></svg> 小红书专项舆情监控</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-book&quot;></use></svg> 小红书专项舆情监控</div>
       <div class="chart-desc">实时监控中 · 品牌笔记${xhd.brandNotes||89}篇 · 总收藏${xhd.totalCollects||'1.2万'} · 风险等级：低风险</div>
       <div style="margin-top:16px">
         <table class="data-table">
@@ -2502,19 +2502,19 @@ async function loadPrOpinion() {
         </table>
       </div>
       <div style="padding:12px 0;font-size:12px;color:var(--text-light);display:flex;gap:24px">
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-file-edit"></use></svg> 品牌相关笔记：<strong>${xhd.brandNotes||89}</strong> 篇</span>
-        <span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-message-circle"></use></svg> 评论提及：<strong>${xhd.commentMentions||52}</strong> 条（负面 <strong style="color:var(--danger)">${xhd.negativeComments||2}</strong> 条）</span>
-        <span>🔖 话题标签：<strong>${xhd.topicTags||8}</strong> 个（浏览 <strong>${xhd.topicViews||'320万'}</strong>）</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-file-edit&quot;></use></svg> 品牌相关笔记：<strong>${xhd.brandNotes||89}</strong> 篇</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-message-circle&quot;></use></svg> 评论提及：<strong>${xhd.commentMentions||52}</strong> 条（负面 <strong style="color:var(--danger)">${xhd.negativeComments||2}</strong> 条）</span>
+        <span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bookmark&quot;></use></svg> 话题标签：<strong>${xhd.topicTags||8}</strong> 个（浏览 <strong>${xhd.topicViews||'320万'}</strong>）</span>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 全平台舆情内容明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 全平台舆情内容明细</div>
       <div class="filter-bar">
         <button class="btn btn-primary" onclick="switchPrTab('wechat')"> 微信公众号</button>
         <button class="btn btn-outline" onclick="switchPrTab('weibo')"> 微博</button>
         <button class="btn btn-outline" onclick="switchPrTab('douyin')"> 抖音</button>
         <button class="btn btn-outline" onclick="switchPrTab('xiaohongshu')"> 小红书</button>
-        <button class="btn btn-outline" onclick="switchPrTab('zhihu')">❓ 知乎</button>
+        <button class="btn btn-outline" onclick="switchPrTab('zhihu')"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-question&quot;></use></svg> 知乎</button>
         <button class="btn btn-outline" onclick="switchPrTab('maimai')"> 脉脉</button>
       </div>
       <div id="prTabContent">
@@ -2565,12 +2565,12 @@ function loadAiChat() {
     <div class="chat-container">
       <div class="chart-card" style="padding:0;overflow:hidden">
         <div style="padding:16px 20px;background:var(--primary);color:#fff">
-          <div style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bot"></use></svg> 综管智能小助手</div>
+          <div style="font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bot&quot;></use></svg> 综管智能小助手</div>
           <div style="font-size:12px;opacity:0.7;margin-top:4px">覆盖招聘·培训·人事·行政·公关五大模块 | 智能问答 · 制度查询 · 流程指引</div>
         </div>
         <div class="chat-messages" id="chatMessages">
           <div class="chat-msg bot">
-            <div class="chat-avatar"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bot"></use></svg></div>
+            <div class="chat-avatar"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bot&quot;></use></svg></div>
             <div class="chat-bubble">您好！我是<strong>综管智能小助手</strong>，可以帮您解答综合管理部的各类问题：<br><br>
               <strong>【招聘管理】</strong>招聘流程、RPO渠道、面试安排、入职跟进<br>
               <strong>【培训管理】</strong>培训计划、课件查询、考试安排、知识库检索<br>
@@ -2622,7 +2622,7 @@ async function sendChat() {
   input.value = '';
   messages.scrollTop = messages.scrollHeight;
   
-  messages.innerHTML += `<div class="chat-msg bot" id="typingMsg"><div class="chat-avatar"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bot"></use></svg></div><div class="chat-bubble"><div class="loading" style="padding:0"><div class="spinner" style="width:20px;height:20px"></div></div></div></div>`;
+  messages.innerHTML += `<div class="chat-msg bot" id="typingMsg"><div class="chat-avatar"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bot&quot;></use></svg></div><div class="chat-bubble"><div class="loading" style="padding:0"><div class="spinner" style="width:20px;height:20px"></div></div></div></div>`;
   messages.scrollTop = messages.scrollHeight;
   
   const res = await fetch(API.aiQuery, {
@@ -2632,8 +2632,8 @@ async function sendChat() {
   const data = await res.json();
   
   document.getElementById('typingMsg').remove();
-  const confidenceTag = data.confidence > 0 ? `<div style="margin-top:8px;font-size:11px;color:var(--text-light)">匹配置信度: ${data.confidence}% · 来源: ${data.source}</div>` : `<div style="margin-top:8px;font-size:11px;color:var(--warning)"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg> 未匹配到知识库内容，已转人工处理</div>`;
-  messages.innerHTML += `<div class="chat-msg bot"><div class="chat-avatar"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bot"></use></svg></div><div class="chat-bubble">${data.answer}${confidenceTag}</div></div>`;
+  const confidenceTag = data.confidence > 0 ? `<div style="margin-top:8px;font-size:11px;color:var(--text-light)">匹配置信度: ${data.confidence}% · 来源: ${data.source}</div>` : `<div style="margin-top:8px;font-size:11px;color:var(--warning)"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg> 未匹配到知识库内容，已转人工处理</div>`;
+  messages.innerHTML += `<div class="chat-msg bot"><div class="chat-avatar"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bot&quot;></use></svg></div><div class="chat-bubble">${data.answer}${confidenceTag}</div></div>`;
   messages.scrollTop = messages.scrollHeight;
 }
 
@@ -2672,31 +2672,31 @@ async function loadHrTurnover() {
 
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-waving-hand"></use></svg></div><div class="kpi-value">${ov.totalTurnover || 0}</div><div class="kpi-label">年度累计流失</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${(ov.rate || 0)}%</div><div class="kpi-label">流失率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg></div><div class="kpi-value">${ov.monthTurnover || 0}</div><div class="kpi-label">本月流失</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-star"></use></svg></div><div class="kpi-value">${ov.coreTurnover || 0}</div><div class="kpi-label">核心岗位流失</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clock"></use></svg></div><div class="kpi-value">${ov.avgTenure || 0}月</div><div class="kpi-label">平均司龄</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-waving-hand&quot;></use></svg></div><div class="kpi-value">${ov.totalTurnover || 0}</div><div class="kpi-label">年度累计流失</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${(ov.rate || 0)}%</div><div class="kpi-label">流失率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg></div><div class="kpi-value">${ov.monthTurnover || 0}</div><div class="kpi-label">本月流失</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg></div><div class="kpi-value">${ov.coreTurnover || 0}</div><div class="kpi-label">核心岗位流失</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg></div><div class="kpi-value">${ov.avgTenure || 0}月</div><div class="kpi-label">平均司龄</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 月度人员变动趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 月度人员变动趋势</div>
         <div class="chart-desc">入职 vs 离职</div>
         <div id="turnoverTrendChart" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg> 各中心流失率对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg> 各中心流失率对比</div>
         <div class="chart-desc">目标 &lt; 3%</div>
         <div id="turnoverCenterChart" style="height:300px"></div>
       </div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 流失原因分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg> 流失原因分布</div>
         <div id="turnoverReasonChart" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 近期流失明细</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 近期流失明细</div>
         <table class="data-table">
           <thead><tr><th>工号</th><th>姓名</th><th>中心</th><th>部门</th><th>岗位</th><th>入职日期</th><th>离职日期</th><th>司龄</th><th>原因</th></tr></thead>
           <tbody>
@@ -2749,24 +2749,24 @@ async function loadHrEstablishment() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-ruler"></use></svg></div><div class="kpi-value">${data.overview.totalEstablishment}</div><div class="kpi-label">编制总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.filled}</div><div class="kpi-label">已入编</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.vacant}</div><div class="kpi-label">空缺编制</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg></div><div class="kpi-value">${data.overview.recruiting}</div><div class="kpi-label">招聘中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.cyan}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg></div><div class="kpi-value">${data.overview.utilizationRate}%</div><div class="kpi-label">编制使用率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-ruler&quot;></use></svg></div><div class="kpi-value">${data.overview.totalEstablishment}</div><div class="kpi-label">编制总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.filled}</div><div class="kpi-label">已入编</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.vacant}</div><div class="kpi-label">空缺编制</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg></div><div class="kpi-value">${data.overview.recruiting}</div><div class="kpi-label">招聘中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.cyan}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg></div><div class="kpi-value">${data.overview.utilizationRate}%</div><div class="kpi-label">编制使用率</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各中心编制分布（含招聘中）</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各中心编制分布（含招聘中）</div>
         <div id="estCenterChart" style="height:320px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 编制使用率趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 编制使用率趋势</div>
         <div id="estTrendChart" style="height:320px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 编制明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 编制明细</div>
       <div class="filter-bar">
         <select><option>全部中心</option><option>太原</option><option>南昌</option><option>晋中</option><option>沈阳</option><option>南宁</option><option>上海</option></select>
         <select><option>全部项目</option><option>小赢</option><option>字节</option><option>邮储</option><option>交行</option><option>广汽</option></select>
@@ -2821,23 +2821,23 @@ async function loadAdminWorkplace() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg></div><div class="kpi-value">${data.overview.totalWorkplaces}</div><div class="kpi-label">职场总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon">📏</div><div class="kpi-value">${data.overview.totalArea}㎡</div><div class="kpi-label">总面积</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-coins"></use></svg></div><div class="kpi-value">${data.overview.monthlyRent}万</div><div class="kpi-label">月租金</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.totalSeats}</div><div class="kpi-label">工位总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg></div><div class="kpi-value">${data.overview.totalWorkplaces}</div><div class="kpi-label">职场总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-ruler&quot;></use></svg></div><div class="kpi-value">${data.overview.totalArea}㎡</div><div class="kpi-label">总面积</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-coins&quot;></use></svg></div><div class="kpi-value">${data.overview.monthlyRent}万</div><div class="kpi-label">月租金</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${data.overview.totalSeats}</div><div class="kpi-label">工位总数</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各职场工位使用率</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各职场工位使用率</div>
         <div id="wpUsageChart" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-coins"></use></svg> 各职场租金对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-coins&quot;></use></svg> 各职场租金对比</div>
         <div id="wpRentChart" style="height:300px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 职场明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 职场明细</div>
       <div class="filter-bar">
         <select><option>全部城市</option><option>太原</option><option>南昌</option><option>晋中</option><option>沈阳</option><option>南宁</option><option>上海</option></select>
         <button class="btn btn-primary"  id="zg_btn_4"> 新增职场</button>
@@ -2880,13 +2880,13 @@ async function loadAdminGift() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-gift"></use></svg></div><div class="kpi-value">${data.items.length}</div><div class="kpi-label">礼品种类</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.items.reduce((s,i)=>s+i.stock,0)}</div><div class="kpi-label">库存总量</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.items.filter(i=>i.stock<i.safetyStock).length}</div><div class="kpi-label">库存预警</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-upload"></use></svg></div><div class="kpi-value">${data.overview.monthlyOutbound||0}</div><div class="kpi-label">本月领用</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-gift&quot;></use></svg></div><div class="kpi-value">${data.items.length}</div><div class="kpi-label">礼品种类</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.items.reduce((s,i)=>s+i.stock,0)}</div><div class="kpi-label">库存总量</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.items.filter(i=>i.stock<i.safetyStock).length}</div><div class="kpi-label">库存预警</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-upload&quot;></use></svg></div><div class="kpi-value">${data.overview.monthlyOutbound||0}</div><div class="kpi-label">本月领用</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 礼品库存明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 礼品库存明细</div>
       <div class="filter-bar">
         <button class="btn btn-primary" onclick="showFormModal(\'礼品入库\',[{\'name\':\'giftName\',\'label\':\'礼品名称\',\'required\':true},{\'name\':\'giftQty\',\'label\':\'数量\',\'type\':\'number\',\'required\':true,\'value\':\'1\'},{\'name\':\'giftBatch\',\'label\':\'批次\'},{\'name\':\'giftNote\',\'label\':\'备注\',\'type\':\'textarea\',\'rows\':2}],\'登记入库\',\'礼品已入库\')"> 入库</button>
         <button class="btn btn-outline" onclick="showFormModal(\'礼品领用\',[{\'name\':\'giftName\',\'label\':\'礼品\',\'required\':true},{\'name\':\'recvName\',\'label\':\'领用人\',\'required\':true},{\'name\':\'recvDept\',\'label\':\'领用部门\'},{\'name\':\'recvQty\',\'label\':\'数量\',\'type\':\'number\',\'required\':true,\'value\':\'1\'}],\'提交申请\',\'领用申请已提交\')"> 领用</button>
@@ -2903,7 +2903,7 @@ async function loadAdminGift() {
       </table>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 最近领用记录</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 最近领用记录</div>
       <table class="data-table">
         <thead><tr><th>日期</th><th>礼品</th><th>数量</th><th>领用人</th><th>部门</th><th>用途</th><th>审批人</th></tr></thead>
         <tbody>
@@ -2920,23 +2920,23 @@ async function loadAdminPrint() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon">🖨️</div><div class="kpi-value">${data.overview.totalDevices}</div><div class="kpi-label">设备总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.normalDevices}</div><div class="kpi-label">正常运行</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-file-text"></use></svg></div><div class="kpi-value">${data.overview.monthlyPages}</div><div class="kpi-label">本月打印页数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.faultDevices}</div><div class="kpi-label">故障设备</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-printer&quot;></use></svg></div><div class="kpi-value">${data.overview.totalDevices}</div><div class="kpi-label">设备总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.normalDevices}</div><div class="kpi-label">正常运行</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-file-text&quot;></use></svg></div><div class="kpi-value">${data.overview.monthlyPages}</div><div class="kpi-label">本月打印页数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.faultDevices}</div><div class="kpi-label">故障设备</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 月度打印趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 月度打印趋势</div>
         <div id="printTrendChart" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各中心打印量</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各中心打印量</div>
         <div id="printCenterChart" style="height:300px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 各中心打印量排名</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 各中心打印量排名</div>
       <table class="data-table">
         <thead><tr><th>排名</th><th>中心</th><th>本月页数</th><th>彩色占比</th><th>人均用量</th><th>环比</th></tr></thead>
         <tbody>
@@ -2945,7 +2945,7 @@ async function loadAdminPrint() {
       </table>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 纸张消耗明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 纸张消耗明细</div>
       <table class="data-table">
         <thead><tr><th>纸张类型</th><th>规格</th><th>本月消耗</th><th>库存余量</th><th>状态</th><th>操作</th></tr></thead>
         <tbody>
@@ -2959,7 +2959,7 @@ async function loadAdminPrint() {
       </table>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 最近文印申请</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 最近文印申请</div>
       <table class="data-table">
         <thead><tr><th>日期</th><th>申请人</th><th>部门</th><th>文件名</th><th>份数</th><th>页数</th><th>彩色</th><th>状态</th></tr></thead>
         <tbody>
@@ -2995,13 +2995,13 @@ async function loadAdminRegulation() {
   const catColors = { '人事制度':'tag-info','行政制度':'tag-warning','财务制度':'tag-success','安全制度':'tag-danger','其他':'tag-gray' };
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-files"></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">制度总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.filter(d=>d.status==='现行').length}</div><div class="kpi-label">现行有效</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.filter(d=>d.status==='修订中').length}</div><div class="kpi-label">修订中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.filter(d=>d.status==='已废止').length}</div><div class="kpi-label">已废止</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-files&quot;></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">制度总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.filter(d=>d.status==='现行').length}</div><div class="kpi-label">现行有效</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.filter(d=>d.status==='修订中').length}</div><div class="kpi-label">修订中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.filter(d=>d.status==='已废止').length}</div><div class="kpi-label">已废止</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 管理制度清单</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 管理制度清单</div>
       <div class="filter-bar">
         <select><option>全部分类</option><option>人事制度</option><option>行政制度</option><option>财务制度</option><option>安全制度</option></select>
         <select><option>全部状态</option><option>现行</option><option>修订中</option><option>已废止</option></select>
@@ -3027,13 +3027,13 @@ async function loadAdminTasklist() {
   const prioColors = { '高':'tag-danger','中':'tag-warning','低':'tag-success' };
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">任务总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.filter(t=>t.status==='已完成').length}</div><div class="kpi-label">已完成</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.filter(t=>t.status==='进行中').length}</div><div class="kpi-label">进行中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.filter(t=>t.status==='已逾期').length}</div><div class="kpi-label">已逾期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">任务总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.filter(t=>t.status==='已完成').length}</div><div class="kpi-label">已完成</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.filter(t=>t.status==='进行中').length}</div><div class="kpi-label">进行中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.filter(t=>t.status==='已逾期').length}</div><div class="kpi-label">已逾期</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 工作清单</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 工作清单</div>
       <div class="filter-bar">
         <select><option>全部状态</option><option>待开始</option><option>进行中</option><option>已完成</option><option>已逾期</option></select>
         <select><option>全部优先级</option><option>高</option><option>中</option><option>低</option></select>
@@ -3057,13 +3057,13 @@ async function loadAdminGoal() {
   const statusColors = { '正常':'tag-success','需关注':'tag-warning','严重滞后':'tag-danger' };
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">目标总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.filter(g=>g.status==='正常').length}</div><div class="kpi-label">正常推进</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.filter(g=>g.status==='需关注').length}</div><div class="kpi-label">需关注</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-triangle"></use></svg></div><div class="kpi-value">${data.filter(g=>g.status==='严重滞后').length}</div><div class="kpi-label">严重滞后</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg></div><div class="kpi-value">${data.length}</div><div class="kpi-label">目标总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.filter(g=>g.status==='正常').length}</div><div class="kpi-label">正常推进</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.filter(g=>g.status==='需关注').length}</div><div class="kpi-label">需关注</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg></div><div class="kpi-value">${data.filter(g=>g.status==='严重滞后').length}</div><div class="kpi-label">严重滞后</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> 工作目标达成情况</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> 工作目标达成情况</div>
       <table class="data-table">
         <thead><tr><th>编号</th><th>目标名称</th><th>负责人</th><th>周期</th><th>目标值</th><th>当前值</th><th>达成率</th><th>进度</th><th>状态</th><th>操作</th></tr></thead>
         <tbody>
@@ -3108,7 +3108,7 @@ async function loadAdminKpi() {
           { id:'EMP010', name:'孙磊', module:'人事行政', position:'考勤专员', kpi:'合规率', score: 86, rank: 4 }
         ]
       },
-      { name: '人才发展', icon: '🌟', target: 90, actual: 84.5, score: 83, trend: 'up', people: 22,
+      { name: '人才发展', icon: '<svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg>', target: 90, actual: 84.5, score: 83, trend: 'up', people: 22,
         kpis: [
           { id:'EMP011', name:'韩梅', module:'人才发展', position:'人才发展专员', kpi:'关键岗位填充率', score: 87, rank: 1 },
           { id:'EMP012', name:'朱峰', module:'人才发展', position:'继任计划主管', kpi:'梯队完整度', score: 80, rank: 2 },
@@ -3135,7 +3135,7 @@ async function loadAdminKpi() {
     mods.flatMap(m => (m.kpis || []).map(k => ({ ...k, module: m.name })));
 
   renderPage(`
-    <div class="section-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg> 综管五模块核心KPI</div>
+    <div class="section-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg> 综管五模块核心KPI</div>
     <div class="kpi-grid cols-5">
       ${mods.map((m, idx) => {
         const pct = ((m.actual / m.target) * 100).toFixed(1);
@@ -3155,18 +3155,18 @@ async function loadAdminKpi() {
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 五模块KPI达成对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 五模块KPI达成对比</div>
         <div class="chart-desc">实际值 vs 目标值</div>
         <div id="kpiModuleChart" style="height:320px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> KPI分数分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> KPI分数分布</div>
         <div class="chart-desc">综管全员考核等级</div>
         <div id="kpiDistChart" style="height:320px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> KPI考核明细（按模块）</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> KPI考核明细（按模块）</div>
       <div class="filter-bar">
         <select id="kpiModuleFilter" onchange="alert('筛选模块: '+this.value)">
           <option value="">全部模块</option>
@@ -3224,10 +3224,10 @@ async function loadHrProbation() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-triangle"></use></svg></div><div class="kpi-value">${data.overview.expired}</div><div class="kpi-label">已到期未评估</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clock"></use></svg></div><div class="kpi-value">${data.overview.in7Days}</div><div class="kpi-label">7天内到期</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg></div><div class="kpi-value">${data.overview.in15Days}</div><div class="kpi-label">15天内到期</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">试用期总人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-triangle&quot;></use></svg></div><div class="kpi-value">${data.overview.expired}</div><div class="kpi-label">已到期未评估</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg></div><div class="kpi-value">${data.overview.in7Days}</div><div class="kpi-label">7天内到期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg></div><div class="kpi-value">${data.overview.in15Days}</div><div class="kpi-label">15天内到期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">试用期总人数</div></div>
     </div>
     <div class="chart-card">
       <div class="chart-title"> 待评估清单 <button class="btn btn-outline" style="float:right;padding:4px 12px;font-size:12px" onclick="showConfirmModal(\'导出试用期清单\',\'<p style=\'margin:0;color:#666;font-size:13px\'>试用期评估清单将导出为 Excel。</p>\',\'确认导出\',\'试用期评估清单已导出\')"> 导出</button></div>
@@ -3257,24 +3257,24 @@ async function loadHrWeekly() {
       </div>
     </div>
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-plus-circle"></use></svg></div><div class="kpi-value">${data.summary.onboard}</div><div class="kpi-label">本周入职</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-minus-circle"></use></svg></div><div class="kpi-value">${data.summary.resign}</div><div class="kpi-label">本周离职</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.summary.regular}</div><div class="kpi-label">本周转正</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.summary.transfer}</div><div class="kpi-label">本周调岗</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-target"></use></svg></div><div class="kpi-value">${data.summary.recruitProgress}</div><div class="kpi-label">招聘完成率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-plus-circle&quot;></use></svg></div><div class="kpi-value">${data.summary.onboard}</div><div class="kpi-label">本周入职</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-minus-circle&quot;></use></svg></div><div class="kpi-value">${data.summary.resign}</div><div class="kpi-label">本周离职</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.summary.regular}</div><div class="kpi-label">本周转正</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.summary.transfer}</div><div class="kpi-label">本周调岗</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-target&quot;></use></svg></div><div class="kpi-value">${data.summary.recruitProgress}</div><div class="kpi-label">招聘完成率</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各中心人员变动</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各中心人员变动</div>
         <div id="weeklyCenterChart" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 近8周入职离职趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 近8周入职离职趋势</div>
         <div id="weeklyTrendChart" style="height:300px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bell"></use></svg> 下周待办事项</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bell&quot;></use></svg> 下周待办事项</div>
       <table class="data-table">
         <thead><tr><th>类型</th><th>事项</th><th>人数</th><th>详情</th><th>操作</th></tr></thead>
         <tbody>
@@ -3340,18 +3340,18 @@ async function loadHrLabor() {
   const ov = data.overview || {};
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-scale"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">案件总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-hourglass"></use></svg></div><div class="kpi-value">${data.overview.pending}</div><div class="kpi-label">处理中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.resolved}</div><div class="kpi-label">已结案</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-coins"></use></svg></div><div class="kpi-value">${data.overview.totalCompensation}万</div><div class="kpi-label">累计经济补偿</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-scale&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">案件总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-hourglass&quot;></use></svg></div><div class="kpi-value">${data.overview.pending}</div><div class="kpi-label">处理中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.resolved}</div><div class="kpi-label">已结案</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-coins&quot;></use></svg></div><div class="kpi-value">${data.overview.totalCompensation}万</div><div class="kpi-label">累计经济补偿</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 案件类型分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 案件类型分布</div>
         <div id="laborTypeChart" style="height:280px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg> 各中心案件数量</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg> 各中心案件数量</div>
         <div id="laborCenterChart" style="height:280px"></div>
       </div>
     </div>
@@ -3395,19 +3395,19 @@ async function loadTrainInstructor() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user-check"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">讲师总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-star"></use></svg></div><div class="kpi-value">${data.overview.fiveStar}</div><div class="kpi-label">五星级讲师</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trophy"></use></svg></div><div class="kpi-value">${data.overview.special}</div><div class="kpi-label">特聘讲师</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-library"></use></svg></div><div class="kpi-value">${data.overview.totalCourses}</div><div class="kpi-label">累计授课</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-door-open"></use></svg></div><div class="kpi-value">${data.overview.resigned}</div><div class="kpi-label">已离职讲师</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-user-check&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">讲师总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg></div><div class="kpi-value">${data.overview.fiveStar}</div><div class="kpi-label">五星级讲师</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trophy&quot;></use></svg></div><div class="kpi-value">${data.overview.special}</div><div class="kpi-label">特聘讲师</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-library&quot;></use></svg></div><div class="kpi-value">${data.overview.totalCourses}</div><div class="kpi-label">累计授课</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-door-open&quot;></use></svg></div><div class="kpi-value">${data.overview.resigned}</div><div class="kpi-label">已离职讲师</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各星级讲师分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各星级讲师分布</div>
         <div id="instructorStarChart" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-building-2"></use></svg> 各中心讲师数量</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-building-2&quot;></use></svg> 各中心讲师数量</div>
         <div id="instructorCenterChart" style="height:300px"></div>
       </div>
     </div>
@@ -3470,13 +3470,13 @@ async function loadTrainCourse() {
   };
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-book-opened"></use></svg></div><div class="kpi-value">${data.overview.totalCourses}</div><div class="kpi-label">课程总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.published}</div><div class="kpi-label">已发布</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.overview.updating}</div><div class="kpi-label">更新中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-users"></use></svg></div><div class="kpi-value">${data.overview.totalLearners}</div><div class="kpi-label">累计学习人次</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-book-opened&quot;></use></svg></div><div class="kpi-value">${data.overview.totalCourses}</div><div class="kpi-label">课程总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.published}</div><div class="kpi-label">已发布</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.overview.updating}</div><div class="kpi-label">更新中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-users&quot;></use></svg></div><div class="kpi-value">${data.overview.totalLearners}</div><div class="kpi-label">累计学习人次</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各团队课程矩阵</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各团队课程矩阵</div>
       <div id="courseMatrixChart" style="height:400px"></div>
     </div>
     <div class="chart-card">
@@ -3511,19 +3511,19 @@ async function loadTrainCadreLoss() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-briefcase"></use></svg></div><div class="kpi-value">${data.overview.totalCadres}</div><div class="kpi-label">干部总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-down"></use></svg></div><div class="kpi-value">${data.overview.lossCount}</div><div class="kpi-label">流失人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.overview.lossRate}%</div><div class="kpi-label">流失率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-running"></use></svg></div><div class="kpi-value">${data.overview.activeRate}%</div><div class="kpi-label">主动流失占比</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clock"></use></svg></div><div class="kpi-value">${data.overview.avgTenure}年</div><div class="kpi-label">平均在职年限</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-briefcase&quot;></use></svg></div><div class="kpi-value">${data.overview.totalCadres}</div><div class="kpi-label">干部总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-down&quot;></use></svg></div><div class="kpi-value">${data.overview.lossCount}</div><div class="kpi-label">流失人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.overview.lossRate}%</div><div class="kpi-label">流失率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-running&quot;></use></svg></div><div class="kpi-value">${data.overview.activeRate}%</div><div class="kpi-label">主动流失占比</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg></div><div class="kpi-value">${data.overview.avgTenure}年</div><div class="kpi-label">平均在职年限</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 后备 vs 在职干部分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 后备 vs 在职干部分布</div>
         <div id="cadreDistChart" style="height:320px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 流失原因分析</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg> 流失原因分析</div>
         <div id="cadreReasonChart" style="height:320px"></div>
       </div>
     </div>
@@ -3571,18 +3571,18 @@ async function loadTrainEstLib() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-ruler"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">编制总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.registered}</div><div class="kpi-label">在册人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.overview.orders}</div><div class="kpi-label">订单总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.overview.utilRate}%</div><div class="kpi-label">使用率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-ruler&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">编制总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.registered}</div><div class="kpi-label">在册人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.overview.orders}</div><div class="kpi-label">订单总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.overview.utilRate}%</div><div class="kpi-label">使用率</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 编制增长趋势（同比）</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 编制增长趋势（同比）</div>
         <div id="estLibTrendChart" style="height:320px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各中心编制对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各中心编制对比</div>
         <div id="estLibCenterChart" style="height:320px"></div>
       </div>
     </div>
@@ -3635,10 +3635,10 @@ async function loadTrainMaterial() {
   if (!data) { renderPage('<div class="loading">数据加载失败</div>'); return; }
   renderPage(`
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-package"></use></svg></div><div class="kpi-value">${data.overview.totalItems}</div><div class="kpi-label">物料种类</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.normalStock}</div><div class="kpi-label">库存正常</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.lowStock}</div><div class="kpi-label">库存预警</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-file-edit"></use></svg></div><div class="kpi-value">${data.overview.totalRecords}</div><div class="kpi-label">本月领用记录</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-package&quot;></use></svg></div><div class="kpi-value">${data.overview.totalItems}</div><div class="kpi-label">物料种类</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.normalStock}</div><div class="kpi-label">库存正常</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.lowStock}</div><div class="kpi-label">库存预警</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-file-edit&quot;></use></svg></div><div class="kpi-value">${data.overview.totalRecords}</div><div class="kpi-label">本月领用记录</div></div>
     </div>
     <div class="chart-card">
       <div class="chart-title"> 物料库存明细 <button class="btn btn-primary" style="float:right;padding:4px 12px;font-size:12px" onclick="showFormModal(\'物料入库\',[{\'name\':\'matName\',\'label\':\'物料名称\',\'required\':true},{\'name\':\'matQty\',\'label\':\'数量\',\'type\':\'number\',\'required\':true,\'value\':\'1\'},{\'name\':\'matSupplier\',\'label\':\'供应商\'},{\'name\':\'matNote\',\'label\':\'备注\',\'type\':\'textarea\',\'rows\':2}],\'登记入库\',\'物料已入库\')"> 入库</button></div>
@@ -3653,7 +3653,7 @@ async function loadTrainMaterial() {
       </table>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-file-edit"></use></svg> 近期领用记录</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-file-edit&quot;></use></svg> 近期领用记录</div>
       <table class="data-table">
         <thead><tr><th>日期</th><th>物料</th><th>数量</th><th>领用人</th><th>培训批次</th><th>用途</th><th>审批人</th></tr></thead>
         <tbody>
@@ -3674,27 +3674,27 @@ async function loadRecruitBackoffice() {
       <select id="boDept"><option value="">全部职能</option><option>综管部</option><option>财务部</option><option>IT部</option><option>法务部</option></select>
       <input type="month" value="2026-07">
       <button class="btn btn-primary">查询</button>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-download"></use></svg> 导出</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-download&quot;></use></svg> 导出</button>
     </div>
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.overview.totalDemand}</div><div class="kpi-label">年度需求总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.totalOnboard}</div><div class="kpi-label">已入职人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg></div><div class="kpi-value">${data.overview.achieveRate}%</div><div class="kpi-label">整体达成率</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.overview.inProgress}</div><div class="kpi-label">招聘中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-hourglass"></use></svg></div><div class="kpi-value">${data.overview.pending}</div><div class="kpi-label">待启动</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.overview.totalDemand}</div><div class="kpi-label">年度需求总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.totalOnboard}</div><div class="kpi-label">已入职人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg></div><div class="kpi-value">${data.overview.achieveRate}%</div><div class="kpi-label">整体达成率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.overview.inProgress}</div><div class="kpi-label">招聘中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-hourglass&quot;></use></svg></div><div class="kpi-value">${data.overview.pending}</div><div class="kpi-label">待启动</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各职能需求达成对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各职能需求达成对比</div>
         <div id="boDeptChart" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 月度需求vs入职趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 月度需求vs入职趋势</div>
         <div id="boTrendChart" style="height:300px"></div>
       </div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 二线职能需求明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 二线职能需求明细</div>
       <table class="data-table">
         <thead><tr><th>中心</th><th>职能</th><th>岗位</th><th>编制数</th><th>在岗</th><th>空缺</th><th>招聘中</th><th>达成率</th><th>状态</th></tr></thead>
         <tbody>
@@ -3738,28 +3738,28 @@ async function loadRecruitRpo() {
       <select><option value="">全部渠道</option><option>校招-山西大学</option><option>校招-太原理工</option><option>RPO-智联</option><option>RPO-BOSS直聘</option></select>
       <input type="month" value="2026-07">
       <button class="btn btn-primary">查询</button>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-download"></use></svg> 导出</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-download&quot;></use></svg> 导出</button>
     </div>
     <div class="kpi-grid cols-5">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-graduation-cap"></use></svg></div><div class="kpi-value">${data.overview.totalCandidates}</div><div class="kpi-label">总候选人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.overview.interviewed}</div><div class="kpi-label">面试人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon">📨</div><div class="kpi-value">${data.overview.offered}</div><div class="kpi-label">Offer数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.onboarded}</div><div class="kpi-label">入职人数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-down"></use></svg></div><div class="kpi-value">${data.overview.conversionRate}%</div><div class="kpi-label">整体转化率</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-graduation-cap&quot;></use></svg></div><div class="kpi-value">${data.overview.totalCandidates}</div><div class="kpi-label">总候选人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.overview.interviewed}</div><div class="kpi-label">面试人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-mail&quot;></use></svg></div><div class="kpi-value">${data.overview.offered}</div><div class="kpi-label">Offer数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.onboarded}</div><div class="kpi-label">入职人数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-down&quot;></use></svg></div><div class="kpi-value">${data.overview.conversionRate}%</div><div class="kpi-label">整体转化率</div></div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 各渠道RPO转化漏斗</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 各渠道RPO转化漏斗</div>
         <div id="rpoFunnel" style="height:300px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 校招vs RPO对比</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 校招vs RPO对比</div>
         <div id="rpoCompare" style="height:300px"></div>
       </div>
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 渠道明细</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 渠道明细</div>
         <table class="data-table">
           <thead><tr><th>渠道</th><th>类型</th><th>候选</th><th>面试</th><th>Offer</th><th>入职</th><th>转化率</th><th>费用(元)</th></tr></thead>
           <tbody>
@@ -3768,8 +3768,8 @@ async function loadRecruitRpo() {
         </table>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bell"></use></svg> 近期校招活动</div>
-        ${data.activities.map(a => `<div class="alert-item alert-${a.status==='进行中'?'info':'success'}"><span class="alert-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-graduation-cap"></use></svg></span><div><strong>${a.name}</strong> · ${a.date}<br><span style="font-size:12px;color:var(--text-light)">${a.school} | 岗位: ${a.position} | 候选${a.candidates}人 | ${a.status}</span></div></div>`).join('')}
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bell&quot;></use></svg> 近期校招活动</div>
+        ${data.activities.map(a => `<div class="alert-item alert-${a.status==='进行中'?'info':'success'}"><span class="alert-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-graduation-cap&quot;></use></svg></span><div><strong>${a.name}</strong> · ${a.date}<br><span style="font-size:12px;color:var(--text-light)">${a.school} | 岗位: ${a.position} | 候选${a.candidates}人 | ${a.status}</span></div></div>`).join('')}
       </div>
     </div>
   `);
@@ -3809,17 +3809,17 @@ async function loadPrCrisis() {
       <input type="text" placeholder="搜索预案..." style="flex:1;max-width:300px">
       <select><option value="">全部等级</option><option>一级（重大）</option><option>二级（较大）</option><option>三级（一般）</option></select>
       <select><option value="">全部状态</option><option>已发布</option><option>演练中</option><option>修订中</option></select>
-      <button class="btn btn-primary"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 搜索</button>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-plus-circle"></use></svg> 新建预案</button>
+      <button class="btn btn-primary"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg> 搜索</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-plus-circle&quot;></use></svg> 新建预案</button>
     </div>
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">预案总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.published}</div><div class="kpi-label">已发布</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.overview.drilling}</div><div class="kpi-label">演练中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${data.overview.expiring}</div><div class="kpi-label">即将过期</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">预案总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.published}</div><div class="kpi-label">已发布</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.overview.drilling}</div><div class="kpi-label">演练中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.red}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${data.overview.expiring}</div><div class="kpi-label">即将过期</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 危机预案列表</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 危机预案列表</div>
       <table class="data-table">
         <thead><tr><th>预案编号</th><th>预案名称</th><th>等级</th><th>类别</th><th>负责人</th><th>最近演练</th><th>状态</th><th>操作</th></tr></thead>
         <tbody>
@@ -3829,11 +3829,11 @@ async function loadPrCrisis() {
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 预案等级分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 预案等级分布</div>
         <div id="crisisLevel" style="height:260px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg> 年度演练计划</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg> 年度演练计划</div>
         <table class="data-table">
           <thead><tr><th>季度</th><th>预案</th><th>计划日期</th><th>状态</th></tr></thead>
           <tbody>
@@ -3865,17 +3865,17 @@ async function loadPrMedia() {
       <input type="text" placeholder="搜索媒体/记者..." style="flex:1;max-width:300px">
       <select><option value="">全部类型</option><option>财经</option><option>科技</option><option>综合</option><option>行业</option></select>
       <select><option value="">全部级别</option><option>核心媒体</option><option>友好媒体</option><option>普通媒体</option></select>
-      <button class="btn btn-primary"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg> 搜索</button>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-plus-circle"></use></svg> 新增媒体</button>
+      <button class="btn btn-primary"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg> 搜索</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-plus-circle&quot;></use></svg> 新增媒体</button>
     </div>
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-radio"></use></svg></div><div class="kpi-value">${data.overview.totalMedia}</div><div class="kpi-label">合作媒体数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-user"></use></svg></div><div class="kpi-value">${data.overview.totalContacts}</div><div class="kpi-label">记者联系人</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-star"></use></svg></div><div class="kpi-value">${data.overview.coreMedia}</div><div class="kpi-label">核心媒体</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-newspaper"></use></svg></div><div class="kpi-value">${data.overview.recentReports}</div><div class="kpi-label">本月报道数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-radio&quot;></use></svg></div><div class="kpi-value">${data.overview.totalMedia}</div><div class="kpi-label">合作媒体数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-user&quot;></use></svg></div><div class="kpi-value">${data.overview.totalContacts}</div><div class="kpi-label">记者联系人</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-star&quot;></use></svg></div><div class="kpi-value">${data.overview.coreMedia}</div><div class="kpi-label">核心媒体</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-newspaper&quot;></use></svg></div><div class="kpi-value">${data.overview.recentReports}</div><div class="kpi-label">本月报道数</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 媒体资源明细</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 媒体资源明细</div>
       <table class="data-table">
         <thead><tr><th>媒体名称</th><th>类型</th><th>级别</th><th>记者</th><th>职务</th><th>联系方式</th><th>合作状态</th><th>最近互动</th></tr></thead>
         <tbody>
@@ -3885,11 +3885,11 @@ async function loadPrMedia() {
     </div>
     <div class="row cols-2">
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 媒体类型分布</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 媒体类型分布</div>
         <div id="mediaTypeChart" style="height:260px"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-trend-up"></use></svg> 月度报道趋势</div>
+        <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-trend-up&quot;></use></svg> 月度报道趋势</div>
         <div id="mediaTrendChart" style="height:260px"></div>
       </div>
     </div>
@@ -3921,22 +3921,22 @@ async function loadHrPolicy() {
   renderPage(`
     <div class="filter-bar">
       <div style="position:relative;flex:1;max-width:400px">
-        <svg class="icon-svg" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9CA3AF;pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg>
+        <svg class=&quot;icon-svg&quot; style=&quot;position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9CA3AF;pointer-events:none&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg>
         <input type="text" placeholder="搜索制度名称/关键词..." style="width:100%;padding-left:32px">
       </div>
       <select><option value="">全部分类</option><option>考勤管理</option><option>薪酬福利</option><option>绩效考核</option><option>劳动合同</option><option>员工手册</option><option>奖惩制度</option></select>
       <select><option value="">全部状态</option><option>现行</option><option>修订中</option><option>已废止</option></select>
       <button class="btn btn-primary">搜索</button>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-plus-circle"></use></svg> 上传制度</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-plus-circle&quot;></use></svg> 上传制度</button>
     </div>
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-library"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">制度总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.active}</div><div class="kpi-label">现行制度</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.overview.revising}</div><div class="kpi-label">修订中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-eye"></use></svg></div><div class="kpi-value">${data.overview.totalViews}</div><div class="kpi-label">总阅读量</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-library&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">制度总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.active}</div><div class="kpi-label">现行制度</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.overview.revising}</div><div class="kpi-label">修订中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-eye&quot;></use></svg></div><div class="kpi-value">${data.overview.totalViews}</div><div class="kpi-label">总阅读量</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clipboard-list"></use></svg> 人事制度列表</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clipboard-list&quot;></use></svg> 人事制度列表</div>
       <table class="data-table">
         <thead><tr><th>制度编号</th><th>制度名称</th><th>分类</th><th>发布日期</th><th>最近修订</th><th>状态</th><th>阅读量</th><th>操作</th></tr></thead>
         <tbody>
@@ -3954,21 +3954,21 @@ async function loadAdminManual() {
   renderPage(`
     <div class="filter-bar">
       <div style="position:relative;flex:1;max-width:400px">
-        <svg class="icon-svg" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9CA3AF;pointer-events:none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-search"></use></svg>
+        <svg class=&quot;icon-svg&quot; style=&quot;position:absolute;left:10px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#9CA3AF;pointer-events:none&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-search&quot;></use></svg>
         <input type="text" placeholder="搜索手册/操作流程..." style="width:100%;padding-left:32px">
       </div>
       <select><option value="">全部分类</option><option>办公环境</option><option>资产管理</option><option>采购流程</option><option>印章管理</option><option>车辆管理</option><option>会议管理</option></select>
       <button class="btn btn-primary">搜索</button>
-      <button class="btn btn-outline"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-plus-circle"></use></svg> 上传手册</button>
+      <button class="btn btn-outline"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-plus-circle&quot;></use></svg> 上传手册</button>
     </div>
     <div class="kpi-grid cols-4">
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-book-opened"></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">手册总数</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-check-circle-2"></use></svg></div><div class="kpi-value">${data.overview.active}</div><div class="kpi-label">现行手册</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-refresh-cw"></use></svg></div><div class="kpi-value">${data.overview.updating}</div><div class="kpi-label">更新中</div></div>
-      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-eye"></use></svg></div><div class="kpi-value">${data.overview.totalViews}</div><div class="kpi-label">总阅读量</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.blue}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-book-opened&quot;></use></svg></div><div class="kpi-value">${data.overview.total}</div><div class="kpi-label">手册总数</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.green}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-check-circle-2&quot;></use></svg></div><div class="kpi-value">${data.overview.active}</div><div class="kpi-label">现行手册</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.orange}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-refresh-cw&quot;></use></svg></div><div class="kpi-value">${data.overview.updating}</div><div class="kpi-label">更新中</div></div>
+      <div class="kpi-card"><div class="kpi-accent" style="background:${COLORS.purple}"></div><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-eye&quot;></use></svg></div><div class="kpi-value">${data.overview.totalViews}</div><div class="kpi-label">总阅读量</div></div>
     </div>
     <div class="chart-card">
-      <div class="chart-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-book-opened"></use></svg> 行政操作手册列表</div>
+      <div class="chart-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-book-opened&quot;></use></svg> 行政操作手册列表</div>
       <table class="data-table">
         <thead><tr><th>手册编号</th><th>手册名称</th><th>分类</th><th>适用范围</th><th>最近修订</th><th>状态</th><th>阅读量</th><th>操作</th></tr></thead>
         <tbody>
@@ -4032,7 +4032,7 @@ async function loadHrCoreKpi() {
   const data = await fetchAPI(API.coreKpi);
   if (!data) return;
   renderPage(`
-    <div class="section-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-bar-chart-2"></use></svg> 人事核心 KPI 指标</div>
+    <div class="section-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-bar-chart-2&quot;></use></svg> 人事核心 KPI 指标</div>
     <div class="kpi-grid cols-4">
       ${[ {v:data.headcountRate||0,l:'编制使用率',icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-ruler\"></use></svg>',c:COLORS.blue},{v:data.contractExpire30||0,l:'30天到期合同',icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-clipboard-list\"></use></svg>',c:COLORS.red},{v:data.probationExpire14||0,l:'14天到期试用',icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-clock\"></use></svg>',c:COLORS.orange},{v:data.laborRisk||0,l:'劳动关系风险',icon:'<svg class=\"icon-svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><use href=\"#icon-scale\"></use></svg>',c:COLORS.purple} ].map(k=>`<div class="kpi-card"><div class="kpi-accent" style="background:${k.c}"></div><div class="kpi-icon">${k.icon}</div><div class="kpi-value">${k.v}</div><div class="kpi-label">${k.l}</div></div>`).join('')}
     </div>`);
@@ -4040,7 +4040,7 @@ async function loadHrCoreKpi() {
 async function loadHrWeekly() {
   const data = await fetchAPI(API.hrWeekly);
   if (!data) return;
-  renderPage(`<div class="section-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-newspaper"></use></svg> 人力周报</div><div class="kpi-grid cols-5">${(data.summary?[data.summary]:[]).map(s=>`<div class="kpi-card"><div class="kpi-value">${s.onboard+s.resign+s.regular+s.transfer}</div><div class="kpi-label">本周变动</div></div>`).join('')}</div><div class="chart-card"><div class="chart-title">各中心周度明细</div><div id="hrWeeklyChart" style="height:320px"></div></div>`);
+  renderPage(`<div class="section-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-newspaper&quot;></use></svg> 人力周报</div><div class="kpi-grid cols-5">${(data.summary?[data.summary]:[]).map(s=>`<div class="kpi-card"><div class="kpi-value">${s.onboard+s.resign+s.regular+s.transfer}</div><div class="kpi-label">本周变动</div></div>`).join('')}</div><div class="chart-card"><div class="chart-title">各中心周度明细</div><div id="hrWeeklyChart" style="height:320px"></div></div>`);
   initChart('hrWeeklyChart',{tooltip:{trigger:'axis'},legend:{data:['入职','离职','转正','调动']},xAxis:{type:'category',data:(data.byCenter||[]).map(c=>c.center)},yAxis:{type:'value'},series:[{name:'入职',type:'bar',data:(data.byCenter||[]).map(c=>c.onboard||0)},{name:'离职',type:'bar',data:(data.byCenter||[]).map(c=>c.resign||0)},{name:'转正',type:'bar',data:(data.byCenter||[]).map(c=>c.regular||0)},{name:'调动',type:'bar',data:(data.byCenter||[]).map(c=>c.transfer||0)}]});
 }
 async function loadHrProbation() {
@@ -4048,12 +4048,12 @@ async function loadHrProbation() {
   if (!data) return;
   const list = data.list || [];
   renderPage(`
-    <div class="section-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-clock"></use></svg> 试用期到期预警</div>
+    <div class="section-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-clock&quot;></use></svg> 试用期到期预警</div>
     <div class="kpi-grid cols-4" style="margin-bottom:16px">
-      <div class="kpi-card"><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg></div><div class="kpi-value">${list.length}</div><div class="kpi-label">试用期总人数</div></div>
-      <div class="kpi-card"><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-circle-red"></use></svg></div><div class="kpi-value">${list.filter(x=>x.daysLeft<=7).length}</div><div class="kpi-label">7天内到期</div></div>
-      <div class="kpi-card"><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-circle-yellow"></use></svg></div><div class="kpi-value">${list.filter(x=>x.daysLeft>7&&x.daysLeft<=14).length}</div><div class="kpi-label">14天内到期</div></div>
-      <div class="kpi-card"><div class="kpi-icon"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-circle-green"></use></svg></div><div class="kpi-value">${list.filter(x=>x.daysLeft>14).length}</div><div class="kpi-label">14天后到期</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg></div><div class="kpi-value">${list.length}</div><div class="kpi-label">试用期总人数</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-circle-red&quot;></use></svg></div><div class="kpi-value">${list.filter(x=>x.daysLeft<=7).length}</div><div class="kpi-label">7天内到期</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-circle-yellow&quot;></use></svg></div><div class="kpi-value">${list.filter(x=>x.daysLeft>7&&x.daysLeft<=14).length}</div><div class="kpi-label">14天内到期</div></div>
+      <div class="kpi-card"><div class="kpi-icon"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-circle-green&quot;></use></svg></div><div class="kpi-value">${list.filter(x=>x.daysLeft>14).length}</div><div class="kpi-label">14天后到期</div></div>
     </div>
     <div class="chart-card">
       <table class="data-table"><thead><tr><th>姓名</th><th>中心</th><th>部门</th><th>入职日期</th><th>到期日期</th><th>剩余天数</th><th>状态</th></tr></thead>
@@ -4069,13 +4069,13 @@ async function loadAlerts() {
   const list = Array.isArray(data) ? data : (data.list || []);
   const lvMap = { high:'alert-high', mid:'alert-mid', low:'alert-low' };
   renderPage(`
-    <div class="section-title"><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-alert-circle"></use></svg> 预警中心</div>
+    <div class="section-title"><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-alert-circle&quot;></use></svg> 预警中心</div>
     <div class="alert-center">${list.map(a => `
       <div class="alert-card ${lvMap[a.level]||''}">
         <div class="alert-card-head"><span class="alert-badge">#${a.id||''}</span><span class="alert-level">${a.level||'mid'}</span></div>
         <div class="alert-title">${a.title||'预警'}</div>
         <div class="alert-desc">${a.desc||''}</div>
-        <div class="alert-foot"><span><svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-calendar"></use></svg> ${a.createdAt||'-'}</span><span>📍 ${a.center||'-'}</span></div>
+        <div class="alert-foot"><span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-calendar&quot;></use></svg> ${a.createdAt||'-'}</span><span><svg class=&quot;icon-svg&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><use href=&quot;#icon-map-pin&quot;></use></svg> ${a.center||'-'}</span></div>
       </div>`).join('') || '<div class="loading">暂无预警</div>'}
     </div>`);
 }
