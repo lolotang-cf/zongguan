@@ -1,0 +1,147 @@
+/* === V30.1: 主界面白底+橙 覆盖层 (D版简洁风格) ===
+   说明：仅在 main.css 之后覆盖呈现层，不动 main.css / app.js / HTML 结构。
+   风格：参考 D版(dash-d-gray)——白底、浅灰边框、无彩色装饰、克制排版。
+   撤回：删除 index.html 中本文件引用 + 删除本文件即可，零影响回归 V28.1 浅色版。 */
+:root {
+  --bg: #FAFAFA;
+  --card: #FFFFFF;
+  --border: #E8E8E6;
+  --text: #1D1D1F;
+  --text-light: #86868B;
+  --accent: #E8530A;        /* 传发橙：按钮/数值/导航激活 */
+  --accent-light: #F4731E;
+  --accent-soft: #FCEDE4;   /* 橙浅底 */
+}
+
+/* ========== 背景 & 全局 ========== */
+body { background: var(--bg); }
+
+/* ========== 侧边栏（D版浅灰） ========== */
+.sidebar {
+  background: #F7F7F5;
+  color: #1D1D1F;
+  border-right: 1px solid #E8E8E6;
+}
+.sidebar-header { border-bottom-color: #E8E8E6; }
+.sidebar-header .logo { color: #1D1D1F; }
+.sidebar-nav::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+.nav-group-title { color: #AEAEB2; }
+.nav-group-title:hover { background: #EFEFED; }
+.nav-subgroup-title { color: #86868B; }
+.nav-subgroup-title:hover { background: #EFEFED; color: #1D1D1F; }
+.nav-item { color: #48484A; }
+.nav-item:hover { background: #EFEFED; color: #1D1D1F; }
+.nav-item.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+/* ========== 顶栏 ========== */
+.topbar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E8E8E6;
+}
+.topbar .page-title { color: var(--accent); }
+.topbar .search-box {
+  background: #FAFAFA;
+  border: 1px solid #E8E8E6;
+  border-radius: 8px;
+}
+.topbar .user-avatar { background: var(--accent); }
+
+/* ========== KPI 卡片（D版简洁风） ========== */
+
+/* 隐藏彩色左边框条（kpi-accent 内联背景色） */
+.kpi-card .kpi-accent { display: none !important; }
+
+/* 统一卡片样式：白底 + 浅边框 + 微阴影，无花哨装饰 */
+.kpi-card {
+  border: 1px solid #E8E8E6 !important;
+  border-top: none !important;          /* 覆盖模块红绿灯的 border-top:3px solid 彩色 */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+.kpi-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: none !important;           /* 去掉悬浮上移效果（D版更稳重） */
+}
+
+/* 数值用橙色强调 */
+.kpi-card .kpi-value { color: var(--accent); }
+.kpi-card .kpi-icon { color: var(--text-light); font-size: 24px; }
+.kpi-card .kpi-label { color: var(--text-light); font-size: 13px; }
+.kpi-card .kpi-trend { font-size: 12px; color: var(--text-light); }
+.kpi-trend.up { color: var(--accent); }        /* 统一橙，不用绿/红 */
+.kpi-trend.down { color: var(--accent); }
+
+/* 模块红绿灯卡片内部：进度条统一浅色，标签弱化 */
+.kpi-card .light-bar-track {
+  background: #F0F0EE !important;
+  height: 6px !important;
+  border-radius: 3px;
+}
+.kpi-card .light-bar-fill {
+  background: var(--accent) !important;    /* 进度条统一橙色，不再红/黄/绿 */
+  border-radius: 3px;
+}
+.kpi-card .light-status-dot { display: none !important; }       /* 隐藏圆点指示器 */
+.kpi-card .light-status-text {
+  font-size: 11px;
+  color: var(--text-light) !important;     /* 标签弱化灰色，不再红/黄/绿字 */
+  padding: 2px 8px;
+  background: #F5F5F3;
+  border-radius: 4px;
+}
+/* 模块名称和指标名 */
+.kpi-card .module-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.kpi-card .metric-name { font-size: 12px; color: var(--text-light); }
+.kpi-card .target-val, .kpi-card .actual-val { font-size: 13px; color: var(--text); }
+.kpi-card .achieve-rate { font-size: 12px; color: var(--text-light); }
+
+/* ========== 图表卡片 ========== */
+.chart-card {
+  border: 1px solid #E8E8E6;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.chart-card .chart-title { color: var(--text); font-weight: 600; }
+
+/* ========== 数据表 ========== */
+.data-table thead th {
+  background: #F7F7F5 !important;         /* 表头改为浅灰底（非橙底），D版克制风格 */
+  color: var(--text);
+  font-weight: 600;
+  border-bottom: 1px solid #E8E8E6;
+}
+.data-table td { border-bottom: 1px solid #F4F4F2; }
+
+/* ========== 预警卡片（去掉彩色左边框） ========== */
+.alert-card {
+  border: 1px solid #E8E8E6 !important;
+  border-left: 1px solid #E8E8E6 !important;  /* 覆盖 alert-high/mid/low 的彩色左边框 */
+}
+.alert-high, .alert-mid, .alert-low {
+  border-left-color: #E8E8E6 !important;
+}
+
+/* ========== 按钮 / 筛选 ========== */
+.btn-primary { background: var(--accent); }
+.btn-primary:hover { background: var(--accent-light); }
+.filter-bar .btn-primary { background: var(--accent); }
+.filter-bar select:focus, .filter-bar input:focus { border-color: var(--accent); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ========== 分区标题 ========== */
+.section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* ========== 同步时间标签弱化 ========== */
+.sync-time {
+  font-size: 11px;
+  color: #C0C0BC;
+}
